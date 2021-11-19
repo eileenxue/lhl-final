@@ -1,8 +1,6 @@
-var express = require('express');
-var router = express.Router();
+import UserListItem from "./UserListItem";
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
+export default function UserList(props) {
 
   const users = [
     {
@@ -28,23 +26,20 @@ router.get('/', function(req, res, next) {
     },
   ];
 
-  res.send('TESTTESTESTRST')
-});
+  const parsedUsers = Array.isArray(users) && 
+                      users.map(user => <UserListItem {...user} key = {user.id} /> ) 
 
+  return (
+    <div>
 
-router.get('/:user_id', function(req, res, next) {
-  const user = {
-    id: 2,
-      first_name: "Bob",
-      last_name: "2",
-      email: "bob2@gmail.com",
-      password: "123",
-  }
+    <h1>UserList page </h1>
 
-  res.json({});
-});
+    <section>{parsedUsers}
 
+    </section>
+    
+    
+    </div>
 
-module.exports = router;
-
-
+  )
+}
