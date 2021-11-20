@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS user_answers CASCADE;
+CREATE TABLE "user_answers" (
+  "id" SERIAL PRIMARY KEY NOT NULL,
+  "test_id" INTEGER REFERENCES tests(id) ON DELETE CASCADE,
+  "question_id" INTEGER REFERENCES questions(id) ON DELETE CASCADE,
+  "user_id" INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  "response" VARCHAR(255)
+);
