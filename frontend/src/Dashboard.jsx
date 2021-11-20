@@ -10,14 +10,10 @@ export default function Dashboard(props) {
 	useEffect(() => {
 		axios.get("/api/users").then((res) => setAppointments(res.data));
 	}, []);
-
-
 	return (
 		<div>
 			<h1>I am Dashboard</h1>
 			<AppointmentList appointments={appointments} />
 		</div>
 	);
-
-	
 }

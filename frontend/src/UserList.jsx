@@ -8,7 +8,6 @@ export default function UserList(props) {
       last_name: "1",
       email: "bob1@gmail.com",
       password: "123",
-      is_proctor: true
     },
     {
       id: 2,
@@ -16,7 +15,6 @@ export default function UserList(props) {
       last_name: "2",
       email: "bob2@gmail.com",
       password: "123",
-      is_proctor: false
     },
     {
       id: 3,
@@ -24,7 +22,6 @@ export default function UserList(props) {
       last_name: "3",
       email: "bob3@gmail.com",
       password: "123",
-      is_proctor: false
     },
   ];
 
