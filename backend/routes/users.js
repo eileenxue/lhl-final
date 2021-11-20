@@ -27,8 +27,8 @@ router.get('/', function(req, res, next) {
       password: "123",
     },
   ];
-
-  res.send('TESTTESTESTRST')
+  res.json(users);
+  // res.send('TESTTESTESTRST');
 });
 
 
