@@ -4,37 +4,47 @@ import "./App.css";
 // import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState, useEffect } from "react";
 import Counter from "./components/Counter";
+
 function App() {
   const [eye, setEye] = useState("");
+
   useEffect(() => {
     const webgazer = window.webgazer;
+
     window.saveDataAcrossSession = true;
-    let startLookTime = Number.POSITIVE_INFINITY;
-    let look_delay = 500;
+
+    let startLookTime = Number.POSITIVE_INFINITY; // when start looking from left or right 
+    let look_delay = 1000;
     let left_cutoff = window.innerWidth / 8;
     let right_cutoff = window.innerWidth - window.innerWidth / 8;
     let top_cutoff = window.innerHeight / 8;
     let bottom_cutoff = window.innerWidth - window.innerHeight / 8;
+
+    
     webgazer
       .setGazeListener((data, timestamp) => {
         console.log(data, timestamp);
-        if (data == null) return;
+        if (data == null) return; 
         if (
           data.x < left_cutoff ||
           data.x > right_cutoff ||
           data.y < top_cutoff ||
           data.y > bottom_cutoff
         ) {
-          // if looking left / right, record the timestamp
+          // if looking left / right / top / bottom, record the current timestamp
           startLookTime = timestamp;
+        } else {
+          // not look on the sides - restart the timer 
+          startLookTime = Number.POSITIVE_INFINITY;
         }
-        // if stare for over 1500 then alert
+        // if stare for over 1000 then alert
         if (startLookTime + look_delay < timestamp) {
           // console.log("you should focus on the middle of the screen");
           // console.log(data, timestamp);
           return setEye("your eyes are off screen");
         } else {
-          return setEye("life is good");
+          setEye("life is good");
+          startLookTime = Number.POSITIVE_INFINITY; 
         }
       })
       .begin();
@@ -81,7 +91,7 @@ function App() {
       {/* <h1> super exam </h1>
        <UserList />  */}
       <p style={{ fontSize: "8em" }}>{eye}</p>
-      <Counter />
+      < Counter />
     </div>
   );
 }
