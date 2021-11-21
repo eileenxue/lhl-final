@@ -1,31 +1,37 @@
-// import "./App.css";
+import "./App.css";
 // import UserList from "./components/UserList";
 // import tf from "@tensorflow/tfjs";
 // import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useEffect } from "react";
+import Counter from './components/Counter';
 
 function App() {
   window.saveDataAcrossSession = true;
 
   let startLookTime = Number.POSITIVE_INFINITY;
-  let look_delay = 1500;
-  let left_cutoff = window.innerWidth / 8;
+  let look_delay = 2000;
+  let left_cutoff = window.innerWidth/ 8;
   let right_cutoff = window.innerWidth - window.innerWidth / 8;
+
+  let bottom_cutoff = window.innerHeight / 8;
+  let top_cutoff = window.innerWidth - window.innerHeight / 8;
+  
 
   useEffect(() => {
     const webgazer = window.webgazer;
+
     webgazer
       .setGazeListener((data, timestamp) => {
         if (data == null) return;
-        if (data.x < left_cutoff || data.x > right_cutoff) {
+        if (data.x < left_cutoff || data.x > right_cutoff || data.y < bottom_cutoff ||  data.y > top_cutoff  ) {
           // if looking left / right, record the timestamp
           startLookTime = timestamp;
-        }
+        } 
         // if stare for over 1500 then alert
         if (startLookTime + look_delay < timestamp) {
-          console.log("what is happening ");
+          console.log(" you should focus on the middle of the screen ");
+           // console.log(data, timestamp);
         }
-        // console.log(data, timestamp);
       })
       .begin();
   }, []);
@@ -69,11 +75,13 @@ function App() {
   // }
 
   return (
-    <div className="App">
+    <div className="App" >
       {/* <h1> super exam </h1>
        <UserList />  */}
       {/* <button onClick={init}>Start</button> */}
-      hello world
+      <Counter />
+       
+
     </div>
   );
 }
