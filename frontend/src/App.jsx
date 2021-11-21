@@ -3,9 +3,26 @@ import './App.css';
 import UserList from './components/UserList';
 import tf from '@tensorflow/tfjs';
 import * as speechCommands from '@tensorflow-models/speech-commands';
+import { useState } from 'react';
 
 
 function App() {
+  const labels = ["Background Noise", "keyboard", "moving", "voice"]
+  // const [currentIndex, setCurrentIndex] = useState(null);
+  // const findBiggestIndex = (listOfValues) => {
+  //   const biggestNumber = Math.max(...listOfValues)
+  //   const biggestIndex = listOfValues.indexOf(biggestNumber)
+  //   if(biggestIndex){
+  //   return setCurrentIndex(biggestIndex)
+  //   }
+  const [currentIndex, setCurrentIndex] = useState(null);
+  const [thereIsNoise, setThereIsNoise] = useState(false);
+  const backgroundNoise = (listOfValues) => {
+
+    }
+
+
+
   async function createModel() {
     const URL = "http://localhost:3001/audio-model/";
     const checkpointURL = URL + "model.json"; // model topology
@@ -33,10 +50,13 @@ async function init() {
   recognizer.listen(result => {
       const scores = result.scores; // probability of prediction for each class
       // render the probability scores per class
-      console.log(scores);
+      console.log(scores, classLabels);
+      // alert("there is some noise in the background");
+      // findBiggestIndex(scores);
+      setThereIsNoise(scores[0] > 0.50);
   }, {
       includeSpectrogram: true, // in case listen should return result.spectrogram
-      probabilityThreshold: 0.75,
+      probabilityThreshold: 0.50,
       invokeCallbackOnNoiseAndUnknown: true,
       overlapFactor: 0.50 // probably want between 0.5 and 0.75. More info in README
   });
@@ -49,9 +69,9 @@ async function init() {
        {/* <h1> super exam </h1>
        <UserList />  */}
        <button onClick={init}>Start</button>
-
+       {thereIsNoise && <div>There is some background noiseeeee</div>}
     </div>
   );
-}
+ }
 
 export default App;
