@@ -2,35 +2,46 @@ import "./App.css";
 // import UserList from "./components/UserList";
 // import tf from "@tensorflow/tfjs";
 // import * as speechCommands from "@tensorflow-models/speech-commands";
-import { useEffect } from "react";
-import Counter from './components/Counter';
+import { useState, useEffect } from "react";
+import Counter from "./components/Counter";
 
 function App() {
-  window.saveDataAcrossSession = true;
-
-  let startLookTime = Number.POSITIVE_INFINITY;
-  let look_delay = 2000;
-  let left_cutoff = window.innerWidth/ 8;
-  let right_cutoff = window.innerWidth - window.innerWidth / 8;
-
-  let bottom_cutoff = window.innerHeight / 8;
-  let top_cutoff = window.innerWidth - window.innerHeight / 8;
-  
+  const [eye, setEye] = useState("");
 
   useEffect(() => {
     const webgazer = window.webgazer;
 
+    window.saveDataAcrossSession = true;
+
+    let startLookTime = Number.POSITIVE_INFINITY;
+    let look_delay = 500;
+
+    let left_cutoff = window.innerWidth / 8;
+    let right_cutoff = window.innerWidth - window.innerWidth / 8;
+    let top_cutoff = window.innerHeight / 8;
+    let bottom_cutoff = window.innerWidth - window.innerHeight / 8;
+
     webgazer
       .setGazeListener((data, timestamp) => {
+        console.log(data, timestamp);
+
         if (data == null) return;
-        if (data.x < left_cutoff || data.x > right_cutoff || data.y < bottom_cutoff ||  data.y > top_cutoff  ) {
+        if (
+          data.x < left_cutoff ||
+          data.x > right_cutoff ||
+          data.y < top_cutoff ||
+          data.y > bottom_cutoff
+        ) {
           // if looking left / right, record the timestamp
           startLookTime = timestamp;
-        } 
+        }
         // if stare for over 1500 then alert
         if (startLookTime + look_delay < timestamp) {
-          console.log(" you should focus on the middle of the screen ");
-           // console.log(data, timestamp);
+          // console.log("you should focus on the middle of the screen");
+          // console.log(data, timestamp);
+          return setEye("your eyes are off screen");
+        } else {
+          return setEye("life is good");
         }
       })
       .begin();
@@ -75,13 +86,12 @@ function App() {
   // }
 
   return (
-    <div className="App" >
+    <div className="App">
       {/* <h1> super exam </h1>
        <UserList />  */}
-      {/* <button onClick={init}>Start</button> */}
-      <Counter />
-       
+      <p style={{ fontSize: "8em" }}>{eye}</p>
 
+      <Counter />
     </div>
   );
 }
