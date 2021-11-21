@@ -1,30 +1,24 @@
+
 import "./App.css";
 // import UserList from "./components/UserList";
 // import tf from "@tensorflow/tfjs";
 // import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState, useEffect } from "react";
 import Counter from "./components/Counter";
-
 function App() {
   const [eye, setEye] = useState("");
-
   useEffect(() => {
     const webgazer = window.webgazer;
-
     window.saveDataAcrossSession = true;
-
     let startLookTime = Number.POSITIVE_INFINITY;
     let look_delay = 500;
-
     let left_cutoff = window.innerWidth / 8;
     let right_cutoff = window.innerWidth - window.innerWidth / 8;
     let top_cutoff = window.innerHeight / 8;
     let bottom_cutoff = window.innerWidth - window.innerHeight / 8;
-
     webgazer
       .setGazeListener((data, timestamp) => {
         console.log(data, timestamp);
-
         if (data == null) return;
         if (
           data.x < left_cutoff ||
@@ -46,7 +40,6 @@ function App() {
       })
       .begin();
   }, []);
-
   // async function createModel() {
   //   const URL = "http://localhost:3002/audio-model/";
   //   const checkpointURL = URL + "model.json"; // model topology
@@ -84,15 +77,14 @@ function App() {
   //   // Stop the recognition in 5 seconds.
   //   // setTimeout(() => recognizer.stopListening(), 5000);
   // }
-
   return (
     <div className="App">
       {/* <h1> super exam </h1>
        <UserList />  */}
       <p style={{ fontSize: "8em" }}>{eye}</p>
-
       <Counter />
     </div>
   );
 }
 export default App;
+
