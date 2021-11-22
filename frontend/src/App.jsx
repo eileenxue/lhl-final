@@ -1,13 +1,12 @@
 import "./App.css";
+import "./Chat.css";
+
 import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
-import io from "socket.io-client";
 import { useState } from "react";
-import Chat from "./components/Chat";
+import Chat_Home from "./components/Chat_Home";
 
-
-const socket = io.connect("http://localhost:3005"); // point to the backend url
 
 function App() {
   const labels = ["Background Noise", "keyboard", "moving", "voice"];
@@ -68,46 +67,14 @@ function App() {
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
-
-  const joinRoom = () => {
-    if (username !== "" && room !== "") {
-      console.log(socket.id);
-      socket.emit("join_room", room);
-      setShowChat(true);
-    }
-  };
-
   return (
     <div className="App">
       {/* <h1> super exam </h1>
        <UserList />  */}
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
-      {!showChat ? (
-        <div className="joinChatContainer">
-          <h3>Join A Chat</h3>
-          <input
-            type="text"
-            placeholder="John..."
-            onChange={(event) => {
-              setUsername(event.target.value);
-            }}
-          />
-          <input
-            type="text"
-            placeholder="Room ID..."
-            onChange={(event) => {
-              setRoom(event.target.value);
-            }}
-          />
-          <button onClick={joinRoom}>Join A Room</button>
-        </div>
-      ) : (
-        <Chat socket={socket} username={username} room={room}  />
-      )}
+      <Chat_Home />
+      
     </div>
   );
 }
