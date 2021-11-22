@@ -13,8 +13,6 @@ function App() {
 
     window.saveDataAcrossSession = true;
 
-    let startLookTime = Number.POSITIVE_INFINITY; // when start looking from left or right 
-    let look_delay = 1000;
     let left_cutoff = window.innerWidth / 8;
     let right_cutoff = window.innerWidth - window.innerWidth / 8;
     let top_cutoff = window.innerHeight / 8;
@@ -23,30 +21,20 @@ function App() {
     
     webgazer
       .setGazeListener((data, timestamp) => {
-        console.log(data, timestamp);
         if (data == null) return; 
         if (
           data.x < left_cutoff ||
           data.x > right_cutoff ||
           data.y < top_cutoff ||
           data.y > bottom_cutoff
-        ) {
-          // if looking left / right / top / bottom, record the current timestamp
-          startLookTime = timestamp;
+        ) { 
+          console.log("nooooooooo");
+          setEye("baaaaaaaad"); 
         } else {
-          // not look on the sides - restart the timer 
-          startLookTime = Number.POSITIVE_INFINITY;
-        }
-        // if stare for over 1000 then alert
-        if (startLookTime + look_delay < timestamp) {
-          // console.log("you should focus on the middle of the screen");
-          // console.log(data, timestamp);
-          return setEye("your eyes are off screen");
-        } else {
-          setEye("life is good");
-          startLookTime = Number.POSITIVE_INFINITY; 
-        }
-      })
+          console.log('ok');
+          setEye("nice");
+      }
+    })
       .begin();
   }, []);
   // async function createModel() {
