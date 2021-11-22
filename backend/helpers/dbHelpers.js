@@ -2,11 +2,11 @@ module.exports = (db) => {
 
   const getUsers = () => {
     const query = {
-      text: `SELECT * FROM users `
+      text: `SELECT * FROM users`
     };
 
     return db
-      .query(query)
+      .query(`SELECT * FROM users`)
       .then((result) => result.rows[0])
       .catch((err) => err);
   };

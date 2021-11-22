@@ -4,6 +4,8 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const db = require('./db');
+// const dbHelpers = require('./helpers/dbHelpers')(db);
+const dbHelpers = require('./helpers/dbHelpers')(db);
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
@@ -22,7 +24,7 @@ const testsRouter = require('./routes/tests');
 const questionsRouter = require('./routes/questions');
 
 
-app.use('/api/users', usersRouter);
+app.use('/api/users', usersRouter(dbHelpers));
 app.use('/api/tests', testsRouter);
 app.use('/api/questions', questionsRouter);
 
