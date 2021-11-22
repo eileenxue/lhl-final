@@ -23,7 +23,7 @@ function App() {
   const backgroundNoise = (listOfValues) => {};
 
   async function createModel() {
-    const URL = "http://localhost:3001/audio-model/";
+    const URL = "http://localhost:3002/audio-model/";
     const checkpointURL = URL + "model.json"; // model topology
     const metadataURL = URL + "metadata.json"; // model metadata
 
@@ -84,8 +84,8 @@ function App() {
     <div className="App">
       {/* <h1> super exam </h1>
        <UserList />  */}
-      {/* <button onClick={init}>Start</button> */}
-      {/* {thereIsNoise && <div>There is some background noiseeeee</div>} */}
+      <button onClick={init}>Start</button>
+      {thereIsNoise && <div>There is some background noiseeeee</div>}
       {!showChat ? (
         <div className="joinChatContainer">
           <h3>Join A Chat</h3>
