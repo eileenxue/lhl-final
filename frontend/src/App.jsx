@@ -18,9 +18,9 @@ function App() {
   //   if(biggestIndex){
   //   return setCurrentIndex(biggestIndex)
   //   }
-  const [currentIndex, setCurrentIndex] = useState(null);
+  // const [currentIndex, setCurrentIndex] = useState(null);
   const [thereIsNoise, setThereIsNoise] = useState(false);
-  const backgroundNoise = (listOfValues) => {};
+  // const backgroundNoise = (listOfValues) => {};
 
   async function createModel() {
     const URL = "http://localhost:3002/audio-model/";
