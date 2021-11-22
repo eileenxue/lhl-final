@@ -6,6 +6,7 @@ import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState } from "react";
 import Chat_Home from "./components/Chat_Home";
+import Questions from "./components/Questions";
 
 
 function App() {
@@ -74,7 +75,7 @@ function App() {
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
       <Chat_Home />
-      
+      <Questions/>
     </div>
   );
 }
