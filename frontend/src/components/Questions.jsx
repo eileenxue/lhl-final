@@ -1,17 +1,19 @@
 import { useState } from "react";
 import "./Questions.scss"
+import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
 
 export default function Questions(props) {
 
   // Using hardcoded questions for now
   const questions = [
     {
-      questionText: 'What is 1+1?',
+      questionText: 'When is demo day for Sept 2021 cohort?',
       answerOptions: [
-        {answerText: '0', isCorrect: false},
-        {answerText: '1', isCorrect: false},
-        {answerText: '2', isCorrect: true},
-        {answerText: '3', isCorrect: false},
+        {answerText: 'Never!!', isCorrect: false},
+        {answerText: 'Dec 1, 2021', isCorrect: false},
+        {answerText: 'Dec 2, 2021', isCorrect: true},
+        {answerText: 'Sometimes next year', isCorrect: false},
       ]
     }, 
     {
@@ -75,9 +77,11 @@ export default function Questions(props) {
         <div className='questions--text'>{questions[currentQuestion].questionText}</div>
       </div>
       <div className='questions--answers'>
-        {questions[currentQuestion].answerOptions.map((answerOption) => (
-          <button onClick={() => handleAnswerClick(answerOption.isCorrect)}>{answerOption.answerText}</button>
-        ))}
+        <ButtonGroup orientation="vertical" variant="outlined">
+          {questions[currentQuestion].answerOptions.map((answerOption) => (
+              <Button onClick={() => handleAnswerClick(answerOption.isCorrect)}>{answerOption.answerText}</Button>
+          ))}
+        </ButtonGroup>
       </div>
       </>
     )}

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
+    "@mui/material": "^5.1.1",
     "@tensorflow-models/blazeface": "0.0.7",
     "@tensorflow-models/speech-commands": "^0.4.0",
     "@tensorflow/tfjs": "^1.3.1",
