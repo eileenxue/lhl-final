@@ -60,12 +60,14 @@ const usersRouter = require('./routes/users');
 const testsRouter = require('./routes/tests');
 const questionsRouter = require('./routes/questions');
 const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
 
 
 app.use('/api/users', usersRouter(db));
 app.use('/api/tests', testsRouter);
 app.use('/api/questions', questionsRouter(db));
 app.use("/api/login", loginRouter(db));
+app.use("/api/logout", logoutRouter(db));
 
 app.get("/api/authentication") // how do you kow if the user is logged in if you need to refresh? 
 app.post("/api/register")

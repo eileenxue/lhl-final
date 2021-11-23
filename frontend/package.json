@@ -2,6 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:3005/api/",
   "dependencies": {
     "@tensorflow-models/blazeface": "0.0.7",
     "@tensorflow-models/speech-commands": "^0.4.0",

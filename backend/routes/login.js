@@ -47,7 +47,7 @@ module.exports = (db) => {
           id: user.id,
           is_proctor: user.is_proctor,
         },
-        myPrivateKey
+        myPrivateKey, {expiresIn: '2h'}
       );
       // grab information
       res.json({
