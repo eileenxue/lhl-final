@@ -6,15 +6,17 @@ import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState } from "react";
 import Chat_Home from "./components/Chat_Home";
-import Login from "./components/Login";
 import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'; 
 import Dashboard from './components/Dashboard_proctor';
-
+import Login from "./components/Login";
 import axios from "axios";
 import DashboardProctor from "./components/Dashboard_proctor";
+import Registration from "./components/Registration";
 
 function App() {
   const labels = ["Background Noise", "keyboard", "moving", "voice"];
+  const [user, setUser] = useState("");
+  
 
   // const [currentIndex, setCurrentIndex] = useState(null);
   // const findBiggestIndex = (listOfValues) => {
@@ -73,6 +75,9 @@ function App() {
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
+
+
+
   return (
     <BrowserRouter>
     <div className="App">
@@ -83,8 +88,9 @@ function App() {
      <header>
 
        <nav>
+        {!user && <span> Register | Login </span>
+        }
 
-         <Link to="/login" > Login </Link>
 
        </nav>
      </header>
@@ -93,12 +99,12 @@ function App() {
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
       <Chat_Home /> */}
+      <Registration /> 
       <Routes>
 
         <Route>
           <Route  path ="/login" element ={<Login />} />
-          <Route  path ="/questions" element = {<Dashboard />} /> 
-          <Route  path ="/questions" element = {<Dashboard authorized= {true} />} /> 
+          <Route  path ="/dashboard" element = {<Dashboard authorized= {true} />} /> 
 
         </Route>
       </Routes>

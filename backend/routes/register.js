@@ -18,11 +18,14 @@ module.exports = (db) => {
 
     return db
       .query(
-        `INSER INTO users (first_name, last_name, email, is_proctor, password) VALUES ($1,$2,$3,$4,$5) returning *  `,
+        `INSERT INTO users (first_name,
+                           last_name, 
+                            email, 
+                              is_proctor, 
+                              password) VALUES ($1,$2,$3,$4,$5) returning *  `,
         [
           first_name,
           last_name,
-          ,
           email.toLowerCase(),
           is_proctor,
           hashPW(password),
@@ -30,7 +33,7 @@ module.exports = (db) => {
       )
       .then((user) => {
         if (!user) {
-          console.log("error!");
+          console.log(`insert error ${error}!`);
           return;
         }
         return user;
@@ -42,17 +45,18 @@ module.exports = (db) => {
   router.post("/", function (req, res) {
     const info = req.body;
 
-    registerNewUser(info.first_name, info.last_name, info.email, info.is_proctor, info.password).then(
-      (result) => {
-
-        if (!result) {
-          res.status(500).send("wrong info!");
-        } else {
-          
-        }
-      })
-
-
+    registerNewUser(
+      info.first_name,
+      info.last_name,
+      info.email,
+      info.is_proctor,
+      info.password
+    ).then((result) => {
+      if (!result) {
+        res.status(500).send("wrong info!");
+      } else {
+      }
+    });
   });
 
   return router;

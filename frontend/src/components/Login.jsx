@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useHistory } from "react";
 import DashboardProctor from "./Dashboard_proctor";
 import DashboardStudent from "./Dashboard_student";
 import { useNavigate } from "react-router-dom"; // hold the previous page you were in
