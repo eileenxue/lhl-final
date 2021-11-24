@@ -1,16 +1,34 @@
 import "./App.css";
 import "./Chat.css";
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Routes
+} from "react-router-dom";
 import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState } from "react";
 import Chat_Home from "./components/Chat_Home";
 import Questions from "./components/Questions";
+import Login from "./components/Login";
+import WebGazer from "./components/WebGazer";
+
+import axios from "axios";
 
 
 function App() {
   const labels = ["Background Noise", "keyboard", "moving", "voice"];
+
+  const [user, setUser] = useState(null);
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
+const [error, setError] = useState(false);
+const [success, setSuccess] = useState(false);
+
+
   // const [currentIndex, setCurrentIndex] = useState(null);
   // const findBiggestIndex = (listOfValues) => {
   //   const biggestNumber = Math.max(...listOfValues)
@@ -68,14 +86,27 @@ function App() {
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
+
+
   return (
     <div className="App">
       {/* <h1> super exam </h1>
-       <UserList />  */}
+       <UserList /> 
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
       <Chat_Home />
       <Questions/>
+      <Chat_Home /> */}
+       <WebGazer />
+      <Router>
+      <Routes>
+        <Route path="/" element={<Login />}/>
+      <Route path="/chat/:id" element={<Chat_Home />}/>
+      </Routes>
+      </Router>
+      
+
+     
     </div>
   );
 }

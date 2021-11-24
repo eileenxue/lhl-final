@@ -25,22 +25,18 @@ module.exports = (db) => {
     }
   };
 
-  router.get("/", verify, function (req, res) {
-      // console.log(req.user);
-    if(req.user.is_proctor){
-      db.query(
-        `SELECT * FROM questions ;`
-      ).then((result) => {res.json(result)})
-      .catch (e=> (console.log(e)))
-    }
-    else {
-      res.status(403).json("You are not allowed to see this information")
-    }
+  router.get("/", function (req, res) {
+    res.send("TESTTESTESTRST");
   });
 
-  router.post("/", function (req, res) {
-    res.json("12344");
+  router.post("/", verify, function (req, res) {
+    const accessToken = req.body.token; 
+
+    res.status(200).json("you logged out successfully")
+
   });
+
+
 
   return router;
 };

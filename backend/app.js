@@ -1,14 +1,21 @@
+require("dotenv").config();
+
 const PORT = process.env.PORT || 3005;
 const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const db = require('./db');
 const app = express();
 const http = require("http");
 const cors = require("cors");
 const { Server } = require("socket.io");
+const jwt = require("jsonwebtoken");
+
 
 app.use(cors());
 
 const server = http.createServer(app);
-
 
 
 const io = new Server(server, {
@@ -39,9 +46,7 @@ io.on("connection", (socket) => {
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
-const path = require('path');
-const cookieParser = require('cookie-parser');
-const logger = require('morgan');
+
 
 
 app.use(logger('dev'));
@@ -54,15 +59,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 const usersRouter = require('./routes/users');
 const testsRouter = require('./routes/tests');
 const questionsRouter = require('./routes/questions');
+const loginRouter = require('./routes/login');
+const logoutRouter = require('./routes/logout');
 
 
-app.use('/api/users', usersRouter);
+app.use('/api/users', usersRouter(db));
 app.use('/api/tests', testsRouter);
-app.use('/api/questions', questionsRouter);
+app.use('/api/questions', questionsRouter(db));
+app.use("/api/login", loginRouter(db));
+app.use("/api/logout", logoutRouter(db));
 
 app.get("/api/authentication") // how do you kow if the user is logged in if you need to refresh? 
-app.post("/api/login") // why not get again ????/ insert and return back the user object 
 app.post("/api/register")
+
 
 
 server.listen(PORT, () => {
