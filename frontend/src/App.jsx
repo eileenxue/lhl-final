@@ -13,6 +13,7 @@ import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState } from "react";
 import Chat_Home from "./components/Chat_Home";
 import Login from "./components/Login";
+import WebGazer from "./components/WebGazer";
 
 import axios from "axios";
 
@@ -93,6 +94,7 @@ const [success, setSuccess] = useState(false);
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
       <Chat_Home /> */}
+       <WebGazer />
       <Router>
       <Routes>
         <Route path="/" element={<Login />}/>
