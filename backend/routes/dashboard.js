@@ -26,16 +26,13 @@ module.exports = (db) => {
   };
 
   router.get("/", verify, function (req, res) {
-      // console.log(req.user);
-    if(req.user.is_proctor){
-      db.query(
-        `SELECT * FROM appointments ;`
-      ).then((result) => {res.json(result.rows)})
-      .catch (e=> (console.log(e)))
+    if(!req.user.is_proctor){ 
+     return  res.status(403).json("You are not allowed to see this information")
     }
-    else {
-      res.status(403).json("You are not allowed to see this information")
-    }
+    db.query(
+      `SELECT * FROM appointments ;`
+    ).then((result) => {res.json(result.rows)})
+    .catch (e=> (console.log(e)))
   });
 
   router.post("/", function (req, res) {

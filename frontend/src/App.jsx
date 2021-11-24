@@ -6,18 +6,16 @@ import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState } from "react";
 import Chat_Home from "./components/Chat_Home";
-import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'; 
-import Dashboard from './components/Dashboard_proctor';
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import Login from "./components/Login";
 import axios from "axios";
 import DashboardProctor from "./components/Dashboard_proctor";
+import DashboardStudent from "./components/Dashboard_student";
 import Registration from "./components/Registration";
 
 function App() {
   const labels = ["Background Noise", "keyboard", "moving", "voice"];
   const [user, setUser] = useState("");
-  
-
   // const [currentIndex, setCurrentIndex] = useState(null);
   // const findBiggestIndex = (listOfValues) => {
   //   const biggestNumber = Math.max(...listOfValues)
@@ -75,45 +73,35 @@ function App() {
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
-
-
-
   return (
     <BrowserRouter>
-    <div className="App">
-      <h1> 
-
-        title of the project 
-      </h1>
-     <header>
-
-       <nav>
-        {!user && <span> Register | Login </span>
-        }
-
-
-       </nav>
-     </header>
-      {/* <h1> super exam </h1>
+      <div className="App">
+        <h1>title of the project</h1>
+        <header>
+          <nav>
+            {!user && (
+              <div>
+                <button>Register</button>
+                <button> Login </button>
+              </div>
+            )}
+          </nav>
+        </header>
+        {/* <h1> super exam </h1>
        <UserList /> 
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
       <Chat_Home /> */}
-      <Registration /> 
-      <Routes>
+        {/* <Registration />  */}
 
-        <Route>
-          <Route  path ="/login" element ={<Login />} />
-          <Route  path ="/dashboard" element = {<Dashboard authorized= {true} />} /> 
-
-        </Route>
-      </Routes>
-
-
-
-
-    </div>
-
+        <Routes>
+          <Route>
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<DashboardStudent />} />
+            <Route path="/admin" element={<DashboardProctor />} />
+          </Route>
+        </Routes>
+      </div>
     </BrowserRouter>
   );
 }

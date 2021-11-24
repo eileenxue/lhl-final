@@ -24,10 +24,12 @@ module.exports = (db) => {
 
   const login = function (candidateEmail, candidatePassword) {
     return getUserWithEmail(candidateEmail).then((user) => {
+      if (!user) {
+       return null 
+       }
       if (bcrypt.compareSync(candidatePassword, user.password)) {
         return user;
-      }
-      return null;
+      }; 
     });
   };
   exports.login = login;
@@ -37,6 +39,8 @@ module.exports = (db) => {
 
     login(email, password).then((user) => {
       
+      console.log("=====================", email );
+
       // if not find the user
       if (!user) {
         res.status(400).send("username or password incorrect");
@@ -50,6 +54,8 @@ module.exports = (db) => {
         myPrivateKey, {expiresIn: '2h'}
       );
       // grab information
+      console.log("=====================", accessToken );
+
       res.json({
         id: user.id,
         first_name: user.first_name,
