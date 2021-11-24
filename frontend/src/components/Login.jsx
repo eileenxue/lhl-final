@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-
+import {useNavigate} from "react-router-dom";
 
 
 function Login() {
@@ -11,6 +11,9 @@ const [password, setPassword] = useState("");
 const [error, setError] = useState(false);
 const [success, setSuccess] = useState(false);
 
+const navigate = useNavigate()
+
+
 
   // handle api request
   const handleSubmit = async (e) => {
@@ -18,6 +21,10 @@ const [success, setSuccess] = useState(false);
     try {
       const res = await axios.post("/login", { email, password });
       setUser(res.data);
+      console.log("response:", res.data);
+      let id = res.data.id
+      navigate(`/chat/${id}`)
+
     } catch (err) {
       console.log(err);
     }

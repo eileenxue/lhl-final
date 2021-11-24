@@ -1,6 +1,12 @@
 import "./App.css";
 import "./Chat.css";
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Routes
+} from "react-router-dom";
 import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
@@ -87,7 +93,12 @@ const [success, setSuccess] = useState(false);
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
       <Chat_Home /> */}
-      <Login /> 
+      <Router>
+      <Routes>
+        <Route path="/" element={<Login />}/>
+      <Route path="/chat/:id" element={<Chat_Home />}/>
+      </Routes>
+      </Router>
       
 
      
