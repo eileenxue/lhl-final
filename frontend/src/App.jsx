@@ -100,16 +100,13 @@ const [success, setSuccess] = useState(false);
       {/* <WebGazer /> */}
 
       <MainHeader/>
-      <Router>
+      <main>
         <Routes>
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/chat/:id" element={<Chat_Home />}/>
         </Routes>
-      </Router>
-      
-
-     
+      </main>
     </div>
   );
 }
