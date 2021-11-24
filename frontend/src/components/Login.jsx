@@ -19,13 +19,14 @@ const navigate = useNavigate()
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("pass", password);
       const res = await axios.post("/login", { email, password });
       setUser(res.data);
       console.log("response:", res.data);
       const id = res.data.id
       // navigate(`/chat/${id}`)
       const is_proctor = res.data.is_proctor;
-      navigate(`/dashboard`, state={is_proctor})
+      navigate(`/dashboard`, {state:{is_proctor}})
     } catch (err) {
       console.log(err);
     }
