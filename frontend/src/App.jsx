@@ -1,4 +1,3 @@
-import "./App.css";
 import "./Chat.css";
 import {
   BrowserRouter as Router,
@@ -17,6 +16,8 @@ import Login from "./components/Login";
 import WebGazer from "./components/WebGazer";
 
 import axios from "axios";
+import MainHeader from "./components/MainHeader";
+import Home from "./components/Home";
 
 
 function App() {
@@ -94,15 +95,17 @@ const [success, setSuccess] = useState(false);
        <UserList /> 
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
-      <Chat_Home />
       <Questions/>
       <Chat_Home /> */}
-       <WebGazer />
+      {/* <WebGazer /> */}
+
+      <MainHeader/>
       <Router>
-      <Routes>
-        <Route path="/" element={<Login />}/>
-      <Route path="/chat/:id" element={<Chat_Home />}/>
-      </Routes>
+        <Routes>
+          <Route path="/" element={<Home />}/>
+          <Route path="/login" element={<Login />}/>
+          <Route path="/chat/:id" element={<Chat_Home />}/>
+        </Routes>
       </Router>
       
 

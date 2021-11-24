@@ -27,7 +27,7 @@ function Chat_Home() {
   }, [])
 console.log("here:", room);
   return (
-    <div>
+    <div className="chat-home">
       {!showChat ? (
         <div className="joinChatContainer">
           <h3>Join A Chat</h3>
