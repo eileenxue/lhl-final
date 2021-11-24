@@ -7,19 +7,14 @@ import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState } from "react";
 import Chat_Home from "./components/Chat_Home";
 import Login from "./components/Login";
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom'; 
+import Dashboard from './components/Dashboard_proctor';
 
 import axios from "axios";
-
+import DashboardProctor from "./components/Dashboard_proctor";
 
 function App() {
   const labels = ["Background Noise", "keyboard", "moving", "voice"];
-
-  const [user, setUser] = useState(null);
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [error, setError] = useState(false);
-const [success, setSuccess] = useState(false);
-
 
   // const [currentIndex, setCurrentIndex] = useState(null);
   // const findBiggestIndex = (listOfValues) => {
@@ -78,20 +73,42 @@ const [success, setSuccess] = useState(false);
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
-
-
   return (
+    <BrowserRouter>
     <div className="App">
+      <h1> 
+
+        title of the project 
+      </h1>
+     <header>
+
+       <nav>
+
+         <Link to="/login" > Login </Link>
+
+       </nav>
+     </header>
       {/* <h1> super exam </h1>
        <UserList /> 
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
       <Chat_Home /> */}
-      <Login /> 
-      
+      <Routes>
 
-     
+        <Route>
+          <Route  path ="/login" element ={<Login />} />
+          <Route  path ="/questions" element = {<Dashboard />} /> 
+          <Route  path ="/questions" element = {<Dashboard authorized= {true} />} /> 
+
+        </Route>
+      </Routes>
+
+
+
+
     </div>
+
+    </BrowserRouter>
   );
 }
 
