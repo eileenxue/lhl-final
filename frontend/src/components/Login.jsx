@@ -22,9 +22,10 @@ const navigate = useNavigate()
       const res = await axios.post("/login", { email, password });
       setUser(res.data);
       console.log("response:", res.data);
-      let id = res.data.id
-      navigate(`/chat/${id}`)
-
+      const id = res.data.id
+      // navigate(`/chat/${id}`)
+      const is_proctor = res.data.is_proctor;
+      navigate(`/dashboard`, state={is_proctor})
     } catch (err) {
       console.log(err);
     }
