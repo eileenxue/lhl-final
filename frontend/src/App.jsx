@@ -17,6 +17,7 @@ import Login from "./components/Login";
 import WebGazer from "./components/WebGazer";
 
 import axios from "axios";
+import Dashboard from "./components/Dashboard";
 
 
 function App() {
@@ -102,6 +103,7 @@ const [success, setSuccess] = useState(false);
       <Routes>
         <Route path="/" element={<Login />}/>
       <Route path="/chat/:id" element={<Chat_Home />}/>
+      <Route path="/dashboard" element={<Dashboard />}/>
       </Routes>
       </Router>
       
