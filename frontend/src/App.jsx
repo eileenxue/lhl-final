@@ -1,33 +1,47 @@
 import "./App.css";
 import "./Chat.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  Routes
-} from "react-router-dom";
 import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Chat_Home from "./components/Chat_Home";
+import Registration from "./components/Registration";
 import Questions from "./components/Questions";
 import Login from "./components/Login";
 import WebGazer from "./components/WebGazer";
 
 import axios from "axios";
+import DashboardProctor from "./components/Dashboard_proctor";
+import DashboardStudent from "./components/Dashboard_student";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
+function RequireAuth() {
+  let userLoggedin = localStorage.getItem("storedUser");
+  let location = useLocation();
+  if (!userLoggedin) {
+    // Redirect them to the /login page, but save the current location they were
+    // trying to go to when they were redirected. This allows us to send them
+    // along to that page after they login, which is a nicer user experience
+    // than dropping them off on the home page.
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+  return <Outlet />;
+}
 
 function App() {
+  let userLoggedin = localStorage.getItem("storedUser");
+
   const labels = ["Background Noise", "keyboard", "moving", "voice"];
-
-  const [user, setUser] = useState(null);
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [error, setError] = useState(false);
-const [success, setSuccess] = useState(false);
-
+  const [user, setUser] = useState("");
 
   // const [currentIndex, setCurrentIndex] = useState(null);
   // const findBiggestIndex = (listOfValues) => {
@@ -86,10 +100,48 @@ const [success, setSuccess] = useState(false);
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
-
+  const handleLogout = function () {
+    localStorage.removeItem("storedUser");
+    window.location.href = "/login";
+  };
 
   return (
     <div className="App">
+      <BrowserRouter>
+        <h1>title of the project</h1>
+        <header>
+          <nav>
+            {userLoggedin ? (
+              <button
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                Logout
+              </button>
+            ) : (
+              <div>
+                <Link to="/register">Register</Link>
+                <Link to="/login"> Login </Link>
+              </div>
+            )}
+          </nav>
+        </header>
+
+        <Routes>
+          <Route>
+            {/* <Route path="/" element={<App />} /> */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+
+            <Route element={<RequireAuth />}>
+              <Route path="/dashboard" element={<DashboardStudent />} />
+              <Route path="/admin" element={<DashboardProctor />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
       {/* <h1> super exam </h1>
        <UserList /> 
       <button onClick={init}>Start</button>
@@ -97,6 +149,9 @@ const [success, setSuccess] = useState(false);
       <Chat_Home />
       <Questions/>
       <Chat_Home /> */}
+      {/* <Registration />  */}
+
+      {/* ****************************** from origin main **************************************
        <WebGazer />
       <Router>
       <Routes>
@@ -104,7 +159,7 @@ const [success, setSuccess] = useState(false);
       <Route path="/chat/:id" element={<Chat_Home />}/>
       </Routes>
       </Router>
-      
+      ****************************** from origin main ************************************** */}
 
      
     </div>

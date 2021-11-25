@@ -4,9 +4,10 @@ const jwt = require("jsonwebtoken");
 const myPrivateKey = process.env.PRIVKEY;
 require("dotenv").config();
 
+
+// apppointments is dashboards 
 module.exports = (db) => {
   
-
   const verify = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {
@@ -16,7 +17,6 @@ module.exports = (db) => {
         if (err) {
           return res.status(403).json("Token is not valid!");
         }
-  
         req.user = user;
         next();
       });
@@ -26,16 +26,13 @@ module.exports = (db) => {
   };
 
   router.get("/", verify, function (req, res) {
-      // console.log(req.user);
-    if(req.user.is_proctor){
-      db.query(
-        `SELECT * FROM questions ;`
-      ).then((result) => {res.json(result)})
-      .catch (e=> (console.log(e)))
+    if(!req.user.is_proctor){ 
+     return  res.status(403).json("You are not allowed to see this information")
     }
-    else {
-      res.status(403).json("You are not allowed to see this information")
-    }
+    db.query(
+      `SELECT * FROM appointments ;`
+    ).then((result) => {res.json(result.rows)})
+    .catch (e=> (console.log(e)))
   });
 
   router.post("/", function (req, res) {
