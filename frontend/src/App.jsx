@@ -1,7 +1,7 @@
 import "./Chat.css";
 import UserList from "./components/UserList";
-import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
+
 import { useState, useEffect } from "react";
 import Chat_Home from "./components/Chat_Home";
 import Registration from "./components/Registration";
@@ -12,6 +12,10 @@ import WebGazer from "./components/WebGazer";
 import axios from "axios";
 import MainHeader from "./components/MainHeader";
 import Home from "./components/Home";
+import StudentStart from './components/StudentStart'; 
+import ProctorStart from './components/ProctorStart'; 
+import Exam from './components/Exam'; 
+
 
 import DashboardProctor from "./components/Dashboard_proctor";
 import DashboardStudent from "./components/Dashboard_student";
@@ -107,6 +111,8 @@ function App() {
       <MainHeader/>
       <main>
 
+
+
       {/* DECLARE ALL ROUTES HERE */}
       <Routes>
         <Route>
@@ -117,12 +123,15 @@ function App() {
 
           {/* Temporary: For testing components in public URL */}
           <Route path="/questions" element={<Questions />}/>
-          <Route path="/webgazer" element={<WebGazer />}/>
+          {/* <Route path="/webgazer" element={<WebGazer />}/> */}
           
 
           <Route element={<RequireAuth />}>
             <Route path="/dashboard" element={<DashboardStudent />} />
             <Route path="/admin" element={<DashboardProctor />} />
+            <Route path="/exam/start" element={<StudentStart />} />
+            <Route path="/admin/start" element={<ProctorStart />} />
+            <Route path="/exam" element={<Exam />} />
           </Route>
         </Route>
       </Routes>
