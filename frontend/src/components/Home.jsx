@@ -9,7 +9,7 @@ export default function Home() {
       <h3>Proctored exams powered by machine learning</h3>
       <h4>Struggles of copywriting</h4>
       <h5>...our app is cool. Just use it.</h5>
-      <video autoplay="" loop className="homepage--video">
+      <video autoPlay={true} loop={true} className="homepage--video">
         <source src={video} type="video/mp4"/>
       </video>
     </div>
