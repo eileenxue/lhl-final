@@ -23,8 +23,13 @@ export default function MainHeader() {
       </AppBar>
       <header>
         <nav>
-          <div>Test Nav</div>
-          <ul className="nav-list-right">
+          <div className="nav--logo">Logo</div>
+          {/* <ul className="nav--list-left">
+            <li>
+              <NavLink to="/book">Book Exam</NavLink>
+            </li>
+          </ul> */}
+          <ul className="nav--list-right">
             <li>
               <NavLink to="/login">Login</NavLink>
             </li>
