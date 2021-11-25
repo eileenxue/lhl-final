@@ -35,6 +35,13 @@ function Login() {
       // if (res.data.is_proctor) {
       //   redirect to the proctor . // useHistory
       // } else {redirect to student }
+
+      // ********************************* main *********************************
+      // console.log("response:", res.data);
+      // let id = res.data.id
+      // navigate(`/chat/${id}`)
+      // ********************************* main *********************************
+
     } catch (err) {
       console.log(err);
     }

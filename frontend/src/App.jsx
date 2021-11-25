@@ -1,13 +1,15 @@
 import "./App.css";
 import "./Chat.css";
-
 import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState, useEffect } from "react";
 import Chat_Home from "./components/Chat_Home";
 import Registration from "./components/Registration";
+import Questions from "./components/Questions";
 import Login from "./components/Login";
+import WebGazer from "./components/WebGazer";
+
 import axios from "axios";
 import DashboardProctor from "./components/Dashboard_proctor";
 import DashboardStudent from "./components/Dashboard_student";
@@ -144,8 +146,22 @@ function App() {
        <UserList /> 
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
+      <Chat_Home />
+      <Questions/>
       <Chat_Home /> */}
       {/* <Registration />  */}
+
+      {/* ****************************** from origin main **************************************
+       <WebGazer />
+      <Router>
+      <Routes>
+        <Route path="/" element={<Login />}/>
+      <Route path="/chat/:id" element={<Chat_Home />}/>
+      </Routes>
+      </Router>
+      ****************************** from origin main ************************************** */}
+
+     
     </div>
   );
 }

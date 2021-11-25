@@ -1,13 +1,17 @@
 import io from "socket.io-client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {useParams} from "react-router-dom";
 import Chat from "./Chat";
 
 const socket = io.connect("http://localhost:3005"); // point to the backend url
 
 function Chat_Home() {
-  const [username, setUsername] = useState("");
-  const [room, setRoom] = useState("");
-  const [showChat, setShowChat] = useState(false);
+  const { id } = useParams()
+
+  const [username, setUsername] = useState("Roya");
+  const [room, setRoom] = useState( id || "123");
+  const [showChat, setShowChat] = useState(true);
+
 
   const joinRoom = () => {
     if (username !== "" && room !== "") {
@@ -16,7 +20,12 @@ function Chat_Home() {
       setShowChat(true);
     }
   };
+  
+  useEffect(()=>{
+    joinRoom()
 
+  }, [])
+console.log("here:", room);
   return (
     <div>
       {!showChat ? (
