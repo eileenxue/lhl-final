@@ -1,12 +1,24 @@
 import { useLocation } from "react-router";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 
 
 export default function Dashboard(props) {
   const { state } = useLocation();
-  console.log("state is:", state);
+  const [tests, setTests] = useState([]);
+  useEffect(() => {
+    axios.get('http://localhost:3005/api/tests')
+    .then((result)=>{
+      setTests(result)
+    })
+  }, []);
+  console.log("here:", state.data);
+  const student_dashboard = state.is_proctor ? <div>Proctor dashboard component</div> : <div>Student dashboard component</div>
   return (
     <div>
-    <h1>Dashboard page </h1>
+      { student_dashboard }
     </div>
+    
   );
 }
