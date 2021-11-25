@@ -7,7 +7,7 @@ module.exports = (db) => {
   router.get('/', function(req, res) {
     db.query(
       `SELECT * FROM users ;`
-    ).then((result) => {res.json(result)})
+    ).then((result) => {res.json(result.rows)})
     .catch (e=> (console.log(e)))
     
     // res.send('TESTTESTESTRST')

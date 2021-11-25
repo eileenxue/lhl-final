@@ -1,102 +1,95 @@
 import axios from "axios";
-import { useState } from "react";
-import {useNavigate} from "react-router-dom";
-
+import { useState, useHistory } from "react";
+import DashboardProctor from "./Dashboard_proctor";
+import DashboardStudent from "./Dashboard_student";
+import { useNavigate } from "react-router-dom"; // hold the previous page you were in
 
 function Login() {
-
   const [user, setUser] = useState(null);
-const [email, setEmail] = useState("");
-const [password, setPassword] = useState("");
-const [error, setError] = useState(false);
-const [success, setSuccess] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  // const [error, setError] = useState(false);
+  // const [success, setSuccess] = useState(false);
+  const [is_proctor, setIs_proctor] = useState(false);
 
-const navigate = useNavigate()
-
-
+  let navigate = useNavigate();
 
   // handle api request
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+
+  const handleLogin = async (e) => {
+    // alert ('whatttttebver')
+    console.log("===================== react login", email, password);
+    // e.preventDefault();
     try {
       const res = await axios.post("/login", { email, password });
+      console.log(res.data);
+      const user = JSON.stringify(res.data);
+      localStorage.setItem("storedUser", user);
       setUser(res.data);
-      console.log("response:", res.data);
-      let id = res.data.id
-      navigate(`/chat/${id}`)
+      if (res.data.is_proctor) {
+        window.location.href = "/admin";
+      } else {
+        window.location.href = "/dashboard";
+      }
+      // localStorage.setItem('storedUser', JSON.stringtify(res.data));
+      // if (res.data.is_proctor) {
+      //   redirect to the proctor . // useHistory
+      // } else {redirect to student }
+
+      // ********************************* main *********************************
+      // console.log("response:", res.data);
+      // let id = res.data.id
+      // navigate(`/chat/${id}`)
+      // ********************************* main *********************************
 
     } catch (err) {
       console.log(err);
     }
   };
 
+  const handleSubmit = function () {};
+
+  // const storedUser = JSON.parse(localStorage.getItem('stlocalStorageoredUser'));
+
   const seeQuestions = async (id) => {
-    setSuccess(false);
-    setError(false);
+    // setSuccess(false);
+
+    // setError(false);
+    setIs_proctor(false);
     try {
-      await axios.get("/questions", {
+      await axios.get("/dashboard", {
+        // headers: { authorization: "Bearer " + storedUser.accessToken },
         headers: { authorization: "Bearer " + user.accessToken },
       });
-      setSuccess(true);
+      // setDash
+      setIs_proctor(true);
     } catch (err) {
-      setError(true);
+      console.log(err);
     }
   };
 
   return (
     <div className="App">
-
-      
-
-      {user ? (
-        <div className="home">
-          <span>
-            Welcome to the <b>{user.is_proctor ? "admin" : "user"}</b> dashboard{" "}
-            <b>{user.first_name}</b>.
-          </span>
-          <span>checkout questions page :::</span>
-          <button  onClick={() => seeQuestions(user.id)}>
-            see? 
+      <div className="login">
+        <form onSubmit={(e) => e.preventDefault()}>
+          <span className="formTitle"> Login</span>
+          <input
+            type="email"
+            placeholder="email"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="password"
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <button type="submit" onClick={() => handleLogin()}>
+            Login
           </button>
-
-          {error && (
-            <span >
-              You are not allowed to see anything as you are NOOOOOT proctor !
-              
-            </span>
-          )}
-          {success && (
-            <span >
-              you can see stuff as you are a proctor.
-            </span>
-          )}
-        </div>
-      ) : (
-        <div className="login">
-          <form onSubmit={handleSubmit}>
-            <span className="formTitle"> Login</span>
-            <input
-              type="email"
-              placeholder="email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <button type="submit" className="submitButton">
-              Login
-            </button>
-          </form>
-        </div>
-      )}
-
+        </form>
+      </div>
     </div>
   );
-
-
-
 }
 
 export default Login;
