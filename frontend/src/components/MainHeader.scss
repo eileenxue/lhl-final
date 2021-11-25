@@ -4,6 +4,22 @@ header{
   color: white;
 }
 
+.nav{
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+
+  &--logo{
+    font-weight: 700;
+    font-size: 2rem;
+
+    a{
+      color: white;
+      text-decoration: none;
+    }
+  }
+}
+
 .nav--list-right{
   display: flex;
   justify-content: center;

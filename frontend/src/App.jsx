@@ -110,29 +110,11 @@ function App() {
   return (
     <div className="App">
       <MainHeader/>
-      
-        <header>
-          <nav>
-            {userLoggedin ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                }}
-              >
-                Logout
-              </button>
-            ) : (
-              <div>
-                <Link to="/register">Register</Link>
-                <Link to="/login"> Login </Link>
-              </div>
-            )}
-          </nav>
-        </header>
+      <main>
 
+      {/* DECLARE ALL ROUTES HERE */}
       <Routes>
         <Route>
-          {/* <Route path="/" element={<App />} /> */}
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
@@ -145,6 +127,7 @@ function App() {
         </Route>
       </Routes>
       
+      </main>
 
       {/* <h1> super exam </h1>
        <UserList /> 
