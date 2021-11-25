@@ -9,7 +9,7 @@ export default function DashboardStudent(props) {
   useEffect(()=>{ 
     const storedUser = localStorage.getItem('storedUser');
     if (!storedUser) {
-      navigate('/login') 
+      window.location.href = "/login";
     }; 
 
     const parsedUser = JSON.parse(storedUser);
@@ -21,7 +21,7 @@ export default function DashboardStudent(props) {
 
   return (
     <div>
-
+    
     <h1>Dashboard student page </h1>
     <div>
       {user.first_name}

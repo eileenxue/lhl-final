@@ -14,13 +14,13 @@ export default function DashboardStudent(props) {
   useEffect(()=>{ 
     const storedUser = localStorage.getItem('storedUser');
     if (!storedUser) {
-      navigate('/login') 
+      window.location.href = "/login";
     }; 
 
     const parsedUser = JSON.parse(storedUser);
 
     if (!parsedUser.is_proctor) {
-      navigate('/login') 
+      window.location.href = "/login";
     }
     setUser(parsedUser); 
     // console.log("++++++++++++++:", parsedUser);

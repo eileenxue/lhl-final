@@ -6,7 +6,6 @@ require("dotenv").config();
 
 module.exports = (db) => {
   
-
   const verify = (req, res, next) => {
     const authHeader = req.headers.authorization;
     if (authHeader) {

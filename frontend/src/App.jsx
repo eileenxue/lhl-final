@@ -4,18 +4,43 @@ import "./Chat.css";
 import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Chat_Home from "./components/Chat_Home";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import Registration from "./components/Registration";
 import Login from "./components/Login";
 import axios from "axios";
 import DashboardProctor from "./components/Dashboard_proctor";
 import DashboardStudent from "./components/Dashboard_student";
-import Registration from "./components/Registration";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+  useLocation,
+  Navigate,
+  Outlet,
+} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+function RequireAuth() {
+  let userLoggedin = localStorage.getItem("storedUser");
+  let location = useLocation();
+  if (!userLoggedin) {
+    // Redirect them to the /login page, but save the current location they were
+    // trying to go to when they were redirected. This allows us to send them
+    // along to that page after they login, which is a nicer user experience
+    // than dropping them off on the home page.
+    return <Navigate to="/login" state={{ from: location }} />;
+  }
+  return <Outlet />;
+}
 
 function App() {
+  let userLoggedin = localStorage.getItem("storedUser");
+
   const labels = ["Background Noise", "keyboard", "moving", "voice"];
   const [user, setUser] = useState("");
+
   // const [currentIndex, setCurrentIndex] = useState(null);
   // const findBiggestIndex = (listOfValues) => {
   //   const biggestNumber = Math.max(...listOfValues)
@@ -73,36 +98,55 @@ function App() {
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
+  const handleLogout = function () {
+    localStorage.removeItem("storedUser");
+    window.location.href = "/login";
+  };
+
   return (
-    <BrowserRouter>
-      <div className="App">
+    <div className="App">
+      <BrowserRouter>
         <h1>title of the project</h1>
         <header>
           <nav>
-            {!user && (
+            {userLoggedin ? (
+              <button
+                onClick={() => {
+                  handleLogout();
+                }}
+              >
+                Logout
+              </button>
+            ) : (
               <div>
-                <button>Register</button>
-                <button> Login </button>
+                <Link to="/register">Register</Link>
+                <Link to="/login"> Login </Link>
               </div>
             )}
           </nav>
         </header>
-        {/* <h1> super exam </h1>
+
+        <Routes>
+          <Route>
+            {/* <Route path="/" element={<App />} /> */}
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Registration />} />
+
+            <Route element={<RequireAuth />}>
+              <Route path="/dashboard" element={<DashboardStudent />} />
+              <Route path="/admin" element={<DashboardProctor />} />
+            </Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+
+      {/* <h1> super exam </h1>
        <UserList /> 
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
       <Chat_Home /> */}
-        {/* <Registration />  */}
-
-        <Routes>
-          <Route>
-            <Route path="/login" element={<Login />} />
-            <Route path="/dashboard" element={<DashboardStudent />} />
-            <Route path="/admin" element={<DashboardProctor />} />
-          </Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
+      {/* <Registration />  */}
+    </div>
   );
 }
 
