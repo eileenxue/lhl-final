@@ -15,8 +15,9 @@ function ML_sound() {
   //   return setCurrentIndex(biggestIndex)
   //   }
   // const [currentIndex, setCurrentIndex] = useState(null);
+  const [currentIndex, setCurrentIndex] = useState(null);
   const [thereIsNoise, setThereIsNoise] = useState(false);
-  // const backgroundNoise = (listOfValues) => {};
+  const backgroundNoise = (listOfValues) => {};
 
   async function createModel() {
     const URL = "http://localhost:3001/audio-model/";
@@ -47,7 +48,7 @@ function ML_sound() {
       (result) => {
         const scores = result.scores; // probability of prediction for each class
         // render the probability scores per class
-        console.log(scores, classLabels);
+        console.log(scores, classLabels); // background, keyboard, humanvoice 
         // alert("there is some noise in the background");
         // findBiggestIndex(scores);
         setThereIsNoise(scores[0] > 0.5);
