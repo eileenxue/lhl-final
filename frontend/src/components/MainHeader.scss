@@ -1,6 +1,6 @@
 header{
   height: 5rem;
-  background-color: navy;
+  background-color: cornflowerblue;
   color: white;
 }
 
@@ -18,17 +18,16 @@ header{
       text-decoration: none;
     }
   }
-}
 
-.nav--list-right{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  list-style: none;
+  ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 
   li{
     margin: 0 1rem;
-    width: 5rem;
 
     a{
       color: white;
@@ -39,7 +38,7 @@ header{
 
     a:hover, a:active{
       background-color: white;
-      color: navy;
+      color: black;
     }
 
     a.active{
@@ -47,4 +46,26 @@ header{
     }
   }
 
+  &--auth{
+    display: flex;
+  }
+
+  &--auth-left{
+    display: flex;
+  }
+
+  &--auth-right{
+    display: flex;
+    align-items: center;
+  }
+
+  &--auth-name{
+    padding: 0 0.5rem;
+  }
+}
+
+.nav--list-right{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

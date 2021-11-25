@@ -102,11 +102,6 @@ function App() {
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
-  const handleLogout = function () {
-    localStorage.removeItem("storedUser");
-    window.location.href = "/login";
-  };
-
   return (
     <div className="App">
       <MainHeader/>
@@ -120,13 +115,18 @@ function App() {
           <Route path="/register" element={<Registration />} />
           <Route path="/chat/:id" element={<Chat_Home />}/>
 
+          {/* Temporary: For testing components in public URL */}
+          <Route path="/questions" element={<Questions />}/>
+          <Route path="/webgazer" element={<WebGazer />}/>
+          
+
           <Route element={<RequireAuth />}>
             <Route path="/dashboard" element={<DashboardStudent />} />
             <Route path="/admin" element={<DashboardProctor />} />
           </Route>
         </Route>
       </Routes>
-      
+
       </main>
 
       {/* <h1> super exam </h1>
@@ -137,8 +137,6 @@ function App() {
       <Chat_Home /> */}
       {/* <WebGazer /> */}
 
-    
-      {/* <Registration />  */}
 
       {/* ****************************** from origin main **************************************
        <WebGazer />
