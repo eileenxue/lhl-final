@@ -1,4 +1,3 @@
-import "./App.css";
 import "./Chat.css";
 import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
@@ -11,6 +10,9 @@ import Login from "./components/Login";
 import WebGazer from "./components/WebGazer";
 
 import axios from "axios";
+import MainHeader from "./components/MainHeader";
+import Home from "./components/Home";
+
 import DashboardProctor from "./components/Dashboard_proctor";
 import DashboardStudent from "./components/Dashboard_student";
 import {
@@ -107,8 +109,8 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <h1>title of the project</h1>
+      <MainHeader/>
+      
         <header>
           <nav>
             {userLoggedin ? (
@@ -128,27 +130,31 @@ function App() {
           </nav>
         </header>
 
-        <Routes>
-          <Route>
-            {/* <Route path="/" element={<App />} /> */}
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Registration />} />
+      <Routes>
+        <Route>
+          {/* <Route path="/" element={<App />} /> */}
+          <Route path="/" element={<Home />}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Registration />} />
+          <Route path="/chat/:id" element={<Chat_Home />}/>
 
-            <Route element={<RequireAuth />}>
-              <Route path="/dashboard" element={<DashboardStudent />} />
-              <Route path="/admin" element={<DashboardProctor />} />
-            </Route>
+          <Route element={<RequireAuth />}>
+            <Route path="/dashboard" element={<DashboardStudent />} />
+            <Route path="/admin" element={<DashboardProctor />} />
           </Route>
-        </Routes>
-      </BrowserRouter>
+        </Route>
+      </Routes>
+      
 
       {/* <h1> super exam </h1>
        <UserList /> 
       <button onClick={init}>Start</button>
       {thereIsNoise && <div>There is some background noiseeeee</div>}
-      <Chat_Home />
       <Questions/>
       <Chat_Home /> */}
+      {/* <WebGazer /> */}
+
+    
       {/* <Registration />  */}
 
       {/* ****************************** from origin main **************************************
