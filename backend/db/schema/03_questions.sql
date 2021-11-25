@@ -6,5 +6,6 @@ CREATE TABLE "questions" (
   "answer1" VARCHAR(255),
   "answer2" VARCHAR(255),
   "answer3" VARCHAR(255),
-  "answer4" VARCHAR(255)
+  "answer4" VARCHAR(255),
+  "correct_answer" VARCHAR(255)
 );
