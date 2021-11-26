@@ -11,9 +11,7 @@ export default function FaceDetect() {
   const webcamRef = useRef(null);
   // const canvasRef = useRef(null);
 
-  const [message, setMessage] = useState("Status: All Good")
-
-
+  const [message, setMessage] = useState("Status: All Good!")
 
   // Load face model
   const runFaceModel = async () => {
@@ -71,12 +69,8 @@ export default function FaceDetect() {
     <div className="face-detect">
       <Webcam
         ref={webcamRef}
-        
-        style={{
-          
-        }}
       />
-      <div id="message">Status: All Good</div>
+      <div id="message">{message}</div>
       {/* <canvas
         ref={canvasRef}
         style={{

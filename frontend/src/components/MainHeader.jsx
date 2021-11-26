@@ -1,8 +1,4 @@
 import { NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
-import { Box } from '@mui/material';
-import { AppBar } from '@mui/material';
-import { Toolbar } from '@mui/material';
-import { Typography } from '@mui/material';
 import { Button } from '@mui/material';
 import './MainHeader.scss';
 
