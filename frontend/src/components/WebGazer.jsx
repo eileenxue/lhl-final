@@ -117,7 +117,7 @@ function WebGazer() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="webgazer">
       {/* <h1> super exam </h1>
        <UserList />  */}
       {/* <p style={{ fontSize: "8em" }}>{eye}</p> */}

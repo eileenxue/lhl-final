@@ -1,0 +1,16 @@
+.exam-page{
+  &--wrapper{
+    display: flex;
+  }
+
+  &--left{
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &--right{
+    padding: 1rem;
+  }
+}

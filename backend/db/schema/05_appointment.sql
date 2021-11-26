@@ -4,6 +4,5 @@ CREATE TABLE "appointments" (
   "student_id" INTEGER REFERENCES users(id) ON DELETE CASCADE,
   "proctor_id" INTEGER REFERENCES users(id) ON DELETE CASCADE,
   "test_id" INTEGER REFERENCES tests(id) ON DELETE CASCADE,
-  -- "is_proctor" BOOLEAN,
   "start_date" DATE
 );
