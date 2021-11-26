@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
 import { Box } from '@mui/material';
 import { AppBar } from '@mui/material';
 import { Toolbar } from '@mui/material';
@@ -7,38 +7,67 @@ import { Button } from '@mui/material';
 import './MainHeader.scss';
 
 export default function MainHeader() {
+
+  function RequireAuth() {
+    let userLoggedin = localStorage.getItem("storedUser");
+    let location = useLocation();
+    if (!userLoggedin) {
+      // Redirect them to the /login page, but save the current location they were
+      // trying to go to when they were redirected. This allows us to send them
+      // along to that page after they login, which is a nicer user experience
+      // than dropping them off on the home page.
+      return <Navigate to="/login" state={{ from: location }} />;
+    }
+    return <Outlet />;
+  }
+
+  let userLoggedin = localStorage.getItem("storedUser");
+
+  const handleLogout = function () {
+    localStorage.removeItem("storedUser");
+    window.location.href = "/login";
+  };
+
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" color="info">
-      <Toolbar>
-        <Typography variant="h3" component={NavLink} sx={{ flexGrow: 1 }} to="/">
-           👀
-        </Typography>
-
-        {/* When not logged in */}
-        <Button color="inherit" component={NavLink} to="/login">Login</Button>
-        <Button color="inherit" component={NavLink} to="/register">Register</Button>
-
-        </Toolbar>
-      </AppBar>
       <header>
-        <nav>
-          <div className="nav--logo">Logo</div>
-          {/* <ul className="nav--list-left">
-            <li>
-              <NavLink to="/book">Book Exam</NavLink>
-            </li>
-          </ul> */}
-          <ul className="nav--list-right">
-            <li>
-              <NavLink to="/login">Login</NavLink>
-            </li>
-            <li>
-              <NavLink to="/register">Register</NavLink>
-            </li>
-          </ul>
+        <nav className="nav">
+          <div className="nav--logo">
+            <NavLink to="/">👀 ExamAI</NavLink>
+          </div>
+          { userLoggedin ? (
+            <div className="nav--auth">
+              <div className="nav--auth-left">
+                <ul>
+                <li>
+                  <NavLink to="/dashboard">Dashboard</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/book">Book Exams</NavLink>
+                </li>
+                <li>
+                  <NavLink to="/resources">Resources</NavLink>
+                </li>
+                </ul>
+              </div>
+              <div className="nav--auth-right">
+                <div className="nav--auth-name">Hello FirstName!</div>
+                <Button variant="outlined" color="inherit" onClick={() => {
+                  handleLogout();
+                }}>Logout</Button>
+              </div>
+            </div>
+          ) : (
+            <ul className="nav--list-right">
+              <li>
+                <NavLink to="/login">Login</NavLink>
+              </li>
+              <li>
+                <NavLink to="/register">Register</NavLink>
+              </li>
+            </ul>
+          )}
+          
         </nav>
       </header>
-    </Box>
   );
 }

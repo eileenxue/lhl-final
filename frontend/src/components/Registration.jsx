@@ -27,7 +27,6 @@ function Registration(db) {
   };
 
   return (
-    <div>
       <div>
         <h1> Registration</h1>
         <label> First Name</label>
@@ -66,7 +65,6 @@ function Registration(db) {
         />
         <button onClick={register}> Register </button>
       </div>
-    </div>
   );
 }
 

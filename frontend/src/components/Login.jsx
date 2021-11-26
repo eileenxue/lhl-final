@@ -69,8 +69,8 @@ function Login() {
   };
 
   return (
-    <div className="App">
       <div className="login">
+        <h1>Login</h1>
         <form onSubmit={(e) => e.preventDefault()}>
           <span className="formTitle"> Login</span>
           <input
@@ -88,7 +88,6 @@ function Login() {
           </button>
         </form>
       </div>
-    </div>
   );
 }
 

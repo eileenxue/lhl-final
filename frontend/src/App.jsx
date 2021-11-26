@@ -102,41 +102,23 @@ function App() {
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
-  const handleLogout = function () {
-    localStorage.removeItem("storedUser");
-    window.location.href = "/login";
-  };
-
   return (
     <div className="App">
       <MainHeader/>
-      
-        <header>
-          <nav>
-            {userLoggedin ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                }}
-              >
-                Logout
-              </button>
-            ) : (
-              <div>
-                <Link to="/register">Register</Link>
-                <Link to="/login"> Login </Link>
-              </div>
-            )}
-          </nav>
-        </header>
+      <main>
 
+      {/* DECLARE ALL ROUTES HERE */}
       <Routes>
         <Route>
-          {/* <Route path="/" element={<App />} /> */}
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
           <Route path="/chat/:id" element={<Chat_Home />}/>
+
+          {/* Temporary: For testing components in public URL */}
+          <Route path="/questions" element={<Questions />}/>
+          <Route path="/webgazer" element={<WebGazer />}/>
+          
 
           <Route element={<RequireAuth />}>
             <Route path="/dashboard" element={<DashboardStudent />} />
@@ -144,7 +126,8 @@ function App() {
           </Route>
         </Route>
       </Routes>
-      
+
+      </main>
 
       {/* <h1> super exam </h1>
        <UserList /> 
@@ -154,8 +137,6 @@ function App() {
       <Chat_Home /> */}
       {/* <WebGazer /> */}
 
-    
-      {/* <Registration />  */}
 
       {/* ****************************** from origin main **************************************
        <WebGazer />
