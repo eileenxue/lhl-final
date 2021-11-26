@@ -1,4 +1,4 @@
-import "./Chat.css";
+
 import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
@@ -26,6 +26,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import ExamPage from "./components/ExamPage";
 
 
 function RequireAuth() {
@@ -115,6 +116,8 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/exam" element={<ExamPage />} />
+
           <Route path="/chat/:id" element={<Chat_Home />}/>
 
           {/* Temporary: For testing components in public URL */}

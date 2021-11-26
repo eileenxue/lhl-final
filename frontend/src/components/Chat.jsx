@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
+import './Chat.scss';
 
 function Chat(props) {
   const { socket, username, room, key } = props;
