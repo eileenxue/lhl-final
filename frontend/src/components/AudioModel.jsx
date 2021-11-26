@@ -48,7 +48,7 @@ export default function AudioModel() {
         console.log(scores, classLabels);
         // alert("there is some noise in the background");
         // findBiggestIndex(scores);
-        setThereIsNoise(scores[0] > 0.5);
+        setThereIsNoise(scores[3] > 0.5);
       },
       {
         includeSpectrogram: true, // in case listen should return result.spectrogram
@@ -66,7 +66,7 @@ export default function AudioModel() {
     <div>
       <h1>Audio Model </h1>
       <button onClick={init}>Start</button>
-      {thereIsNoise && <div>There is some background noiseeeee</div>}
+      {thereIsNoise && <div>There is some background voices</div>}
     </div>
 
   );
