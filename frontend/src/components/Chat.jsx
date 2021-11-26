@@ -32,7 +32,7 @@ function Chat(props) {
       // console.log(data);
       setMessageList((list) => [...list, data]);
     });
-  }, [socket]);
+  }, []);
 
   return (
     <div className="chat-window">
