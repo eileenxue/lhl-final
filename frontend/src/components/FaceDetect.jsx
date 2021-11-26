@@ -69,7 +69,7 @@ export default function FaceDetect() {
     // 1000 means every 1 second
     setInterval(() => {
       detect(model)
-    }, 1000)
+    }, 2000)
   }
 
   // Detect function when webcam is up and running and receiving data
@@ -114,7 +114,7 @@ export default function FaceDetect() {
     }
   }
 
-  runFaceModel();
+  useEffect (() => runFaceModel(), []);
 
   return (
     <div className="face-detect">

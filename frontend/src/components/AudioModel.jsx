@@ -111,7 +111,7 @@ export default function AudioModel() {
     // setTimeout(() => recognizer.stopListening(), 5000);
   }
 
-  init();
+  useEffect (() => init(), []);
 
   return (
     <div>
