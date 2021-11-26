@@ -57,6 +57,7 @@ export default function Proctor_exam(props) {
     <div>
       {user.first_name}
       {messages.map(msg => msg.timestamp)}
+      {messages.map(msg => msg.eye)}
 
     </div>
     </div>

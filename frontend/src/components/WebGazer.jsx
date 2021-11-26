@@ -120,7 +120,7 @@ function WebGazer() {
     <div className="App">
       {/* <h1> super exam </h1>
        <UserList />  */}
-      <p style={{ fontSize: "8em" }}>{eye}</p>
+      {/* <p style={{ fontSize: "8em" }}>{eye}</p> */}
       < Counter />
     
     </div>
