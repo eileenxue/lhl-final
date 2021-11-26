@@ -11,6 +11,8 @@ module.exports = (db) => {
     is_proctor,
     password
   ) {
+    //function start 
+    
     const salt = bcrypt.genSaltSync(10);
     const hashPW = function (userPW) {
       return bcrypt.hashSync(userPW, salt);

@@ -1,9 +1,59 @@
 import { useState, useEffect } from "react";
 import Counter from "./Counter";
+import axios from 'axios';
 
 
 function WebGazer() {
   const [eye, setEye] = useState("");
+  const [user,setUser] =useState({});
+  const [exam, setExam] =useState({});
+
+
+  //send the message to the backend 
+
+  const sendMessage = function() {
+    // wait for the data to come in to send to the backend 
+    const timestamp = new Date();
+
+    console.log("=========================: here comes the function ",)
+    try {
+      const payLoad = {
+        // currently hard coded examid == 1
+        appointment_id: 1, 
+        student_id: user.id,
+        eye,
+        timestamp: timestamp
+      }
+      axios.post("/message", payLoad)
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+  useEffect(()=>{ 
+    const storedUser = localStorage.getItem('storedUser');
+    // if (!storedUser) {
+    //   window.location.href = "/login";
+    // }; 
+
+    const parsedUser = JSON.parse(storedUser);
+
+    // if (!parsedUser.is_proctor) {
+    //   window.location.href = "/login";
+    // }
+    setUser(parsedUser); 
+    // console.log("++++++++++++++:", parsedUser);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${parsedUser.accessToken}`;
+    // getAppointments();
+  }, []);
+
+
+  useEffect(()=>{ 
+    if (eye) { sendMessage() }
+  }, [eye]);
+
+
+
 
   useEffect(() => {
     const webgazer = window.webgazer;
@@ -27,10 +77,12 @@ function WebGazer() {
         ) { 
           console.log("nooooooooo");
           setEye("baaaaaaaad"); 
-        } else {
+        } 
+        else {
           console.log('ok');
-          setEye("nice");
+          setEye("");
       }
+      
     })
       .begin();
   }, []);
@@ -41,6 +93,7 @@ function WebGazer() {
        <UserList />  */}
       <p style={{ fontSize: "8em" }}>{eye}</p>
       < Counter />
+    
     </div>
   );
 }

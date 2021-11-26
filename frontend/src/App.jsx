@@ -25,6 +25,11 @@ import {
   Outlet,
 } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import StudentStart from './components/StudentStart'; 
+import Proctor_exam  from "./components/Proctor_exam";
+
+
+
 
 function RequireAuth() {
   let userLoggedin = localStorage.getItem("storedUser");
@@ -123,6 +128,8 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/dashboard" element={<DashboardStudent />} />
             <Route path="/admin" element={<DashboardProctor />} />
+            <Route path="/exam/start" element={<StudentStart />} />
+            <Route path="/monitor" element={<Proctor_exam />} />
           </Route>
         </Route>
       </Routes>

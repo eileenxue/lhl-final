@@ -1,5 +1,6 @@
 import {useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Link, NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
 
 export default function DashboardStudent(props) {
 
@@ -25,6 +26,7 @@ export default function DashboardStudent(props) {
     <h1>Dashboard student page </h1>
     <div>
       {user.first_name}
+      <Link to="/exam/start">start</Link>
     </div>
     </div>
 

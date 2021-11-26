@@ -1,6 +1,7 @@
 import {useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
+import { Link, NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
 
 const baseURL = 'http://localhost:3005';
 
@@ -44,6 +45,7 @@ export default function DashboardStudent(props) {
     <h1>Dashboard proctor page </h1>
     <div>
       {user.first_name}
+      <Link to="/monitor">check exam</Link>
     </div>
     </div>
 
