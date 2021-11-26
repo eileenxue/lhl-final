@@ -19,7 +19,7 @@ export default function FaceDetect() {
   const sendMessage = async function() {
     // wait for the data to come in to send to the backend 
     const timestamp = new Date();
-    console.log("=========================: here comes the function ",)
+    console.log("=========================: here comes the function ")
     try {
       const payLoad = {
         // currently hard coded examid == 1
@@ -114,7 +114,7 @@ export default function FaceDetect() {
     }
   }
 
-  useEffect (() => runFaceModel(), []);
+  useEffect (() => {runFaceModel()}, []);
 
   return (
     <div className="face-detect">

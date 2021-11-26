@@ -6,16 +6,14 @@ import FaceDetect from "./FaceDetect";
 import AudioModel from "./AudioModel";
 
 export default function ExamPage() {
-
   // Check if page is in focus or not
-  const checkFocus = () => {
-    if(document.hasFocus() === false){
-      // Raise concern if user is not in focus
-      console.log("User is not focus on the current page")
-    }
-  }
-  setInterval(checkFocus, 1000);
-
+  // const checkFocus = () => {
+  //   if(document.hasFocus() === false){
+  //     // Raise concern if user is not in focus
+  //     console.log("User is not focus on the current page")
+  //   }
+  // }
+  // setInterval(checkFocus, 1000);
 
   return (
     <div>
@@ -24,7 +22,9 @@ export default function ExamPage() {
         <p>Instructions: </p>
         <ul>
           <li>Do not turn off your video or microphone during the exam.</li>
-          <li>Do not click away from this page while your exam is in progress.</li>
+          <li>
+            Do not click away from this page while your exam is in progress.
+          </li>
           <li>You can communicate with the proctor through chat.</li>
           <li>Once you're ready, click "Start Exam"</li>
         </ul>
@@ -32,17 +32,16 @@ export default function ExamPage() {
       <div className="exam-page--wrapper">
         {/* Where the webcam and chat will be */}
         <div className="exam-page--left">
-          <FaceDetect/>
-          <AudioModel/>
-          <Chat_Home/>
+          <FaceDetect />
+          <AudioModel />
+          <Chat_Home />
         </div>
 
         {/* Where the questions will be */}
         <div className="exam-page--right">
-          <Questions/>
+          <Questions />
         </div>
       </div>
     </div>
-
   );
 }

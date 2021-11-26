@@ -31,8 +31,8 @@ export default function Proctor_exam(props) {
   useEffect(()=>{ 
     joinRoom();
     socket.on("receive_message", (data) => {
-      console.log("received message?????????????", data);
-      // setMessages((list) => [...list, data]);
+      // console.log("received message?????????????", data);
+      setMessages((list) => [...list, data]);
     }); 
     
     const storedUser = localStorage.getItem('storedUser');
@@ -52,12 +52,14 @@ export default function Proctor_exam(props) {
 
   return (
     <div>
-    
     <h1>Dashboard proctor  page </h1>
     <div>
       {user.first_name}
-      {messages.map(msg => msg.timestamp)}
-      {/* {messages.map(msg => msg.eye)} */}
+      {messages.map(msg => (
+        <div>
+            <h3> {msg.message}</h3>
+            <small>{msg.timestamp}</small>
+        </div>))}
 
     </div>
     </div>

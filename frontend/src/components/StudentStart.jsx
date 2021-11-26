@@ -4,7 +4,7 @@ import WebGazer from "./WebGazer";
 function StudentStart() {
   return (
     <div>
-      <WebGazer />
+      {/* <WebGazer /> */}
     </div>
   );
 }

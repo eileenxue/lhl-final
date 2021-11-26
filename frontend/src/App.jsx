@@ -7,7 +7,7 @@ import Chat_Home from "./components/Chat_Home";
 import Registration from "./components/Registration";
 import Questions from "./components/Questions";
 import Login from "./components/Login";
-import WebGazer from "./components/WebGazer";
+// import WebGazer from "./components/WebGazer";
 
 import axios from "axios";
 import MainHeader from "./components/MainHeader";
@@ -70,7 +70,7 @@ function App() {
 
           {/* Temporary: For testing components in public URL */}
           <Route path="/questions" element={<Questions />}/>
-          <Route path="/webgazer" element={<WebGazer />}/>
+          {/* <Route path="/webgazer" element={<WebGazer />}/> */}
           <Route path="/facedetect" element={<FaceDetect/>}/>
           <Route path="/audiomodel" element={<AudioModel/>}/>
           

@@ -1,56 +1,55 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 import * as speechCommands from "@tensorflow-models/speech-commands";
-import axios from 'axios';
+import axios from "axios";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3005"); // point to the backend url
-
 
 export default function AudioModel() {
   const labels = ["Background Noise", "keyboard", "moving", "voice"];
   const [user, setUser] = useState({});
-  const [message, setMessage] = useState("")
+  const [message, setMessage] = useState("");
 
- 
-  const sendMessage = async function() {
-    // wait for the data to come in to send to the backend 
+  const sendMessage = async function () {
+    // wait for the data to come in to send to the backend
     const timestamp = new Date();
-    console.log("=========================: here comes the function ",)
+    console.log("=========================: here comes the audio function ");
     try {
       const payLoad = {
         // currently hard coded examid == 1
-        // appointment_id: 1, 
+        // appointment_id: 1,
         // student_id: user.id,
         room: "fancy",
         message,
-        timestamp: timestamp
-      }
-      console.log("sending message or not ????????")
+        timestamp: timestamp,
+      };
+      console.log("sending audio message or not ????????");
       await socket.emit("send_message", payLoad);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
   const joinRoom = () => {
-    console.log("joined fancy student   ~~~~~~~~~~~~~~~~~~")
-      socket.emit("join_room", "fancy");
+    console.log("joined fancy audio student   ~~~~~~~~~~~~~~~~~~");
+    socket.emit("join_room", "fancy");
   };
 
-  useEffect(()=>{ 
+  useEffect(() => {
     joinRoom();
-    const storedUser = localStorage.getItem('storedUser');
+    const storedUser = localStorage.getItem("storedUser");
     const parsedUser = JSON.parse(storedUser);
-    setUser(parsedUser); 
+    setUser(parsedUser);
     // console.log("++++++++++++++:", parsedUser);
-    axios.defaults.headers.common['Authorization'] = `Bearer ${parsedUser.accessToken}`;
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${parsedUser.accessToken}`;
   }, []);
 
-  useEffect(()=>{ 
-    if (message) { sendMessage() }
+  useEffect(() => {
+    if (message) {
+      sendMessage();
+    }
   }, [message]);
-
-  
-
 
   // const [currentIndex, setCurrentIndex] = useState(null);
   // const findBiggestIndex = (listOfValues) => {
@@ -80,6 +79,7 @@ export default function AudioModel() {
 
     return recognizer;
   }
+
   async function init() {
     const recognizer = await createModel();
     const classLabels = recognizer.wordLabels(); // get class labels
@@ -95,9 +95,12 @@ export default function AudioModel() {
         console.log(scores, classLabels);
         // alert("there is some noise in the background");
         // findBiggestIndex(scores);
-        if (scores[3] > 0.5) {setMessage("there is noise in the background")} 
-        else (setMessage(""));
-        
+        if (scores[3] > 0.5) {
+          // thereIsNoise("yeeeeessss background noice ")
+          console.log("background voice !!!!!!!");
+          setMessage("there is noise in the background");
+        }
+        setMessage("");
       },
       {
         includeSpectrogram: true, // in case listen should return result.spectrogram
@@ -109,9 +112,22 @@ export default function AudioModel() {
 
     // Stop the recognition in 5 seconds.
     // setTimeout(() => recognizer.stopListening(), 5000);
+    return Promise.resolve(recognizer);
   }
 
-  useEffect (() => init(), []);
+  useEffect(() => {
+    var recognizer;
+    init().then((r) => (recognizer = r));
+
+    return () => {
+      console.log("Stop listening...", recognizer);
+
+      recognizer &&
+        recognizer.stopListening().catch((error) => {
+          console.log("Stop listening error", error);
+        });
+    };
+  }, []);
 
   return (
     <div>
@@ -119,6 +135,5 @@ export default function AudioModel() {
       {/* <button onClick={init}>Start</button> */}
       {/* {thereIsNoise && <div>There is some background voices</div>} */}
     </div>
-
   );
 }
