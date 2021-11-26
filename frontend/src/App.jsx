@@ -12,6 +12,7 @@ import WebGazer from "./components/WebGazer";
 import axios from "axios";
 import MainHeader from "./components/MainHeader";
 import Home from "./components/Home";
+import FaceDetect from "./components/FaceDetect";
 
 import DashboardProctor from "./components/Dashboard_proctor";
 import DashboardStudent from "./components/Dashboard_student";
@@ -25,6 +26,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
 
 function RequireAuth() {
   let userLoggedin = localStorage.getItem("storedUser");
@@ -118,6 +120,7 @@ function App() {
           {/* Temporary: For testing components in public URL */}
           <Route path="/questions" element={<Questions />}/>
           <Route path="/webgazer" element={<WebGazer />}/>
+          <Route path="/facedetect" element={<FaceDetect/>}/>
           
 
           <Route element={<RequireAuth />}>
