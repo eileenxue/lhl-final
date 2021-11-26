@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Questions.scss"
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
+import axios from "axios";
 
 export default function Questions(props) {
 

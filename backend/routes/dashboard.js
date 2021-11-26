@@ -39,5 +39,20 @@ module.exports = (db) => {
     res.json("12344");
   });
 
+  router.get("/student/:id", function (req, res) {
+    const {id} = req.params
+    db.query(
+      `SELECT type, date FROM appointments JOIN tests ON appointments.test_id=tests.id WHERE student_id = ${id};`
+    ).then((result) => {
+      console.log("here it is:", result.rows);
+      res.status(200).json({test: result.rows})
+    })
+    .catch(e=>console.log(e))
+  })
+
+  // router.get("/dashboard/admin/:id", function (req, res) {
+
+  // })
+
   return router;
 };

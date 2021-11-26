@@ -5,5 +5,5 @@ CREATE TABLE "users" (
   "last_name" VARCHAR(255),
   "email" VARCHAR(255),
   "password" VARCHAR(255),
-  "is_proctor" BOOLEAN
+  "is_proctor" BOOLEAN,
 );
