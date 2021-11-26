@@ -3,6 +3,7 @@ import Questions from "./Questions";
 
 import "./ExamPage.scss";
 import FaceDetect from "./FaceDetect";
+import AudioModel from "./AudioModel";
 
 export default function ExamPage() {
 
@@ -32,6 +33,7 @@ export default function ExamPage() {
         {/* Where the webcam and chat will be */}
         <div className="exam-page--left">
           <FaceDetect/>
+          <AudioModel/>
           <Chat_Home/>
         </div>
 
