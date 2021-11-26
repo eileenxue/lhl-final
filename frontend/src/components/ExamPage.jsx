@@ -10,13 +10,13 @@ export default function ExamPage() {
       <h1>Exam Page </h1>
       <div className="exam-page--wrapper">
         {/* Where the webcam and chat will be */}
-        <div>
+        <div className="exam-page--left">
           <FaceDetect/>
           <Chat_Home/>
         </div>
 
         {/* Where the questions will be */}
-        <div>
+        <div className="exam-page--right">
           <Questions/>
         </div>
       </div>
