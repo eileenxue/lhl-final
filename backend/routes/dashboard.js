@@ -45,7 +45,8 @@ module.exports = (db) => {
       `SELECT type, start_date
        FROM appointments 
        JOIN tests ON appointments.test_id=tests.id 
-       WHERE student_id = ${id};`
+       WHERE student_id = ${id} and start_date >= CURRENT_DATE 
+       order by  start_date ;`
     ).then((result) => {
       console.log("here it is:", result.rows);
       res.status(200).json({test: result.rows})
