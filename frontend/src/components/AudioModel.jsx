@@ -95,7 +95,7 @@ export default function AudioModel() {
         console.log(scores, classLabels);
         // alert("there is some noise in the background");
         // findBiggestIndex(scores);
-        if (scores[3] > 0.7) {
+        if (scores[3] > 0.6) {
           // thereIsNoise("yeeeeessss background noice ")
           console.log("background voice !!!!!!!");
           setMessage("there is noise in the background");
