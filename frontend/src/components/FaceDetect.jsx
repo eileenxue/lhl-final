@@ -69,7 +69,7 @@ export default function FaceDetect() {
     // 1000 means every 1 second
     setInterval(() => {
       detect(model)
-    }, 2000)
+    }, 1000)
   }
 
   // Detect function when webcam is up and running and receiving data
