@@ -9,8 +9,18 @@ module.exports = (db) => {
         `SELECT * FROM questions;`
       ).then((result) => {res.json(result.rows)})
       .catch (e=> (console.log(e)))
-      
-      // res.send('TESTTESTESTRST')
+  })
+
+  router.get("/test/:id", function (req, res) {
+    const {id} = req.params
+    db.query(
+      `SELECT * FROM questions
+       WHERE test_id = ${id};`
+    ).then((result) => {
+      console.log(`Here are the questions for this exam:`, result.rows);
+      res.status(200).json({questions: result.rows})
+    })
+    .catch(e=>console.log(e))
   })
 
   return router;

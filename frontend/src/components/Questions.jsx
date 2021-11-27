@@ -3,6 +3,7 @@ import "./Questions.scss"
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import axios from "axios";
+import { API_URL } from "../setting";
 
 export default function Questions(props) {
 
@@ -14,17 +15,27 @@ export default function Questions(props) {
 
   const [score, setScore] = useState(0);
 
-  const [questions, setQuestions] = useState();
+  const [questions, setQuestions] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:3005/api/questions")
-    .then((result) => {
-      console.log("hereeeeee",result)
-      setQuestions(result.data)
-    })
-  }, [])
+    // axios.get("http://localhost:3005/api/questions")
+    // .then((result) => {
+    //   console.log("hereeeeee",result)
+    //   setQuestions(result.data)
+    // });
+    axios.get(`${API_URL}questions/test/1`).then((result) => {
+      setQuestions(result.data.questions);
+      console.log("questions:", result.data);
+    });
+  }, []);
 
-
+  const questionsTest = questions.map(
+    question => (
+      <div>
+        {question.question}
+      </div>
+    )
+  )
 
   // Change the question 
   const handleAnswerClick = (isCorrect) => {
@@ -46,7 +57,7 @@ export default function Questions(props) {
 
   return (
     <div>
-    {/*<div className="questions">
+    <div className="questions">
     <h1 className="questions--heading">Exam: LHL 100</h1>
 
     {showScore ? (
@@ -57,19 +68,22 @@ export default function Questions(props) {
         <div className='questions--count'>
           <span>Question {currentQuestion + 1}</span>/{questions.length}
         </div>
-        <div className='questions--text'>{questions[currentQuestion].questionText}</div>
+        {/* <div className='questions--text'>{questions[currentQuestion].questionText}</div> */}
       </div>
       <div className='questions--answers'>
         <ButtonGroup orientation="vertical" variant="outlined">
-          {questions[currentQuestion].answerOptions.map((answerOption) => (
+          {/* {questions[currentQuestion].answerOptions.map((answerOption) => (
               <Button onClick={() => handleAnswerClick(answerOption.isCorrect)}>{answerOption.answerText}</Button>
-          ))}
+          ))} */}
         </ButtonGroup>
       </div>
       </>
     )}
-          </div> */}
+          </div>
         
+    {questionsTest}
+
+    {/* Useful for visualization */}
     <pre>
       { JSON.stringify(questions, null, 2) }
     </pre>

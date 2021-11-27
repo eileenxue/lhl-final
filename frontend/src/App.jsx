@@ -1,21 +1,5 @@
-
-import UserList from "./components/UserList";
-import tf from "@tensorflow/tfjs";
-import * as speechCommands from "@tensorflow-models/speech-commands";
+// React and Development 
 import { useState, useEffect } from "react";
-import Chat from './components/Chat';
-import Registration from "./components/Registration";
-import Questions from "./components/Questions";
-import Login from "./components/Login";
-// import WebGazer from "./components/WebGazer";
-
-import axios from "axios";
-import MainHeader from "./components/MainHeader";
-import Home from "./components/Home";
-import FaceDetect from "./components/FaceDetect";
-
-import DashboardProctor from "./components/Dashboard_proctor";
-import DashboardStudent from "./components/Dashboard_student";
 import {
   BrowserRouter,
   Routes,
@@ -26,9 +10,24 @@ import {
   Outlet,
 } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
+import tf from "@tensorflow/tfjs";
+import * as speechCommands from "@tensorflow-models/speech-commands";
+
+// Components
+import Chat from './components/Chat';
+import Registration from "./components/Registration";
+import Questions from "./components/Questions";
+import Login from "./components/Login";
+// import WebGazer from "./components/WebGazer";
+import MainHeader from "./components/MainHeader";
+import Home from "./components/Home";
+import FaceDetect from "./components/FaceDetect";
+import DashboardProctor from "./components/Dashboard_proctor";
+import DashboardStudent from "./components/Dashboard_student";
 import Proctor_exam  from "./components/Proctor_exam";
-
-
 import ExamPage from "./components/ExamPage";
 import AudioModel from "./components/AudioModel";
 

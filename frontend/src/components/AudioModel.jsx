@@ -130,8 +130,8 @@ export default function AudioModel() {
   }, []);
 
   return (
-    <div>
-      <p>Audio</p>
+    <div className="audio-model">
+      <p className="audio-model--status">🔈 Audio: On</p>
       {/* <button onClick={init}>Start</button> */}
       {/* {thereIsNoise && <div>There is some background voices</div>} */}
     </div>
