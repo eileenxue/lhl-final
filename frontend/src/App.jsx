@@ -3,7 +3,7 @@ import UserList from "./components/UserList";
 import tf from "@tensorflow/tfjs";
 import * as speechCommands from "@tensorflow-models/speech-commands";
 import { useState, useEffect } from "react";
-import Chat_Home from "./components/Chat_Home";
+import Chat from './components/Chat';
 import Registration from "./components/Registration";
 import Questions from "./components/Questions";
 import Login from "./components/Login";
@@ -26,7 +26,6 @@ import {
   Outlet,
 } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import StudentStart from './components/StudentStart'; 
 import Proctor_exam  from "./components/Proctor_exam";
 
 
@@ -64,9 +63,8 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
-          <Route path="/exam" element={<ExamPage />} />
 
-          <Route path="/chat/:id" element={<Chat_Home />}/>
+          <Route path="/chat/:id" element={<Chat />}/>
 
           {/* Temporary: For testing components in public URL */}
           <Route path="/questions" element={<Questions />}/>
@@ -78,7 +76,7 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/dashboard" element={<DashboardStudent />} />
             <Route path="/admin" element={<DashboardProctor />} />
-            <Route path="/exam/start" element={<StudentStart />} />
+            <Route path="/exam" element={<ExamPage />} />
             <Route path="/monitor" element={<Proctor_exam />} />
           </Route>
         </Route>

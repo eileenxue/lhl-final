@@ -40,7 +40,7 @@ console.log("ENV", process.env.NODE_ENV);
     <h1>Dashboard student page </h1>
     <div>
       {user.first_name}
-      <Link to="/exam/start">start</Link>
+      <Link to="/exam">start</Link>
       {/* {user.first_name} */}
       {testsResults}
     </div>

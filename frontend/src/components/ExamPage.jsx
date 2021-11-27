@@ -4,6 +4,9 @@ import Questions from "./Questions";
 import "./ExamPage.scss";
 import FaceDetect from "./FaceDetect";
 import AudioModel from "./AudioModel";
+import axios from "axios";
+import {useState, useEffect} from 'react';
+import Chat from './Chat';
 
 export default function ExamPage() {
   // Check if page is in focus or not
@@ -15,8 +18,29 @@ export default function ExamPage() {
   // }
   // setInterval(checkFocus, 1000);
 
+  const [user,setUser] = useState({});
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("storedUser");
+    // if (!storedUser) {
+    //   window.location.href = "/login";
+    // };
+
+    const parsedUser = JSON.parse(storedUser);
+
+    setUser(parsedUser);
+    // console.log("++++++++++++++:", parsedUser);
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${parsedUser.accessToken}`;
+    // getAppointments();
+    // receiveMessage();
+  }, []);
+
+
   return (
     <div>
+    hello student: {user.first_name}
       <h1>Exam Page</h1>
       <div>
         <p>Instructions: </p>
@@ -34,7 +58,7 @@ export default function ExamPage() {
         <div className="exam-page--left">
           <FaceDetect />
           <AudioModel />
-          <Chat_Home />
+          <Chat />
         </div>
 
         {/* Where the questions will be */}

@@ -95,7 +95,7 @@ export default function AudioModel() {
         console.log(scores, classLabels);
         // alert("there is some noise in the background");
         // findBiggestIndex(scores);
-        if (scores[3] > 0.5) {
+        if (scores[3] > 0.7) {
           // thereIsNoise("yeeeeessss background noice ")
           console.log("background voice !!!!!!!");
           setMessage("there is noise in the background");
@@ -104,7 +104,7 @@ export default function AudioModel() {
       },
       {
         includeSpectrogram: true, // in case listen should return result.spectrogram
-        probabilityThreshold: 0.5,
+        probabilityThreshold: 0.6,
         invokeCallbackOnNoiseAndUnknown: true,
         overlapFactor: 0.5, // probably want between 0.5 and 0.75. More info in README
       }

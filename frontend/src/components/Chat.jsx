@@ -1,19 +1,52 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
-import './Chat.scss';
+import "./Chat.scss";
+import axios from "axios";
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:3005"); // point to the backend url
 
 function Chat(props) {
-  const { socket, username, room, key } = props;
+  const { room, key } = props;
 
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
+  // const [test, setTest] = useState();
+  // const [user,setUser] = useState({});
+  const baseURL = "http://localhost:3005";
+
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      // console.log("chat box receive data?????", data);
+      setMessageList((list) => [...list, data]);
+    });
+  }, []);
+
+  // useEffect(()=>{
+  const storedUser = localStorage.getItem("storedUser");
+  if (!storedUser) {
+    window.location.href = "/login";
+    return;
+  }
+  const parsedUser = JSON.parse(storedUser);
+  // setUser(parsedUser);
+  // console.log(" chaaaaaatttttt parsed user", parsedUser.id )
+  // axios.get(`${baseURL}/dashboard/student/${parsedUser.id}`)
+  // .then((result)=>{
+  //   setTest(result.data.test)
+  //   console.log("test:", result.data.test);
+  // })
+  // }, [])
+
+  const username = parsedUser.first_name;
+  socket.emit("join_room", "room");
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
       console.log(socket.id);
       const messageData = {
         key: socket.id,
-        room: room,
+        // here is hard coded room. should use redux ;
+        room: "room",
         author: username,
         message: currentMessage,
         time:
@@ -23,17 +56,12 @@ function Chat(props) {
       };
 
       await socket.emit("send_message", messageData);
+
       setMessageList((list) => [...list, messageData]);
       setCurrentMessage("");
     }
+    // console.log("user is ", username)
   };
-
-  useEffect(() => {
-    socket.on("receive_message", (data) => {
-      // console.log(data);
-      setMessageList((list) => [...list, data]);
-    });
-  }, []);
 
   return (
     <div className="chat-window">
