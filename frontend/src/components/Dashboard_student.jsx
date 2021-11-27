@@ -11,28 +11,46 @@ console.log("API", API_URL);
 console.log("ENV", process.env.NODE_ENV);
 
   const [user,setUser] = useState({});
-  const [test, setTest] = useState([])
-  let navigate = useNavigate();
+  const [test, setTest] = useState([]);
 
   useEffect(()=>{ 
     const storedUser = localStorage.getItem('storedUser');
     if (!storedUser) {
       window.location.href = "/login";
     }; 
+
     const parsedUser = JSON.parse(storedUser);
+
+    if (parsedUser.is_proctor) {
+      window.location.href = "/login";
+    }
     setUser(parsedUser);
+
+
+    axios.defaults.headers.common['Authorization'] = `Bearer ${parsedUser.accessToken}`;
     axios.get(`${API_URL}dashboard/student/${parsedUser.id}`) 
     .then((result)=>{
       setTest(result.data.test)
       console.log("test:", result.data.test);
-    })
+    });
   }, [])
 
-  const testsResults = test.map((test, index) => {
-    return (
-      // Made up display component
-      <ExamResult key={index} {...test} /> 
-    )
+  const todayTest = test.map(
+    
+    // (test, index) => {
+    // return (
+    //   // Made up display component
+    //   <ExamResult key={index} {...test} /> 
+    // )
+
+   })
+
+   const upcomingTest = test.map((test, index) => {
+    // return (
+    //   // Made up display component
+    //   <ExamResult key={index} {...test} /> 
+    // )
+
    })
 
   return (
@@ -42,7 +60,10 @@ console.log("ENV", process.env.NODE_ENV);
       {user.first_name}
       <Link to="/exam">start</Link>
       {/* {user.first_name} */}
-      {testsResults}
+      <p> today's exam: </p>
+      {todayTest}
+      <p> upcoming exam</p>
+      {upcomingTest}
     </div>
     </div>
 

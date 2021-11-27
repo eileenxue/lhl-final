@@ -2,6 +2,7 @@ import { NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
 import { Button } from '@mui/material';
 import './MainHeader.scss';
 
+
 export default function MainHeader() {
 
   function RequireAuth() {
@@ -17,7 +18,10 @@ export default function MainHeader() {
     return <Outlet />;
   }
 
-  let userLoggedin = localStorage.getItem("storedUser");
+  const userLoggedin = localStorage.getItem("storedUser");
+  console.log("userloggedin:", userLoggedin);
+  const parsedUser = JSON.parse(userLoggedin);
+  console.log("parsedUser:", parsedUser);
 
   const handleLogout = function () {
     localStorage.removeItem("storedUser");
@@ -46,7 +50,7 @@ export default function MainHeader() {
                 </ul>
               </div>
               <div className="nav--auth-right">
-                <div className="nav--auth-name">Hello FirstName!</div>
+                <div className="nav--auth-name">Hello {parsedUser.first_name}!</div>
                 <Button variant="outlined" color="inherit" onClick={() => {
                   handleLogout();
                 }}>Logout</Button>
