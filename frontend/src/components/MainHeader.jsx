@@ -8,16 +8,13 @@ export default function MainHeader() {
 
   const [user,setUser] = useState({});
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("storedUser");
-    const parsedUser = JSON.parse(storedUser);
-    setUser(parsedUser);
-    axios.defaults.headers.common[
-      "Authorization"
-    ] = `Bearer ${parsedUser.accessToken}`;
-  }, []);
+  const storedUser = localStorage.getItem("storedUser");
 
-  let userLoggedin = localStorage.getItem("storedUser");
+  useEffect(() => {
+    const parsedUser = JSON.parse(storedUser);
+    console.log(parsedUser)
+    setUser(parsedUser);
+  }, [])
 
   const handleLogout = function () {
     localStorage.removeItem("storedUser");
@@ -30,7 +27,7 @@ export default function MainHeader() {
           <div className="nav--logo">
             <NavLink to="/">👀 ExamAI</NavLink>
           </div>
-          { userLoggedin ? (
+          { storedUser ? (
             <div className="nav--auth">
               <div className="nav--auth-left">
                 <ul>

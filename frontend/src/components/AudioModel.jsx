@@ -98,7 +98,7 @@ export default function AudioModel() {
         if (scores[3] > 0.6) {
           // thereIsNoise("yeeeeessss background noice ")
           console.log("background voice !!!!!!!");
-          setMessage("there is noise in the background");
+          setMessage("There are voices in the background");
         }
         setMessage("");
       },

@@ -40,7 +40,6 @@ export default function ExamPage() {
 
   return (
     <div>
-    hello student: {user.first_name}
       <h1>Exam Page</h1>
       <div>
         <p>Instructions: </p>
