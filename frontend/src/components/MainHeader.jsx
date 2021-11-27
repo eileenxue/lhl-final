@@ -19,9 +19,9 @@ export default function MainHeader() {
   }
 
   const userLoggedin = localStorage.getItem("storedUser");
-  console.log("userloggedin:", userLoggedin);
+  // console.log("userloggedin:", userLoggedin);
   const parsedUser = JSON.parse(userLoggedin);
-  console.log("parsedUser:", parsedUser);
+  // console.log("parsedUser:", parsedUser);
 
   const handleLogout = function () {
     localStorage.removeItem("storedUser");
