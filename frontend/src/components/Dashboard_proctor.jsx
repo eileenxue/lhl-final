@@ -29,12 +29,20 @@ export default function DashboardStudent(props) {
     })
   }, [])
 
+
+  const stringToDate = function (dbDate){
+    return  dbDate.slice(0,10);
+  }
+
+
+
+
   const appointmentsList = appointments.map(appointment => 
     ( 
     <div> 
       <p> student id: {appointment.student_id} </p>
       <p> exam type: {appointment.type} </p>
-      <p> exam date: {appointment.start_date}</p>
+      <p> exam date: {stringToDate(appointment.start_date)}</p>
       {/* this should be dynamic  */}
       <Link to="/monitor">check exam</Link>
     </div>

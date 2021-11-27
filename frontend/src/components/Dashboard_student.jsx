@@ -1,17 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link, NavLink, useLocation, Navigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../setting";
 import ExamResult from "./ExamResult";
-import moment from "moment";
 
 export default function DashboardStudent(props) {
-  // console.log("API", API_URL);
-  // console.log("ENV", process.env.NODE_ENV);
+  console.log("API", API_URL);
+  console.log("ENV", process.env.NODE_ENV);
 
   const [user, setUser] = useState({});
-  const [test, setTest] = useState([]);
+  const [tests, setTests] = useState([]);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("storedUser");
@@ -30,23 +29,37 @@ export default function DashboardStudent(props) {
       "Authorization"
     ] = `Bearer ${parsedUser.accessToken}`;
     axios.get(`${API_URL}dashboard/student/${parsedUser.id}`).then((result) => {
-      setTest(result.data.test);
+      setTests(result.data.test);
       console.log("test:", result.data.test);
     });
   }, []);
 
-  let today = moment(new Date()).format("YYYY-MM-DD");
-  console.log("today is: ", today);
 
-  const todayTest = test.map(
-    test => (
+
+  const compareDates = function (todayDate, dbDate){
+    return  (todayDate.getFullYear() == dbDate.getFullYear() && 
+    todayDate.getMonth() == dbDate.getMonth() && 
+    todayDate.getDate() == dbDate.getDate());
+  }
+
+  const stringToDate = function (dbDate){
+    return  dbDate.slice(0,10);
+  }
+
+  const todayTest = tests.map(
+    test => 
+   
         <div>
-          <p> exam type: {test.type} </p>
-          <p> exam date: {test.start_date}</p>
-          {/* this should be dynamic  */}
-          <Link to="/exam">start exam</Link>
+          {compareDates(new Date(),  new Date(test.start_date)) &&
+          <Fragment>
+            <p> exam type: {test.type} </p>
+            <p> exam date: {stringToDate(test.start_date)}</p>
+            {/* this should be dynamic  */}
+            <Link to="/exam">start exam</Link>
+          </Fragment>
+            }
         </div>
-    )
+    
     // (test, index) => {
     // return (
     //   // Made up display component
@@ -54,25 +67,33 @@ export default function DashboardStudent(props) {
     // )}
   );
 
-  // const upcomingTest = test.map(
-  //   (test) => (
-  //     <div>
-  //       {test.start_date > today ? (
-  //         <div>
-  //           <p> exam type: {test.type} </p>
-  //           <p> exam date: {test.start_date}</p>
-  //           {/* this should be dynamic  */}
-  //         </div>
-  //       ) : (
-  //         <b>NOT SAME DAY</b>
-  //       )}
-  //     </div>
-  //   )
-  // return (
-  //   // Made up display component
-  //   <ExamResult key={index} {...test} />
-  // )
-  // );
+  const deleteAppointment = (id) => {
+    axios.delete(`${API_URL}delete/${id}`)
+    .then(response => {
+              setTests(tests.list.filter((val)=> {return val.id != id}))
+  }) 
+}
+
+  const upcomingTest = tests.map(
+    test => 
+        <div>
+          {!compareDates(new Date(),  new Date(test.start_date)) &&
+          <Fragment>
+            <p> exam type: {test.type} </p>
+            <p> exam date: {stringToDate(test.start_date)}</p>
+            <Link to={`/edit/${test.id}`}> Edit</Link>
+            <button onClick={() => {deleteAppointment(test.id)} }> Delete </button>
+          </Fragment>
+            }
+        </div>
+    
+    // (test, index) => {
+    // return (
+    //   // Made up display component
+    //   <ExamResult key={index} {...test} />
+    // )}
+  );
+
 
   return (
     <div>
@@ -82,8 +103,9 @@ export default function DashboardStudent(props) {
         {/* {user.first_name} */}
         <h3> today's exam: </h3>
         <small> {todayTest} </small>
-        {/* <h3> upcoming exam:</h3>
-        <small> {upcomingTest} </small> */}
+        <h3> upcoming exam:</h3>
+        <small> {upcomingTest} </small> 
+        
       </div>
     </div>
   );

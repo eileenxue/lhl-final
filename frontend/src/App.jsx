@@ -31,6 +31,7 @@ import Proctor_exam  from "./components/Proctor_exam";
 
 import ExamPage from "./components/ExamPage";
 import AudioModel from "./components/AudioModel";
+import Edit from './components/Edit';
 
 
 
@@ -78,6 +79,7 @@ function App() {
             <Route path="/admin" element={<DashboardProctor />} />
             <Route path="/exam" element={<ExamPage />} />
             <Route path="/monitor" element={<Proctor_exam />} />
+            <Route path="/edit/:id" element={<Edit />} />
           </Route>
         </Route>
       </Routes>
