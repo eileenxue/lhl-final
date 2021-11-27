@@ -1,21 +1,21 @@
+import { useState, useEffect } from 'react';
+import axios from "axios";
 import { NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
 import { Button } from '@mui/material';
 import './MainHeader.scss';
 
 export default function MainHeader() {
 
-  function RequireAuth() {
-    let userLoggedin = localStorage.getItem("storedUser");
-    let location = useLocation();
-    if (!userLoggedin) {
-      // Redirect them to the /login page, but save the current location they were
-      // trying to go to when they were redirected. This allows us to send them
-      // along to that page after they login, which is a nicer user experience
-      // than dropping them off on the home page.
-      return <Navigate to="/login" state={{ from: location }} />;
-    }
-    return <Outlet />;
-  }
+  const [user,setUser] = useState({});
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("storedUser");
+    const parsedUser = JSON.parse(storedUser);
+    setUser(parsedUser);
+    axios.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${parsedUser.accessToken}`;
+  }, []);
 
   let userLoggedin = localStorage.getItem("storedUser");
 
@@ -46,7 +46,7 @@ export default function MainHeader() {
                 </ul>
               </div>
               <div className="nav--auth-right">
-                <div className="nav--auth-name">Hello FirstName!</div>
+                <div className="nav--auth-name">Hello {user.first_name}!</div>
                 <Button variant="outlined" color="inherit" onClick={() => {
                   handleLogout();
                 }}>Logout</Button>
