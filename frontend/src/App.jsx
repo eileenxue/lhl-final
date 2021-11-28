@@ -31,7 +31,8 @@ import Proctor_exam  from "./components/Proctor_exam";
 import ExamPage from "./components/ExamPage";
 import AudioModel from "./components/AudioModel";
 import ExamPrimary from "./components/ExamPrimary";
-
+import Edit from './components/Edit';
+// import WebGazer_calibration from "./components/WebGazer_calibration";
 
 
 function RequireAuth() {
@@ -56,6 +57,7 @@ function App() {
     <div className="App">
       <MainHeader/>
       <main>
+        {/* <WebGazer_calibration /> */}
 
       {/* DECLARE ALL ROUTES HERE */}
       <Routes>
@@ -79,6 +81,7 @@ function App() {
             <Route path="/admin" element={<DashboardProctor />} />
             <Route path="/exam" element={<ExamPage />} />
             <Route path="/monitor" element={<Proctor_exam />} />
+            <Route path="/edit/:id" element={<Edit />} />
           </Route>
         </Route>
       </Routes>

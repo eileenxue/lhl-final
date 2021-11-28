@@ -10,42 +10,52 @@ export default function DashboardStudent(props) {
   const [user,setUser] = useState({});
   const [appointments, setAppointments] =useState([]);
 
-  let navigate = useNavigate();
-
   useEffect(()=>{ 
     const storedUser = localStorage.getItem('storedUser');
     if (!storedUser) {
       window.location.href = "/login";
     }; 
-
-    const parsedUser = JSON.parse(storedUser);
+    const parsedUser = JSON.parse(storedUser); 
 
     if (!parsedUser.is_proctor) {
       window.location.href = "/login";
     }
     setUser(parsedUser); 
-    // console.log("++++++++++++++:", parsedUser);
     axios.defaults.headers.common['Authorization'] = `Bearer ${parsedUser.accessToken}`;
-    getAppointments();
+    axios.get(`${baseURL}/api/dashboard/admin/${parsedUser.id}`) 
+    .then((result)=>{
+      setAppointments(result.data.test)
+      // console.log("test:", (result.data.test));
+    })
   }, [])
 
-  const getAppointments = async (e) => { 
-    try {
-      const res = await axios.get(`${baseURL}/api/dashboard`);
-      console.log("in the getAppointments function : ", res.data)
-      setAppointments(res.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+
+  const stringToDate = function (dbDate){
+    return  dbDate.slice(0,10);
+  }
+
+
+
+
+  const appointmentsList = appointments.map(appointment => 
+    ( 
+    <div> 
+      <p> student id: {appointment.student_id} </p>
+      <p> exam type: {appointment.type} </p>
+      <p> exam date: {stringToDate(appointment.start_date)}</p>
+      {/* this should be dynamic  */}
+      <Link to="/monitor">check exam</Link>
+    </div>
+  ))
 
   return (
     <div>
 
-    <h1>Dashboard proctor page </h1>
+    <h1>Dashboard proctor page: {user.first_name} </h1>
+    <h2>view today's exams </h2>
     <div>
-      {user.first_name}
-      <Link to="/monitor">check exam</Link>
+
+      {appointmentsList}
     </div>
     </div>
 
