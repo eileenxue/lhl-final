@@ -34,32 +34,32 @@ export default function DashboardStudent(props) {
     });
   }, []);
 
+  const compareDates = function (todayDate, dbDate) {
+    return (
+      todayDate.getFullYear() == dbDate.getFullYear() &&
+      todayDate.getMonth() == dbDate.getMonth() &&
+      todayDate.getDate() == dbDate.getDate()
+    );
+  };
 
-
-  const compareDates = function (todayDate, dbDate){
-    return  (todayDate.getFullYear() == dbDate.getFullYear() && 
-    todayDate.getMonth() == dbDate.getMonth() && 
-    todayDate.getDate() == dbDate.getDate());
-  }
-
-  const stringToDate = function (dbDate){
-    return  dbDate.slice(0,10);
-  }
+  const stringToDate = function (dbDate) {
+    return dbDate.slice(0, 10);
+  };
 
   const todayTest = tests.map(
-    test => 
-   
-        <div>
-          {compareDates(new Date(),  new Date(test.start_date)) &&
+    (test) => (
+      <div>
+        {compareDates(new Date(), new Date(test.start_date)) && (
           <Fragment>
             <p> exam type: {test.type} </p>
             <p> exam date: {stringToDate(test.start_date)}</p>
             {/* this should be dynamic  */}
             <Link to="/exam">start exam</Link>
           </Fragment>
-            }
-        </div>
-    
+        )}
+      </div>
+    )
+
     // (test, index) => {
     // return (
     //   // Made up display component
@@ -68,25 +68,42 @@ export default function DashboardStudent(props) {
   );
 
   const deleteAppointment = (id) => {
-    axios.delete(`${API_URL}delete/${id}`)
-    .then(response => {
-              setTests(tests.list.filter((val)=> {return val.id != id}))
-  }) 
-}
+    console.log("what is the id", id);
+    axios.post(`${API_URL}delete/${id}`)
+    .then((response) => {
+      console.log("tests........ response", response); 
+
+      setTests(
+        tests.filter((val) => {
+          return val.id != id;
+        })
+      );
+    });
+  };
+
+
+
 
   const upcomingTest = tests.map(
-    test => 
-        <div>
-          {!compareDates(new Date(),  new Date(test.start_date)) &&
+    (test) => (
+      <div>
+        {!compareDates(new Date(), new Date(test.start_date)) && (
           <Fragment>
             <p> exam type: {test.type} </p>
             <p> exam date: {stringToDate(test.start_date)}</p>
             <Link to={`/edit/${test.id}`}> Edit</Link>
-            <button onClick={() => {deleteAppointment(test.id)} }> Delete </button>
+            <button
+              onClick={() => {
+                deleteAppointment(`${test.id}`);
+              }}
+            >
+              Delete
+            </button>
           </Fragment>
-            }
-        </div>
-    
+        )}
+      </div>
+    )
+
     // (test, index) => {
     // return (
     //   // Made up display component
@@ -94,18 +111,15 @@ export default function DashboardStudent(props) {
     // )}
   );
 
-
   return (
     <div>
       <h1>Dashboard student page </h1>
       <div>
         {user.first_name}
-        {/* {user.first_name} */}
         <h3> today's exam: </h3>
         <small> {todayTest} </small>
         <h3> upcoming exam:</h3>
-        <small> {upcomingTest} </small> 
-        
+        <small> {upcomingTest} </small>
       </div>
     </div>
   );

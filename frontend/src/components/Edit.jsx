@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect, Fragment } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from "../setting";
 import DatePicker from "react-datepicker";
 import moment from 'moment';
@@ -14,6 +14,8 @@ export default function DashboardStudent(props) {
   let [exam, setExam] = useState("");
   let [date, setDate] = useState();
   let { id } = useParams();
+
+  let navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("storedUser");
@@ -44,7 +46,10 @@ export default function DashboardStudent(props) {
       .post(`${API_URL}edit/${id}`, {
         start_date: date
       })
-      .then((response) => console.log(`from post ${response}`));
+      .then((response) => {
+        console.log(`from post ${response}`); 
+        navigate(`/dashboard`);
+    });
   };
 
 
@@ -64,9 +69,9 @@ export default function DashboardStudent(props) {
        <p> </p> */}
       <label> exam date</label>
 
-      <DatePicker selected={date} minDate={new Date()} onChange={(d) => setDate(d)} /> 
+      <DatePicker selected={date}  minDate={new Date()} onChange={(d) => setDate(d)} /> 
 
-      <button onClick={edit} > Edit </button>
+      <button onClick={edit} > Save </button>
     </div>
   );
 }

@@ -6,7 +6,7 @@ module.exports = (db) => {
 
   router.get("/:appointment_id", (req, res) => {
     db.query(
-      `select start_date,  tests.type, appointments.id
+    `select start_date,  tests.type, appointments.id
     from appointments join tests on tests.id = appointments.test_id
      where appointments.id = ${req.params.appointment_id}`
     ).then((result) => res.status(200).json({ test: result.rows }));
@@ -21,7 +21,7 @@ module.exports = (db) => {
     SET start_date = '${req.body.start_date}'
     WHERE id = '${req.params.appointment_id}' ; `
     )
-    .then(()=>res.status(200)); ;
+    .then(()=>res.send({status:true})); ;
   });
 
   return router;
