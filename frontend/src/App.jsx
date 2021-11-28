@@ -30,6 +30,7 @@ import DashboardStudent from "./components/Dashboard_student";
 import Proctor_exam  from "./components/Proctor_exam";
 import ExamPage from "./components/ExamPage";
 import AudioModel from "./components/AudioModel";
+import ExamPrimary from "./components/ExamPrimary";
 
 
 
@@ -67,6 +68,7 @@ function App() {
 
           {/* Temporary: For testing components in public URL */}
           <Route path="/questions" element={<Questions />}/>
+          <Route path="/examprimary" element={<ExamPrimary />}/>
           {/* <Route path="/webgazer" element={<WebGazer />}/> */}
           <Route path="/facedetect" element={<FaceDetect/>}/>
           <Route path="/audiomodel" element={<AudioModel/>}/>

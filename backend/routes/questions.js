@@ -11,13 +11,13 @@ module.exports = (db) => {
       .catch (e=> (console.log(e)))
   })
 
-  router.get("/test/:id", function (req, res) {
+  router.get("/exam/:id", function (req, res) {
     const {id} = req.params
     db.query(
       `SELECT * FROM questions
        WHERE test_id = ${id};`
     ).then((result) => {
-      console.log(`Here are the questions for this exam:`, result.rows);
+      console.log(`Here are the questions for this exam ${id}:`, result.rows);
       res.status(200).json({questions: result.rows})
     })
     .catch(e=>console.log(e))
