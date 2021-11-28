@@ -64,13 +64,14 @@ const logoutRouter = require('./routes/logout');
 const registerRouter = require('./routes/register');
 const messageRouter = require('./routes/message');
 const questionsRouter = require('./routes/questions');
+const appointmentsRouter = require('./routes/appointments');
 
 const deleteRouter = require('./routes/delete');
 const editRouter = require('./routes/edit');
 
 
 app.use('/api/users', usersRouter(db));
-app.use('/api/tests', testsRouter);
+app.use('/api/tests', testsRouter(db));
 app.use('/api/dashboard', dashboardRouter(db));
 app.use("/api/login", loginRouter(db));
 app.use("/api/logout", logoutRouter(db));
@@ -78,6 +79,7 @@ app.use("/api/register", registerRouter(db));
 app.use("/api/message", messageRouter(db));
 app.get("/api/authentication") // how do you kow if the user is logged in if you need to refresh? 
 app.use("/api/questions", questionsRouter(db));
+app.use("/api/appointments", appointmentsRouter(db));
 app.use("/api/delete", deleteRouter(db));
 app.use("/api/edit", editRouter(db));
 

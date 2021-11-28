@@ -57,7 +57,7 @@ export default function ExamPage() {
         {/* Where the webcam and chat will be */}
         <div className="exam-page--left">
           <FaceDetect />
-          <AudioModel />
+          {/* <AudioModel /> */}
           <Chat />
         </div>
 

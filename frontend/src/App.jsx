@@ -79,7 +79,7 @@ function App() {
           <Route element={<RequireAuth />}>
             <Route path="/dashboard" element={<DashboardStudent />} />
             <Route path="/admin" element={<DashboardProctor />} />
-            <Route path="/exam" element={<ExamPage />} />
+            <Route path="/exam/:id" element={<ExamPage />} />
             <Route path="/monitor" element={<Proctor_exam />} />
             <Route path="/edit/:id" element={<Edit />} />
           </Route>

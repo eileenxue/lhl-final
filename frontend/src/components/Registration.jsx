@@ -8,8 +8,6 @@ function Registration(db) {
   const [is_proctorReg, setIs_proctorReg] = useState(false);
   const [passwordReg, setPasswordReg] = useState("");
 
-
-
   const register = () => {
     axios
       .post("/register", {

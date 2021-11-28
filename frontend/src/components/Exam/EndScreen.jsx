@@ -13,11 +13,20 @@ export default function EndScreen() {
     setExamState("menu");
   }
 
+  // Get the decimal value of score to be stored in the db
+  const scoreDecimal = (score/questions.length);
+
+  console.log(`${score} / ${questions.length}`);
+  console.log(`You scored ${scoreDecimal * 100}%`);
+
   return (
     <div>
-      <h1>Exam Complete</h1>
+      <h2>Exam Complete</h2>
+      <div className="exam-final-percentage">
+        {scoreDecimal * 100}%
+      </div>
       <div className="exam-final-score">
-        Your score: {score} / {questions.length} 
+         Final score: {score} / {questions.length} 
       </div>
       <div className="exam-end-btns">
 

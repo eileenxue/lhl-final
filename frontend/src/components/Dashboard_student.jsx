@@ -35,11 +35,22 @@ export default function DashboardStudent(props) {
   }, []);
 
   const compareDates = function (todayDate, dbDate) {
-    return (
+    // console.log(todayDate, dbDate );
+    if (
       todayDate.getFullYear() == dbDate.getFullYear() &&
       todayDate.getMonth() == dbDate.getMonth() &&
       todayDate.getDate() == dbDate.getDate()
-    );
+    ){return "same day"} else if( 
+      todayDate.getFullYear() < dbDate.getFullYear()   || 
+      (todayDate.getFullYear() == dbDate.getFullYear() && 
+      todayDate.getMonth() < dbDate.getMonth()) || 
+      ( todayDate.getFullYear() == dbDate.getFullYear() && 
+      todayDate.getMonth() ==  dbDate.getMonth() && 
+      todayDate.getDate() < dbDate.getDate()
+      )
+      ){
+        return "upcoming events"
+      } else {return "past events"}
   };
 
   const stringToDate = function (dbDate) {
@@ -49,12 +60,12 @@ export default function DashboardStudent(props) {
   const todayTest = tests.map(
     (test) => (
       <div>
-        {compareDates(new Date(), new Date(test.start_date)) && (
+        {compareDates(new Date(), new Date(test.start_date)) === "same day" && (
           <Fragment>
-            <p> exam type: {test.type} </p>
-            <p> exam date: {stringToDate(test.start_date)}</p>
+            <p> Exam Name: {test.type} </p>
+            <p> Date: {stringToDate(test.start_date)}</p>
             {/* this should be dynamic  */}
-            <Link to="/exam">start exam</Link>
+            <Link to={`/exam/${test.id}`}>start exam</Link>
           </Fragment>
         )}
       </div>
@@ -81,16 +92,13 @@ export default function DashboardStudent(props) {
     });
   };
 
-
-
-
   const upcomingTest = tests.map(
     (test) => (
       <div>
-        {!compareDates(new Date(), new Date(test.start_date)) && (
+        { compareDates(new Date(), new Date(test.start_date)) == "upcoming events" && (
           <Fragment>
-            <p> exam type: {test.type} </p>
-            <p> exam date: {stringToDate(test.start_date)}</p>
+            <p> Exam Name: {test.type} </p>
+            <p> Date: {stringToDate(test.start_date)}</p>
             <Link to={`/edit/${test.id}`}> Edit</Link>
             <button
               onClick={() => {
@@ -111,15 +119,32 @@ export default function DashboardStudent(props) {
     // )}
   );
 
+  const previousTest = tests.map(
+    (test) => (
+      <div>
+        { compareDates(new Date(), new Date(test.start_date)) == "past events" && (
+          <Fragment>
+            <p> Exam Name: {test.type} </p>
+            <p> Date: {stringToDate(test.start_date)}</p>
+            <p>{test.final_score * 100}%</p>
+          </Fragment>
+        )}
+      </div>
+    )
+  );
+
   return (
     <div>
-      <h1>Dashboard student page </h1>
+      <h1>{user.first_name}'s Student Dashboard </h1>
       <div>
-        {user.first_name}
-        <h3> today's exam: </h3>
+        <h3> Today's Exam</h3>
         <small> {todayTest} </small>
-        <h3> upcoming exam:</h3>
+        <h3> Upcoming Exams</h3>
         <small> {upcomingTest} </small>
+        <h3> Results</h3>
+        <div>
+          {previousTest}
+        </div>
       </div>
     </div>
   );
