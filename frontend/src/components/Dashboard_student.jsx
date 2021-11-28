@@ -54,7 +54,7 @@ export default function DashboardStudent(props) {
             <p> exam type: {test.type} </p>
             <p> exam date: {stringToDate(test.start_date)}</p>
             {/* this should be dynamic  */}
-            <Link to="/exam">start exam</Link>
+            <Link to={`/exam/${test.id}`} >start exam</Link>
           </Fragment>
         )}
       </div>
@@ -80,9 +80,6 @@ export default function DashboardStudent(props) {
       );
     });
   };
-
-
-
 
   const upcomingTest = tests.map(
     (test) => (

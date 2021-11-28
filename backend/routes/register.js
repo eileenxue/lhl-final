@@ -53,12 +53,9 @@ module.exports = (db) => {
       info.email,
       info.is_proctor,
       info.password
-    ).then((result) => {
-      if (!result) {
-        res.status(500).send("wrong info!");
-      } else {
-      }
-    });
+    ).then((result) => {res.send({status:true})
+      })
+
   });
 
   return router;

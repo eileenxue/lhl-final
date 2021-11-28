@@ -1,17 +1,23 @@
 import ScrollToBottom from "react-scroll-to-bottom";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate , useParams} from "react-router-dom";
 import { Link, NavLink, useLocation, Navigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import io from "socket.io-client";
 import Chat from "./Chat";
 import './Proctor_exam.scss'
-const socket = io.connect("http://localhost:3005"); // point to the backend url
+import { API_URL } from "../setting";
 
+const socket = io.connect("http://localhost:3005"); // point to the backend url
 
 export default function Proctor_exam(props) {
   const [user, setUser] = useState({});
   const [messages, setMessages] = useState([]);
+  const [appointment, setAppointment] = useState({});
+  // const [appointments, setAppointments] = useState([]);
+  let { id } = useParams();
+
+  console.log("props from proctor_exam", props);
 
   // const receiveMessage = function() {
   //   // wait for the data to come in to send to the backend
@@ -50,12 +56,17 @@ export default function Proctor_exam(props) {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${parsedUser.accessToken}`;
+    axios.get(`${API_URL}exam/${id}`) 
+    .then((result)=>{
+      setAppointment(result.data.test[0])
+      console.log("from proctor_exam page :", (result.data.test));
+    })
   }, []);
 
   return (
     <div className="proctor-exam">
-      <h1>Proctor Exam: LHL101 </h1>
-      <div><strong>First Name:</strong> Name Here <strong>Student ID:</strong> 4593801</div>
+      <h1>Proctor Exam: {appointment.type} </h1>
+      <div><strong>First Name:</strong> {appointment.first_name} <strong>Student ID:</strong> {appointment.student_id} </div>
       <div className="proctor-exam--wrapper">
           <Chat />
           <div className="proctor-exam--status-log">

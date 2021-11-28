@@ -67,6 +67,7 @@ const questionsRouter = require('./routes/questions');
 
 const deleteRouter = require('./routes/delete');
 const editRouter = require('./routes/edit');
+const examRouter = require('./routes/exam');
 
 
 app.use('/api/users', usersRouter(db));
@@ -80,6 +81,7 @@ app.get("/api/authentication") // how do you kow if the user is logged in if you
 app.use("/api/questions", questionsRouter(db));
 app.use("/api/delete", deleteRouter(db));
 app.use("/api/edit", editRouter(db));
+app.use("/api/exam", examRouter(db));
 
 
 

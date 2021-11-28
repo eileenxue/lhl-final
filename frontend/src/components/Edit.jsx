@@ -44,16 +44,13 @@ export default function DashboardStudent(props) {
   const edit = () => {
     axios
       .post(`${API_URL}edit/${id}`, {
-        start_date: date
+        start_date: date,
       })
       .then((response) => {
-        console.log(`from post ${response}`); 
+        console.log(`from post ${response}`);
         navigate(`/dashboard`);
-    });
+      });
   };
-
-
-
 
 
   return (
