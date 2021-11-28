@@ -4,6 +4,7 @@ import { Link, NavLink, useLocation, Navigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../setting";
 import ExamResult from "./ExamResult";
+import './Dashboard.scss';
 
 export default function DashboardStudent(props) {
   console.log("API", API_URL);
@@ -37,20 +38,24 @@ export default function DashboardStudent(props) {
   const compareDates = function (todayDate, dbDate) {
     // console.log(todayDate, dbDate );
     if (
-      todayDate.getFullYear() == dbDate.getFullYear() &&
-      todayDate.getMonth() == dbDate.getMonth() &&
-      todayDate.getDate() == dbDate.getDate()
-    ){return "same day"} else if( 
+      todayDate.getFullYear() === dbDate.getFullYear() &&
+      todayDate.getMonth() === dbDate.getMonth() &&
+      todayDate.getDate() === dbDate.getDate()
+    ){
+      return "same day"
+    } else if ( 
       todayDate.getFullYear() < dbDate.getFullYear()   || 
-      (todayDate.getFullYear() == dbDate.getFullYear() && 
+      (todayDate.getFullYear() === dbDate.getFullYear() && 
       todayDate.getMonth() < dbDate.getMonth()) || 
-      ( todayDate.getFullYear() == dbDate.getFullYear() && 
-      todayDate.getMonth() ==  dbDate.getMonth() && 
+      ( todayDate.getFullYear() === dbDate.getFullYear() && 
+      todayDate.getMonth() ===  dbDate.getMonth() && 
       todayDate.getDate() < dbDate.getDate()
       )
-      ){
-        return "upcoming events"
-      } else {return "past events"}
+    ){
+      return "upcoming events"
+    } else {
+      return "past events"
+    }
   };
 
   const stringToDate = function (dbDate) {
@@ -121,20 +126,20 @@ export default function DashboardStudent(props) {
 
   const previousTest = tests.map(
     (test) => (
-      <div>
+      <>
         { compareDates(new Date(), new Date(test.start_date)) == "past events" && (
-          <Fragment>
-            <p> Exam Name: {test.type} </p>
-            <p> Date: {stringToDate(test.start_date)}</p>
-            <p>{test.final_score * 100}%</p>
-          </Fragment>
+          <tr>
+            <td>{stringToDate(test.start_date)}</td>
+            <td>{test.type}</td>
+            <td>{test.final_score * 100}%</td>
+          </tr>
         )}
-      </div>
+      </>
     )
   );
 
   return (
-    <div>
+    <div className="dashboard--student">
       <h1>{user.first_name}'s Student Dashboard </h1>
       <div>
         <h3> Today's Exam</h3>
@@ -142,8 +147,19 @@ export default function DashboardStudent(props) {
         <h3> Upcoming Exams</h3>
         <small> {upcomingTest} </small>
         <h3> Results</h3>
-        <div>
-          {previousTest}
+        <div className="table-wrapper">
+          <table className="dashboard--table">
+            <thead>
+            <tr>
+              <th>Date</th>
+              <th>Exam Type</th>
+              <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+              {previousTest}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>

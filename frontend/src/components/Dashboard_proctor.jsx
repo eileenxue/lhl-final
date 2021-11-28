@@ -2,6 +2,8 @@ import {useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import { Link, NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
+import './Dashboard.scss';
+
 
 const baseURL = 'http://localhost:3005';
 
