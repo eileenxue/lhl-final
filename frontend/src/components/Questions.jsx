@@ -4,9 +4,6 @@ import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import axios from "axios";
 import { API_URL } from "../setting";
-import StartMenu from "./Exam/StartMenu";
-import EndScreen from "./Exam/EndScreen";
-import ExamQuestions from "./Exam/ExamQuestions";
 
 export default function Questions(props) {
 
@@ -58,22 +55,15 @@ export default function Questions(props) {
   // }
 
 
-  // NEW QUIZ STUFF
-  // const [gameState, setGameState] = useState("menu");
-
-
   return (
     <div>
-      <div className="questions">
+      
+    {/* ====== OLD QUIZ COMPONENT ===== */}
+    {/* 
+    <div className="questions">
       <h1 className="questions--heading">Exam: LHL 100</h1>
 
-      {/* {gameState === "menu" && <StartMenu/>}
-      {gameState === "mainExam" && <ExamQuestions/>}
-      {gameState === "endScreen" && <EndScreen/>} */}
-
-
-    {/* ====== OLD QUIZ COMPONENT ===== */}
-    {/* {showScore ? (
+    {showScore ? (
       <div className='questions--scorecard'>You scored {score} out of {questions.length}</div>
     ) : (
       <>
@@ -91,8 +81,8 @@ export default function Questions(props) {
         </ButtonGroup>
       </div>
       </>
-    )} */}
-    </div>
+    )} </div>*/}
+    
         
     {questionsTest}
 

@@ -37,9 +37,9 @@ export default function MainHeader() {
                 <li>
                   <NavLink to="/book">Book Exams</NavLink>
                 </li>
-                <li>
+                {/* <li>
                   <NavLink to="/resources">Resources</NavLink>
-                </li>
+                </li> */}
                 </ul>
               </div>
               <div className="nav--auth-right">

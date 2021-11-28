@@ -55,7 +55,7 @@ export default function Proctor_exam(props) {
   return (
     <div className="proctor-exam">
       <h1>Proctor Exam: LHL101 </h1>
-      <div><strong>First Name:</strong> Yanbin <strong>Student ID:</strong> 4593801</div>
+      <div><strong>First Name:</strong> Name Here <strong>Student ID:</strong> 4593801</div>
       <div className="proctor-exam--wrapper">
           <Chat />
           <div className="proctor-exam--status-log">
