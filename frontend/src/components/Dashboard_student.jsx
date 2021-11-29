@@ -42,7 +42,7 @@ export default function DashboardStudent(props) {
     if (
       todayDate.getFullYear() === dbDate.getFullYear() &&
       todayDate.getMonth() === dbDate.getMonth() &&
-      todayDate.getDate() === dbDate.getDate()
+      todayDate.getDate() === dbDate.getDate() && (tests.final_score === 0 )
     ){
       return "same day"
     } else if ( 
