@@ -1,0 +1,28 @@
+.about{
+  &--profiles{
+    display: flex;
+    flex-direction: column;
+
+    article{
+      display: flex;
+      padding: 1rem;
+    }
+  }
+
+  &--profile-pic{
+    min-width: 250px;
+  }
+
+  &--profile-blurb{
+    ul{
+      list-style: none;
+      padding-left: 1rem;
+    }
+  }
+
+  
+}
+
+@media (max-width: 1200px) {
+  
+}

@@ -36,15 +36,23 @@ export default function MainHeader() {
                     <NavLink to="/dashboard">Dashboard</NavLink>
                   </li>
                   <li>
-                  <NavLink to="/booking">Book Exams</NavLink>
-                </li>
+                    <NavLink to="/booking">Book Exams</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/about">About Us</NavLink>
+                  </li>
                 </Fragment>
                 )}
 
                 {user.is_proctor && (
+                  <>
                   <li>
                     <NavLink to="/admin">Dashboard</NavLink>
                   </li>
+                  <li>
+                    <NavLink to="/about">About Us</NavLink>
+                  </li>
+                </>
                 )}
                 
                 {/* <li>

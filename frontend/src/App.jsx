@@ -33,6 +33,7 @@ import ExamPage from "./components/ExamPage";
 import AudioModel from "./components/AudioModel";
 import ExamPrimary from "./components/ExamPrimary";
 import Edit from './components/Edit';
+import AboutUs from "./components/AboutUs";
 // import WebGazer_calibration from "./components/WebGazer_calibration";
 
 
@@ -66,6 +67,7 @@ function App() {
           <Route path="/" element={<Home />}/>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
+          <Route path="/about" element={<AboutUs />}/>
 
           <Route path="/chat/:id" element={<Chat />}/>
 
