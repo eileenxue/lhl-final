@@ -1,8 +1,8 @@
 export default function ExamResult (props) {
-  const { type, date } = props
+  const { type, start_date } = props
   return (
     <div>
-      <p>{type} | {date}</p>
+      <p>{type} | {start_date}</p>
     </div>
   )
 }

@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Link, NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
 import './Dashboard.scss';
 
+import Proctor_exam from './Proctor_exam';
 
 const baseURL = 'http://localhost:3005';
 
@@ -27,7 +28,7 @@ export default function DashboardStudent(props) {
     axios.get(`${baseURL}/api/dashboard/admin/${parsedUser.id}`) 
     .then((result)=>{
       setAppointments(result.data.test)
-      // console.log("test:", (result.data.test));
+      console.log("test:", (result.data.test));
     })
   }, [])
 
@@ -37,8 +38,6 @@ export default function DashboardStudent(props) {
   }
 
 
-
-
   const appointmentsList = appointments.map(appointment => 
     ( 
     <div> 
@@ -46,7 +45,7 @@ export default function DashboardStudent(props) {
       <p> exam type: {appointment.type} </p>
       <p> exam date: {stringToDate(appointment.start_date)}</p>
       {/* this should be dynamic  */}
-      <Link to="/monitor">check exam</Link>
+      <Link to={`/monitor/${appointment.id}`}>check exam</Link>
     </div>
   ))
 
@@ -57,7 +56,7 @@ export default function DashboardStudent(props) {
     <h2>view today's exams </h2>
     <div>
 
-      {appointmentsList}
+      {appointmentsList }
     </div>
     </div>
 

@@ -60,7 +60,7 @@ module.exports = (db) => {
     console.log("proctor appointments dashboard backend",)
     const {id} = req.params
     db.query(
-      `SELECT *
+      `SELECT appointments.*, tests.type 
       FROM appointments 
       JOIN tests ON appointments.test_id=tests.id 
       WHERE proctor_id = ${id} and start_date = CURRENT_DATE ;`

@@ -7,10 +7,10 @@ module.exports = (db) => {
    
       db.query(
         `SELECT * FROM tests ;`
-      ).then((result) => {res.json(result.rows)})
-      .catch (e=> (console.log(e)))
-      
-      // res.send('TESTTESTESTRST')
+      ).then((result) => 
+      // console.log("from edit page backend ", result));
+      res.status(200).json({ testTypeList: result.rows }));
+
   })
 
   return router;
