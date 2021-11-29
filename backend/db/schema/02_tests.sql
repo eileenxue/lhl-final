@@ -1,6 +1,5 @@
 DROP TABLE IF EXISTS tests CASCADE;
 CREATE TABLE "tests" (
   "id" SERIAL PRIMARY KEY NOT NULL,
-  "type" VARCHAR(255),
-  "date" DATE
-);
+  "type" VARCHAR(255)
+  );

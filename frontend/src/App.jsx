@@ -20,6 +20,7 @@ import * as speechCommands from "@tensorflow-models/speech-commands";
 import Chat from './components/Chat';
 import Registration from "./components/Registration";
 import Questions from "./components/Questions";
+import Booking from "./components/Booking";
 import Login from "./components/Login";
 // import WebGazer from "./components/WebGazer";
 import MainHeader from "./components/MainHeader";
@@ -70,6 +71,8 @@ function App() {
 
           {/* Temporary: For testing components in public URL */}
           <Route path="/questions" element={<Questions />}/>
+          <Route path="/booking" element={<Booking />}/>
+          <Route path="/booking/:id" element={<Booking />}/>
           <Route path="/examprimary" element={<ExamPrimary />}/>
           {/* <Route path="/webgazer" element={<WebGazer />}/> */}
           <Route path="/facedetect" element={<FaceDetect/>}/>
