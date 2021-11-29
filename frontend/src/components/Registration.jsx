@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
+import { Checkbox } from "@mui/material";
 import { TextField } from "@mui/material";
 import { Button } from "@mui/material";
 import './Registration.scss';
@@ -66,16 +66,19 @@ function Registration(db) {
           }}
         />
 
-        <label> Proctor</label>
-        <input
+        {/* <label> Proctor</label> */}
+        {/* <input
           required
           type="checkbox"
           class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-9l3uo3"
           checked={is_proctorReg}
           onChange={handleOnChange}
-        />
+        /> */}
+        Proctor <Checkbox required checked={is_proctorReg} 
+          onChange={handleOnChange}
+       />
 
-        <label> Password</label>
+
         <TextField
           required
           id="outlined-password-input"
