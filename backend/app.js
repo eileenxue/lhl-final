@@ -71,7 +71,7 @@ const examRouter = require('./routes/exam');
 
 
 app.use('/api/users', usersRouter(db));
-app.use('/api/tests', testsRouter);
+app.use('/api/tests', testsRouter(db));
 app.use('/api/dashboard', dashboardRouter(db));
 app.use("/api/login", loginRouter(db));
 app.use("/api/logout", logoutRouter(db));

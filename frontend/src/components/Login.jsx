@@ -1,7 +1,5 @@
 import axios from "axios";
 import { useState, useHistory } from "react";
-import DashboardProctor from "./Dashboard_proctor";
-import DashboardStudent from "./Dashboard_student";
 import { useNavigate } from "react-router-dom"; // hold the previous page you were in
 
 import TextField from '@mui/material/TextField';

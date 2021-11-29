@@ -2,6 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+import { TextField } from "@mui/material";
+import { Button } from "@mui/material";
+import './Registration.scss';
+
 function Registration(db) {
   const [first_nameReg, setFirst_nameReg] = useState("");
   const [last_nameReg, setLast_nameReg] = useState("");
@@ -9,8 +13,7 @@ function Registration(db) {
   const [is_proctorReg, setIs_proctorReg] = useState(false);
   const [passwordReg, setPasswordReg] = useState("");
 
-  const baseURL = 'http://localhost:3005';
-
+  const baseURL = "http://localhost:3005";
 
   let navigate = useNavigate();
 
@@ -25,7 +28,7 @@ function Registration(db) {
       })
       .then((response) => {
         console.log(`from registration post ${response}`);
-        navigate('/login');
+        navigate("/login");
       });
   };
 
@@ -36,41 +39,57 @@ function Registration(db) {
   return (
     <div>
       <h1> Registration</h1>
-      <label> First Name</label>
-      <input
-        type="text"
-        onChange={(event) => {
-          setFirst_nameReg(event.target.value);
-        }}
-      />
-      <label> Last Name</label>
-      <input
-        type="text"
-        onChange={(event) => {
-          setLast_nameReg(event.target.value);
-        }}
-      />
-      <label> Email</label>
-      <input
-        type="email"
-        onChange={(event) => {
-          setEmailReg(event.target.value);
-        }}
-      />
-      <label> Proctor</label>
-      <input
-        type="checkbox"
-        checked={is_proctorReg}
-        onChange={handleOnChange}
-      />
-      <label> Password</label>
-      <input
-        type="text"
-        onChange={(event) => {
-          setPasswordReg(event.target.value);
-        }}
-      />
-      <button onClick={register}> Register </button>
+      <form className="registration--form">
+        <TextField
+          required
+          id="outlined-required"
+          label="First Name"
+          onChange={(event) => {
+            setFirst_nameReg(event.target.value);
+          }}
+        />
+        <TextField
+          required
+          id="outlined-required"
+          label="Last Name"
+          onChange={(event) => {
+            setLast_nameReg(event.target.value);
+          }}
+        />
+
+        <TextField
+          required
+          id="outlined-required"
+          label="Email"
+          onChange={(event) => {
+            setEmailReg(event.target.value);
+          }}
+        />
+
+        <label> Proctor</label>
+        <input
+          required
+          type="checkbox"
+          class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-9l3uo3"
+          checked={is_proctorReg}
+          onChange={handleOnChange}
+        />
+
+        <label> Password</label>
+        <TextField
+          required
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          onChange={(event) => {
+            setPasswordReg(event.target.value);
+          }}
+        />
+        <Button variant="outlined" type="submit" onClick={register}>
+          Register
+        </Button>
+      </form>
     </div>
   );
 }
