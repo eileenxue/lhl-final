@@ -4,6 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from "../setting";
 import DatePicker from "react-datepicker";
 import moment from 'moment';
+import './Edit.scss';
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -67,11 +68,11 @@ export default function DashboardStudent(props) {
         }}
       />
        <p> </p> */}
-      <label> exam date</label>
+      <label className="edit-label"> exam date</label>
 
-      <DatePicker selected={date}  minDate={new Date()} onChange={(d) => setDate(d)} /> 
+      <DatePicker selected={date}  minDate={new Date()} onChange={(d) => setDate(d)} className="edit-datepicker" /> 
 
-      <button onClick={edit} > Save </button>
+      <button onClick={edit} className="edit-button"> Save </button>
     </div>
   );
 }

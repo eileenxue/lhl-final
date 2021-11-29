@@ -3,7 +3,7 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
-
+import './Booking.scss';
 
 
 
@@ -81,33 +81,31 @@ export default function Booking(props) {
   }
 
    return (
-    <div>
+    <div className="booking-container">
       <div>
-        <div>
+        <label className="booking-label">
           Please choose a date
-        </div>
-      <DatePicker selected={date} minDate={new Date()} onChange={(d) => setDate(d)} /> 
+        </label>
+        <DatePicker selected={date} minDate={new Date()} onChange={(d) => setDate(d)} className="booking-datepicker" /> 
       </div>
-      <table style={{width: "100%", textAlign: 'left'}}>
-        <thead>
-          <tr>
-            <th>Exam Type</th>
-            <th></th>
-          </tr>
-        </thead>
-      { bookingList.map((booking) => {
-        return <tr>
-            <td>{booking.type}</td>
-            <td><button onClick={() => {
+      <div className="booking-list">
+        <label className="booking-label">Exam Type</label>
+        { bookingList.map((booking) => {
+        return (             
+        <div className="booking-list-item">
+          <div>{booking.type}</div>
+          <button className="booking-button"
+                        onClick={() => {
               console.log("hellooooo")
              createBooking({
               student_id: user.id,
               test_id: booking.id,
               start_date: date
-            })}}>Book</button></td>
-          </tr>
-      }) }
-      </table>
+            })}}>Book</button>
+        </div>
+         )
+        })} 
+      </div>
     </div>
   );
 }
