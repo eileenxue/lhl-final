@@ -66,7 +66,7 @@ function Chat(props) {
   return (
     <div className="chat-window">
       <div className="chat-header">
-        <p>Live Chat</p>
+        <p>💬 Live Chat</p>
       </div>
       <div className="chat-body">
         <ScrollToBottom className="message-container">
@@ -94,7 +94,7 @@ function Chat(props) {
         <input
           type="text"
           value={currentMessage}
-          placeholder="Hey..."
+          placeholder="Start typing..."
           onChange={(event) => {
             setCurrentMessage(event.target.value);
           }}

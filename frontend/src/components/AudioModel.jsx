@@ -98,7 +98,7 @@ export default function AudioModel() {
         if (scores[3] > 0.6) {
           // thereIsNoise("yeeeeessss background noice ")
           console.log("background voice !!!!!!!");
-          setMessage("there is noise in the background");
+          setMessage("There are voices in the background");
         }
         setMessage("");
       },
@@ -130,8 +130,8 @@ export default function AudioModel() {
   }, []);
 
   return (
-    <div>
-      <p>Audio</p>
+    <div className="audio-model">
+      <p className="audio-model--status">🔈 Audio: On</p>
       {/* <button onClick={init}>Start</button> */}
       {/* {thereIsNoise && <div>There is some background voices</div>} */}
     </div>

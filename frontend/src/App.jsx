@@ -1,22 +1,5 @@
-
-import UserList from "./components/UserList";
-import tf from "@tensorflow/tfjs";
-import * as speechCommands from "@tensorflow-models/speech-commands";
+// React and Development 
 import { useState, useEffect } from "react";
-import Chat from './components/Chat';
-import Registration from "./components/Registration";
-import Questions from "./components/Questions";
-import Booking from "./components/Booking";
-import Login from "./components/Login";
-// import WebGazer from "./components/WebGazer";
-
-import axios from "axios";
-import MainHeader from "./components/MainHeader";
-import Home from "./components/Home";
-import FaceDetect from "./components/FaceDetect";
-
-import DashboardProctor from "./components/Dashboard_proctor";
-import DashboardStudent from "./components/Dashboard_student";
 import {
   BrowserRouter,
   Routes,
@@ -27,12 +10,30 @@ import {
   Outlet,
 } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+
+import axios from "axios";
+
+import tf from "@tensorflow/tfjs";
+import * as speechCommands from "@tensorflow-models/speech-commands";
+
+// Components
+import Chat from './components/Chat';
+import Registration from "./components/Registration";
+import Questions from "./components/Questions";
+import Booking from "./components/Booking";
+import Login from "./components/Login";
+// import WebGazer from "./components/WebGazer";
+import MainHeader from "./components/MainHeader";
+import Home from "./components/Home";
+import FaceDetect from "./components/FaceDetect";
+import DashboardProctor from "./components/Dashboard_proctor";
+import DashboardStudent from "./components/Dashboard_student";
 import Proctor_exam  from "./components/Proctor_exam";
-
-
 import ExamPage from "./components/ExamPage";
 import AudioModel from "./components/AudioModel";
-
+import ExamPrimary from "./components/ExamPrimary";
+import Edit from './components/Edit';
+// import WebGazer_calibration from "./components/WebGazer_calibration";
 
 
 function RequireAuth() {
@@ -57,6 +58,7 @@ function App() {
     <div className="App">
       <MainHeader/>
       <main>
+        {/* <WebGazer_calibration /> */}
 
       {/* DECLARE ALL ROUTES HERE */}
       <Routes>
@@ -71,6 +73,7 @@ function App() {
           <Route path="/questions" element={<Questions />}/>
           <Route path="/booking" element={<Booking />}/>
           <Route path="/booking/:id" element={<Booking />}/>
+          <Route path="/examprimary" element={<ExamPrimary />}/>
           {/* <Route path="/webgazer" element={<WebGazer />}/> */}
           <Route path="/facedetect" element={<FaceDetect/>}/>
           <Route path="/audiomodel" element={<AudioModel/>}/>
@@ -81,6 +84,7 @@ function App() {
             <Route path="/admin" element={<DashboardProctor />} />
             <Route path="/exam" element={<ExamPage />} />
             <Route path="/monitor" element={<Proctor_exam />} />
+            <Route path="/edit/:id" element={<Edit />} />
           </Route>
         </Route>
       </Routes>

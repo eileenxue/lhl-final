@@ -4,6 +4,10 @@ import DashboardProctor from "./Dashboard_proctor";
 import DashboardStudent from "./Dashboard_student";
 import { useNavigate } from "react-router-dom"; // hold the previous page you were in
 
+import TextField from '@mui/material/TextField';
+import { Button } from "@mui/material";
+import './Login.scss';
+
 function Login() {
   const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
@@ -70,22 +74,28 @@ function Login() {
 
   return (
       <div className="login">
-        <h1>Login</h1>
-        <form onSubmit={(e) => e.preventDefault()}>
-          <span className="formTitle"> Login</span>
-          <input
-            type="email"
-            placeholder="email"
+        <h1>👋 Welcome back!</h1>
+        {/* <p>Don't have an account yet? Register here.</p> */}
+        <form className="login--form" onSubmit={(e) => e.preventDefault()}>
+          <TextField
+            required
+            id="outlined-required"
+            label="Email"
             onChange={(e) => setEmail(e.target.value)}
           />
-          <input
+          <TextField
+            required
+            id="outlined-password-input"
+            label="Password"
             type="password"
-            placeholder="password"
+            autoComplete="current-password"
             onChange={(e) => setPassword(e.target.value)}
           />
-          <button type="submit" onClick={() => handleLogin()}>
-            Login
-          </button>
+          <Button 
+            variant="outlined" 
+            type="submit" 
+            onClick={() => handleLogin()}> Login
+          </Button>
         </form>
       </div>
   );

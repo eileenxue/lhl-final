@@ -1,0 +1,49 @@
+.exam-primary{
+  max-width: 800px;
+  height: 500px;
+  background-color: aliceblue;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+.exam-questions{
+  padding: 1rem 0;
+}
+
+.exam-answers{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  button{
+    width: 100%;
+    padding: 0.8rem;
+    margin: 0.2rem;
+    cursor: pointer;
+    border: none;
+    background-color: white;
+    border-radius: 4px;
+  }
+  button:hover{
+    background-color: gainsboro;
+  }
+
+  button:focus, button:active{
+    background-color: gold;
+  }
+}
+
+.exam-end-btns{
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+
+  .restart-btn{
+    margin-top: 1rem;
+  }
+}

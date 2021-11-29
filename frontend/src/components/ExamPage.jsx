@@ -7,6 +7,7 @@ import AudioModel from "./AudioModel";
 import axios from "axios";
 import {useState, useEffect} from 'react';
 import Chat from './Chat';
+import ExamPrimary from "./ExamPrimary";
 
 export default function ExamPage() {
   // Check if page is in focus or not
@@ -40,7 +41,6 @@ export default function ExamPage() {
 
   return (
     <div>
-    hello student: {user.first_name}
       <h1>Exam Page</h1>
       <div>
         <p>Instructions: </p>
@@ -63,7 +63,7 @@ export default function ExamPage() {
 
         {/* Where the questions will be */}
         <div className="exam-page--right">
-          <Questions />
+          <ExamPrimary />
         </div>
       </div>
     </div>
