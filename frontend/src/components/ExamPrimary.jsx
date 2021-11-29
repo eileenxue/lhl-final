@@ -6,12 +6,15 @@ import { ExamContext } from "../helpers/contexts";
 import axios from 'axios';
 import { API_URL } from '../setting';
 import "./ExamPrimary.scss";
+import { useParams } from 'react-router';
 
 export default function ExamPrimary() {
 
   const [examState, setExamState] = useState("menu");
   const [score, setScore] = useState(0);
   const [questions, setQuestions] = useState([]);
+
+  // const {id} = useParams();
 
   useEffect(() => {
     axios.get(`${API_URL}questions/exam/1`).then((result) => {

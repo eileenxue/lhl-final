@@ -32,10 +32,10 @@ export default function EndScreen() {
 
       {/* Bonus feature: If user does not get a perfect score, they can restart exam */}
       {score / questions.length === 1 ? (
-        <Button variant="contained" component={Link} to="/dashboard">Exit</Button>
+        <Button variant="contained" component={Link} to="/dashboard">Save Result</Button>
       ) : (
         <>
-        <Button variant="contained" component={Link} to="/dashboard">Exit</Button>
+        <Button variant="contained" component={Link} to="/dashboard">Save Result</Button>
         <Button variant="" onClick={restartExam} className="restart-btn">Restart Exam</Button>
         </>
       )}

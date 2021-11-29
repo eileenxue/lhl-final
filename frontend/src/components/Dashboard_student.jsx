@@ -129,11 +129,11 @@ export default function DashboardStudent(props) {
 
   return (
     <div className="dashboard--student">
-      <h1>{user.first_name}'s Student Dashboard </h1>
+      {/* <h1>{user.first_name}'s Student Dashboard </h1> */}
       <div className="dashboard--student-wrapper">
         <section>
           <article>
-            <h2>Today's Exam</h2>
+            <h2>Today's Exams</h2>
               <div className="table-wrapper">
                 <table className="dashboard--table">
                   <thead>
