@@ -42,7 +42,7 @@ module.exports = (db) => {
   router.get("/student/:id", function (req, res) {
     const {id} = req.params
     db.query(
-      `SELECT type, date FROM appointments JOIN tests ON appointments.test_id=tests.id WHERE student_id = ${id};`
+      `SELECT type, start_date FROM appointments JOIN tests ON appointments.test_id=tests.id WHERE student_id = ${id};`
     ).then((result) => {
       console.log("here it is:", result.rows);
       res.status(200).json({test: result.rows})

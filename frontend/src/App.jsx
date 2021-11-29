@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import Chat from './components/Chat';
 import Registration from "./components/Registration";
 import Questions from "./components/Questions";
+import Booking from "./components/Booking";
 import Login from "./components/Login";
 // import WebGazer from "./components/WebGazer";
 
@@ -68,6 +69,8 @@ function App() {
 
           {/* Temporary: For testing components in public URL */}
           <Route path="/questions" element={<Questions />}/>
+          <Route path="/booking" element={<Booking />}/>
+          <Route path="/booking/:id" element={<Booking />}/>
           {/* <Route path="/webgazer" element={<WebGazer />}/> */}
           <Route path="/facedetect" element={<FaceDetect/>}/>
           <Route path="/audiomodel" element={<AudioModel/>}/>

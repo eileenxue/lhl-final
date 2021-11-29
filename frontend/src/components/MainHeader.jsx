@@ -38,7 +38,7 @@ export default function MainHeader() {
                   <NavLink to="/dashboard">Dashboard</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/book">Book Exams</NavLink>
+                  <NavLink to="/booking">Book Exams</NavLink>
                 </li>
                 <li>
                   <NavLink to="/resources">Resources</NavLink>

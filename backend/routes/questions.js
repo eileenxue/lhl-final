@@ -10,7 +10,6 @@ module.exports = (db) => {
       ).then((result) => {res.json(result.rows)})
       .catch (e=> (console.log(e)))
       
-      // res.send('TESTTESTESTRST')
   })
 
   return router;
