@@ -39,10 +39,10 @@ function Registration(db) {
   return (
     <div className = "registration">
       <h1> Registration</h1>
-      <form className="registration--form">
+      <form className="registration--form" onSubmit={(e) => e.preventDefault()}>
         <TextField
           required
-          id="outlined-required"
+          id="register-first-name"
           label="First Name"
           onChange={(event) => {
             setFirst_nameReg(event.target.value);
@@ -50,19 +50,30 @@ function Registration(db) {
         />
         <TextField
           required
-          id="outlined-required"
+          id="register-last-name"
           label="Last Name"
           onChange={(event) => {
             setLast_nameReg(event.target.value);
           }}
         />
-
         <TextField
           required
-          id="outlined-required"
+          id="register-email"
+          type="email"
           label="Email"
           onChange={(event) => {
             setEmailReg(event.target.value);
+          }}
+        />
+
+        <TextField
+          required
+          id="register-password"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          onChange={(event) => {
+            setPasswordReg(event.target.value);
           }}
         />
 
@@ -74,21 +85,12 @@ function Registration(db) {
           checked={is_proctorReg}
           onChange={handleOnChange}
         /> */}
-        Proctor <Checkbox required checked={is_proctorReg} 
-          onChange={handleOnChange}
-       />
+        <div className="checkbox-wrapper">
+          Are you signing up as proctor? <Checkbox required checked={is_proctorReg} 
+          onChange={handleOnChange}/>
+        </div>
 
-
-        <TextField
-          required
-          id="outlined-password-input"
-          label="Password"
-          type="password"
-          autoComplete="current-password"
-          onChange={(event) => {
-            setPasswordReg(event.target.value);
-          }}
-        />
+        
         <Button variant="outlined" type="submit" onClick={register}>
           Register
         </Button>
