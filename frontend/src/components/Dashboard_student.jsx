@@ -64,27 +64,6 @@ export default function DashboardStudent(props) {
     return dbDate.slice(0, 10);
   };
 
-  const todayTest = tests.map(
-    (test) => (
-      <div>
-        {compareDates(new Date(), new Date(test.start_date)) === "same day" && (
-          <Fragment>
-            <p> Exam Name: {test.type} </p>
-            <p> Date: {stringToDate(test.start_date)}</p>
-            {/* this should be dynamic  */}
-            <Link to={`/exam/${test.id}`}>start exam</Link>
-          </Fragment>
-        )}
-      </div>
-    )
-
-    // (test, index) => {
-    // return (
-    //   // Made up display component
-    //   <ExamResult key={index} {...test} />
-    // )}
-  );
-
   const deleteAppointment = (id) => {
     console.log("what is the id", id);
     axios.post(`${API_URL}delete/${id}`)
@@ -99,6 +78,26 @@ export default function DashboardStudent(props) {
     });
   };
 
+  const todayTest = tests.map(
+    (test) => (
+      <>
+        {compareDates(new Date(), new Date(test.start_date)) === "same day" && (
+          <tr>
+            <td>{stringToDate(test.start_date)}</td>
+            <td>{test.type}</td>
+            <td><Button variant="contained" component={Link} to={`/exam/${test.id}`}>start exam</Button></td>
+          </tr>
+        )}
+      </>
+    )
+
+    // (test, index) => {
+    // return (
+    //   // Made up display component
+    //   <ExamResult key={index} {...test} />
+    // )}
+  );
+
   const upcomingTest = tests.map(
     (test) => (
       <>
@@ -106,8 +105,8 @@ export default function DashboardStudent(props) {
           <tr>
             <td>{stringToDate(test.start_date)}</td>
             <td>{test.type}</td>
-            <td><Button variant="outlined" component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
-            <td><Button variant="outlined" color="error" onClick={() => {deleteAppointment(`${test.id}`);}}>Delete</Button></td>
+            <td><Button variant="" component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
+            <td><Button variant="" color="error" onClick={() => {deleteAppointment(`${test.id}`);}}>Delete</Button></td>
           </tr>
         )}
       </>
@@ -135,7 +134,20 @@ export default function DashboardStudent(props) {
         <section>
           <article>
             <h2>Today's Exam</h2>
-            <small> {todayTest} </small>
+              <div className="table-wrapper">
+                <table className="dashboard--table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Exam Name</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {todayTest} 
+                  </tbody>
+                </table>
+              </div>
           </article>
         
           <article>
@@ -145,8 +157,8 @@ export default function DashboardStudent(props) {
               <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Exam Type</th>
-                  <th colSpan="2">Modify Appointment</th>
+                  <th>Exam Name</th>
+                  <th colSpan="2">Modify Booking</th>
                 </tr>
               </thead>
               <tbody>
@@ -165,7 +177,7 @@ export default function DashboardStudent(props) {
                 <thead>
                 <tr>
                   <th>Date</th>
-                  <th>Exam Type</th>
+                  <th>Exam Name</th>
                   <th>Score</th>
                 </tr>
                 </thead>

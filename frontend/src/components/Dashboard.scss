@@ -2,11 +2,21 @@
 
   &--table{
     width: 100%;
-    text-align: left;
+    text-align: center;
+    border-collapse: collapse;
 
-    td{
+    thead tr{
+      border-bottom: 2px solid #d32f2f70;
+    }
+
+    tbody tr{
+      border-bottom: 2px solid #6495ed4d;
+    }
+
+    td, th{
       padding: 0.5rem 0
     }
+
   }
 
   &--student-wrapper{
