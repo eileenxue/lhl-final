@@ -5,6 +5,15 @@ import { API_URL } from "../setting";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import Select from "react-dropdown-select";
+import Button from "@mui/material/Button";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Fade from "@mui/material/Fade";
+
+// import AdapterDateFns from '@mui/lab/AdapterDateFns';
+// import LocalizationProvider from '@mui/lab/LocalizationProvider';
+// import DatePicker from '@mui/lab/DatePicker';
+
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -54,26 +63,42 @@ export default function DashboardStudent(props) {
     axios
       .post(`${API_URL}edit/${id}`, {
         start_date: date,
-        test_id: findTestId(exam)
+        test_id: findTestId(exam),
       })
       .then((response) => {
-        navigate('/dashboard');
+        navigate("/dashboard");
       });
   };
 
-  const findTestId = function (selectedExamName){
+  const findTestId = function (selectedExamName) {
     for (let i of tests) {
       if (i.type === selectedExamName) {
-        console.log('findTestId function++++++++',i);
+        console.log("findTestId function++++++++", i);
         setExamId(i.id);
-        return i.id
+        return i.id;
       }
     }
   };
 
+  // select exam 
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   const testType = tests.map((test) => (
     <option value={test.type}> {test.type}</option>
+    // <MenuItem onClick={handleClose}>{test.type}</MenuItem>
   ));
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+
+
 
   return (
     <div>
@@ -89,6 +114,33 @@ export default function DashboardStudent(props) {
         {testType}
       </select>
 
+      {/* <div>
+        <Button
+          id="fade-button"
+          aria-controls="fade-menu"
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          onClick={handleClick}
+        >
+          Pick one Exam
+        </Button>
+        <Menu
+          id="fade-menu"
+          MenuListProps={{
+            "aria-labelledby": "fade-button",
+          }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleClose}
+          TransitionComponent={Fade}
+        >
+          {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
+          <MenuItem onClick={handleClose}>My account</MenuItem>
+          <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+          {/* {testType}
+        </Menu>
+      </div>  */}
+
       <p></p>
       <label> exam date</label>
 
@@ -99,6 +151,21 @@ export default function DashboardStudent(props) {
           setDate(d);
         }}
       />
+
+
+{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <DatePicker
+        label="Basic example"
+        value={value}
+        onChange={(newValue) => {
+          setDate(newValue);
+        }}
+        renderInput={(params) => <TextField {...params} />}
+      />
+    </LocalizationProvider> */}
+
+
+
 
       <button onClick={edit}> Save </button>
     </div>
