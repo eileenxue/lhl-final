@@ -37,7 +37,7 @@ function Registration(db) {
   };
 
   return (
-    <div>
+    <div className = "registration">
       <h1> Registration</h1>
       <form className="registration--form">
         <TextField
