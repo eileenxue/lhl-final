@@ -7,17 +7,17 @@ import { Button } from "@mui/material";
 import './Registration.scss';
 
 function Registration(db) {
-  const [first_nameReg, setFirst_nameReg] = useState("");
-  const [last_nameReg, setLast_nameReg] = useState("");
-  const [emailReg, setEmailReg] = useState("");
+  const [first_nameReg, setFirst_nameReg] = useState(null);
+  const [last_nameReg, setLast_nameReg] = useState(null);
+  const [emailReg, setEmailReg] = useState(null);
   const [is_proctorReg, setIs_proctorReg] = useState(false);
-  const [passwordReg, setPasswordReg] = useState("");
+  const [passwordReg, setPasswordReg] = useState(null);
 
   const baseURL = "http://localhost:3005";
 
   let navigate = useNavigate();
 
-  const register = () => {
+  const register = async () => {
     axios
       .post(`${baseURL}/api/register`, {
         first_name: first_nameReg,
@@ -90,9 +90,10 @@ function Registration(db) {
           onChange={handleOnChange}/>
         </div>
 
-        
-        <Button variant="outlined" type="submit" onClick={register}>
-          Register
+        <Button 
+          variant="outlined" 
+          type="submit" 
+          onClick={register}> Register
         </Button>
       </form>
     </div>
