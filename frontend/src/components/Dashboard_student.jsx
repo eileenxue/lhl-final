@@ -5,6 +5,7 @@ import axios from "axios";
 import { API_URL } from "../setting";
 import ExamResult from "./ExamResult";
 import './Dashboard.scss';
+import { Button } from "@mui/material";
 
 export default function DashboardStudent(props) {
   console.log("API", API_URL);
@@ -99,29 +100,17 @@ export default function DashboardStudent(props) {
 
   const upcomingTest = tests.map(
     (test) => (
-      <div>
+      <>
         { compareDates(new Date(), new Date(test.start_date)) == "upcoming events" && (
-          <Fragment>
-            <p> Exam Name: {test.type} </p>
-            <p> Date: {stringToDate(test.start_date)}</p>
-            <Link to={`/edit/${test.id}`}> Edit</Link>
-            <button
-              onClick={() => {
-                deleteAppointment(`${test.id}`);
-              }}
-            >
-              Delete
-            </button>
-          </Fragment>
+          <tr>
+            <td>{stringToDate(test.start_date)}</td>
+            <td>{test.type}</td>
+            <td><Button component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
+            <td><Button variant="outlined" color="error" onClick={() => {deleteAppointment(`${test.id}`);}}>Delete</Button></td>
+          </tr>
         )}
-      </div>
+      </>
     )
-
-    // (test, index) => {
-    // return (
-    //   // Made up display component
-    //   <ExamResult key={index} {...test} />
-    // )}
   );
 
   const previousTest = tests.map(
@@ -141,26 +130,51 @@ export default function DashboardStudent(props) {
   return (
     <div className="dashboard--student">
       <h1>{user.first_name}'s Student Dashboard </h1>
-      <div>
-        <h3> Today's Exam</h3>
-        <small> {todayTest} </small>
-        <h3> Upcoming Exams</h3>
-        <small> {upcomingTest} </small>
-        <h3> Results</h3>
-        <div className="table-wrapper">
-          <table className="dashboard--table">
-            <thead>
-            <tr>
-              <th>Date</th>
-              <th>Exam Type</th>
-              <th>Score</th>
-            </tr>
-            </thead>
-            <tbody>
-              {previousTest}
-            </tbody>
-          </table>
-        </div>
+      <div className="dashboard--student-wrapper">
+        <section>
+          <article>
+            <h2>Today's Exam</h2>
+            <small> {todayTest} </small>
+          </article>
+        
+          <article>
+            <h2>Upcoming Exams</h2>
+            <div className="table-wrapper">
+            <table className="dashboard--table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Exam Type</th>
+                  <th colSpan="2">Modify Appointment</th>
+                </tr>
+              </thead>
+              <tbody>
+                {upcomingTest}
+              </tbody>
+            </table>
+            </div>
+          </article>
+        </section>
+
+        <section>
+          <article>
+            <h2>Results</h2>
+            <div className="table-wrapper">
+              <table className="dashboard--table">
+                <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Exam Type</th>
+                  <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {previousTest}
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
       </div>
     </div>
   );

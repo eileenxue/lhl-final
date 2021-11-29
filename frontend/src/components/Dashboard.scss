@@ -3,5 +3,26 @@
   &--table{
     width: 100%;
     text-align: left;
+
+    td{
+      padding: 0.5rem 0
+    }
+  }
+
+  &--student-wrapper{
+    display: flex;
+
+    section{
+      flex-grow: 1;
+    }
+
+    article{
+      background-color: aliceblue;
+      box-shadow: 1px 1px 4px cornflowerblue;
+      border-radius: 1rem;
+      padding: 1rem 2rem 2rem;
+      margin: 1rem;
+      margin-bottom: 1rem;
+    }
   }
 }
