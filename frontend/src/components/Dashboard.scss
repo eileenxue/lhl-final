@@ -12,17 +12,26 @@
   &--student-wrapper{
     display: flex;
 
+    h2{
+      color: navy;
+    }
+
     section{
       flex-grow: 1;
     }
 
     article{
-      background-color: aliceblue;
-      box-shadow: 1px 1px 4px cornflowerblue;
+      // background-color: aliceblue;
+      box-shadow: 2px 2px 4px #6495ed52; // transparent shade of cornflowerblue
       border-radius: 1rem;
       padding: 1rem 2rem 2rem;
       margin: 1rem;
       margin-bottom: 1rem;
+
+      &:hover{
+        // box-shadow: 2px 2px 6px 0px cornflowerblue;
+        transform: rotate(1deg);
+      }
     }
   }
 }

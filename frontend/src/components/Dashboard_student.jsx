@@ -30,6 +30,7 @@ export default function DashboardStudent(props) {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${parsedUser.accessToken}`;
+    
     axios.get(`${API_URL}dashboard/student/${parsedUser.id}`).then((result) => {
       setTests(result.data.test);
       console.log("test:", result.data.test);
@@ -105,7 +106,7 @@ export default function DashboardStudent(props) {
           <tr>
             <td>{stringToDate(test.start_date)}</td>
             <td>{test.type}</td>
-            <td><Button component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
+            <td><Button variant="outlined" component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
             <td><Button variant="outlined" color="error" onClick={() => {deleteAppointment(`${test.id}`);}}>Delete</Button></td>
           </tr>
         )}
