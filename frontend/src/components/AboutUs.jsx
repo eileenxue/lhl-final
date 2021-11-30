@@ -2,6 +2,16 @@ import React from 'react'
 import './AboutUs.scss';
 import eileenPic from '../media/profile-images/eileen-xue.jpg';
 
+import reactLogo from '../media/tech-stack/react-logo.png';
+import sassLogo from '../media/tech-stack/sass-logo.png';
+import materialuiLogo from '../media/tech-stack/materialui-logo.png';
+import nodejsLogo from '../media/tech-stack/nodejs-logo.png';
+import expressLogo from '../media/tech-stack/expressjs-logo.png';
+import postgresqlLogo from '../media/tech-stack/postgresql-logo.png';
+import tensorflowLogo from '../media/tech-stack/tensorflowjs-logo.png';
+import socketioLogo from '../media/tech-stack/socketio-logo.jpg';
+ 
+
 export default function AboutUs() {
   return (
     <div className="about">
@@ -36,7 +46,7 @@ export default function AboutUs() {
           </article>
           <article>
             <div className="about--profile-pic">
-              <img src={eileenPic}></img>
+              <img src={eileenPic}/>
             </div>
             <div className="about--profile-blurb">
               <h2>Eileen Xue</h2>
@@ -48,9 +58,19 @@ export default function AboutUs() {
             </div>
           </article>
         </section>
-        <section>
-          <h2>Tech Stack</h2>
-          Show icons here: React, Node, PSQL, SASS, Material UI, and what else?
+        <section className="about--tech">
+          <h2>Technology Stack</h2>
+          {/* Show icons here: React, Node, PSQL, SASS, Material UI, and what else? */}
+          <div className="logo-wrapper">
+            <img src={reactLogo} alt="React logo"/>
+            <img src={sassLogo} alt="Sass logo"/>
+            <img src={materialuiLogo} alt="MaterialUI logo"/>
+            <img src={nodejsLogo} alt="NodeJS logo"/>
+            <img src={expressLogo} alt="ExpressJS logo"/>
+            <img src={postgresqlLogo} alt="PostgreSQL logo"/>
+            <img src={tensorflowLogo} alt="TensorflowJS logo"/>
+            <img src={socketioLogo} alt="SocketIO logo"/>
+          </div>
         </section>
       </div>
     </div>

@@ -61,7 +61,7 @@ export default function MainHeader() {
               </ul>
             </div>
             <div className="nav--auth-right">
-              <div className="nav--auth-name">Hello {user.first_name}!</div>
+              <div className="nav--auth-name">Hello <strong>{user.first_name}</strong>!</div>
               <Button
                 variant="outlined"
                 color="inherit"
