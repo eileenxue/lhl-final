@@ -60,6 +60,7 @@ module.exports = (db) => {
         id: user.id,
         first_name: user.first_name,
         is_proctor: user.is_proctor,
+        email: email,
         accessToken,
       });
     });
