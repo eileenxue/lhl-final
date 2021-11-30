@@ -110,7 +110,7 @@ export default function DashboardStudent(props) {
   const upcomingTest = tests.map(
     (test) => (
       <>
-        { compareDates(new Date(), new Date(test.start_date)) == "upcoming events" && (
+        { compareDates(new Date(), new Date(test.start_date)) === "upcoming events" && (
           <tr>
             <td>{stringToDate(test.start_date)}</td>
             <td>{test.type}</td>
@@ -125,8 +125,8 @@ export default function DashboardStudent(props) {
   const previousTest = tests.map(
     (test) => (
       <>
-        { 
-        isScore(test.final_score) === true && 
+        { ( compareDates(new Date(), new Date(test.start_date)) === "past events" ||
+        isScore(test.final_score) === true) && 
         (
           <tr>
             <td>{stringToDate(test.start_date)}</td>
