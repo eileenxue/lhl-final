@@ -73,7 +73,7 @@ export default function Booking(props) {
 
   function sendEmail(e) {
     e.preventDefault();
-
+    console.log(e.target);
     emailjs
       .sendForm("service_eguwnjj", "template_8q3umci", e.target, {
         EMAIL_ID,
@@ -112,7 +112,7 @@ export default function Booking(props) {
                 <button
                   onClick={(e) => {
                     console.log("hellooooo");
-                    {sendEmail};
+                    // {sendEmail(e)};
                     createBooking({
                       student_id: user.id,
                       test_id: booking.id,

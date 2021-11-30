@@ -68,6 +68,7 @@ export default function DashboardStudent(props) {
 
 
   const stringToDate = function (dbDate) {
+    console.log(dbDate);
     return dbDate.slice(0, 10);
   };
 
