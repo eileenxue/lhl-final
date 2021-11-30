@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom"; // hold the previous page you we
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
 import './Login.scss';
+import GoogleLogin from 'react-google-login'
 
 function Login() {
   const [user, setUser] = useState(null);
@@ -70,6 +71,12 @@ function Login() {
     }
   };
 
+  const responseGoogle = (response) => {
+    console.log(response); 
+    console.log(response.profileObj);
+
+  }
+
   return (
       <div className="login">
         <h1>👋 Welcome back!</h1>
@@ -95,6 +102,17 @@ function Login() {
             onClick={() => handleLogin()}> Login
           </Button>
         </form>
+
+        <div>
+          <GoogleLogin 
+          clientId = "851359444758-o0pq9is9gvppum5ltl0qfjsmknq2qn3v.apps.googleusercontent.com"
+          buttonText="Login with google account"
+          onSuccess={responseGoogle} 
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'} 
+          />
+
+        </div>
       </div>
   );
 }
