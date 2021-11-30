@@ -1,6 +1,7 @@
 import React from 'react'
 import './AboutUs.scss';
 import eileenPic from '../media/profile-images/eileen-xue.jpg';
+import yanbinPic from '../media/profile-images/yanbin-yuan.jpg';
 
 import reactLogo from '../media/tech-stack/react-logo.png';
 import sassLogo from '../media/tech-stack/sass-logo.png';
@@ -20,7 +21,7 @@ export default function AboutUs() {
         <section className="about--profiles">
           <article>
             <div className="about--profile-pic">
-              Face Image
+              <img src={yanbinPic} alt="YanBin Yuan"/>
             </div>
             <div className="about--profile-blurb">
               <h2>YanBin Yuan</h2>
@@ -46,7 +47,7 @@ export default function AboutUs() {
           </article>
           <article>
             <div className="about--profile-pic">
-              <img src={eileenPic}/>
+              <img src={eileenPic} alt="Eileen Xue"/>
             </div>
             <div className="about--profile-blurb">
               <h2>Eileen Xue</h2>
