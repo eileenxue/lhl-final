@@ -36,15 +36,23 @@ export default function MainHeader() {
                     <NavLink to="/dashboard">Dashboard</NavLink>
                   </li>
                   <li>
-                  <NavLink to="/booking">Book Exams</NavLink>
-                </li>
+                    <NavLink to="/booking">Book Exams</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/about">About Us</NavLink>
+                  </li>
                 </Fragment>
                 )}
 
                 {user.is_proctor && (
+                  <>
                   <li>
                     <NavLink to="/admin">Dashboard</NavLink>
                   </li>
+                  <li>
+                    <NavLink to="/about">About Us</NavLink>
+                  </li>
+                </>
                 )}
                 
                 {/* <li>
@@ -53,7 +61,7 @@ export default function MainHeader() {
               </ul>
             </div>
             <div className="nav--auth-right">
-              <div className="nav--auth-name">Hello {user.first_name}!</div>
+              <div className="nav--auth-name">Hello <strong>{user.first_name}</strong>!</div>
               <Button
                 variant="outlined"
                 color="inherit"

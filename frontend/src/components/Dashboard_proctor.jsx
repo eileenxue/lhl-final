@@ -5,6 +5,7 @@ import { Link, NavLink, useLocation, Navigate, Outlet } from 'react-router-dom';
 import './Dashboard.scss';
 
 import Proctor_exam from './Proctor_exam';
+import { Button } from '@mui/material';
 
 const baseURL = 'http://localhost:3005';
 
@@ -38,26 +39,32 @@ export default function DashboardStudent(props) {
   }
 
 
-  const appointmentsList = appointments.map(appointment => 
-    ( 
-    <div> 
-      <p> student id: {appointment.student_id} </p>
-      <p> exam type: {appointment.type} </p>
-      <p> exam date: {stringToDate(appointment.start_date)}</p>
-      {/* this should be dynamic  */}
-      <Link to={`/monitor/${appointment.id}`}>check exam</Link>
-    </div>
-  ))
+  const appointmentsList = appointments.map((appointment) => ( 
+    <tr> 
+      <td>{stringToDate(appointment.start_date)}</td>
+      <td>{appointment.type}</td>
+      <td>021{appointment.student_id}</td>
+      <td><Button variant="contained" color="primary" component={Link} to={`/monitor/${appointment.id}`}>View</Button></td>
+    </tr>
+  ));
 
   return (
-    <div>
-
-    <h1>Dashboard proctor page: {user.first_name} </h1>
-    <h2>view today's exams </h2>
-    <div>
-
-      {appointmentsList }
-    </div>
+    <div className="dashboard">
+      {/* <h1>Dashboard proctor page: {user.first_name} </h1> */}
+      <h2>Monitor Today's Exams</h2>
+      <table className="dashboard--table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Exam Name</th>
+            <th>Student ID</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {appointmentsList}
+        </tbody>
+      </table>
     </div>
 
   );

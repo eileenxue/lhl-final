@@ -78,6 +78,7 @@ function Login() {
           <TextField
             required
             id="outlined-required"
+            type="email"
             label="Email"
             onChange={(e) => setEmail(e.target.value)}
           />

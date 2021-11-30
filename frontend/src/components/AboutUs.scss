@@ -1,0 +1,61 @@
+.about{
+  &--profiles{
+    display: flex;
+    flex-direction: column;
+
+    article{
+      display: flex;
+      padding: 1rem 2rem;
+      align-items: center;
+    }
+  }
+
+  &--profile-pic{
+    width: 250px;
+
+    img{
+      border-radius: 50%;
+      width: 100%;
+      box-shadow: 5px 5px 8px #6495ed7a;
+      transition: all .2s ease-in-out;
+      border: 5px solid white;
+      
+
+      &:hover{
+        transform: scale(1.02);
+        box-shadow: 5px 5px 10px #6494edad;
+        border: 5px solid lightcyan;
+      }
+    }
+  }
+
+  &--profile-blurb{
+    padding: 1rem 3rem;
+
+    ul{
+      list-style: none;
+      padding-left: 1rem;
+    }
+  }
+
+  &--tech{
+    text-align: center;
+
+    .logo-wrapper{
+      display: flex;
+      flex-flow: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    img{
+      max-width: 150px;
+      padding: 0 0.5rem;
+    }
+  }
+
+}
+
+@media (max-width: 1200px) {
+  
+}
