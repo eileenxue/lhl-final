@@ -1,12 +1,25 @@
 // Import primary font families
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&display=swap');
 
+html{
+  min-height: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+
 body{
   font-family: 'Outfit', sans-serif;
   margin: 0;
   padding: 0;
+  // height: 100%;
+}
+
+.App{
+  padding-bottom: 6rem;
 }
 
 main{
   padding: 1rem;
+  margin: 0 auto;
+  max-width: 1400px;
 }

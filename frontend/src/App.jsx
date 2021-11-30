@@ -34,6 +34,7 @@ import AudioModel from "./components/AudioModel";
 import ExamPrimary from "./components/ExamPrimary";
 import Edit from './components/Edit';
 import AboutUs from "./components/AboutUs";
+import MainFooter from "./components/MainFooter";
 // import WebGazer_calibration from "./components/WebGazer_calibration";
 
 
@@ -92,6 +93,7 @@ function App() {
       </Routes>
 
       </main>
+      <MainFooter/>
 
     </div>
   );

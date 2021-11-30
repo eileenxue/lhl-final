@@ -20,6 +20,7 @@ export default function ExamPrimary() {
   useEffect(() => {
     axios.get(`${API_URL}questions/exam/${id}`).then((result) => {
       setInfo(result.data.questions[0]);
+      console.log(result.data.questions[0]);
       setQuestions(result.data.questions);
       // console.log(result.data.questions);
     });
@@ -27,9 +28,6 @@ export default function ExamPrimary() {
 
   return (
     <div>
-      <p>student name: {info.first_name}</p>
-      <p>exam name: {info.type}</p>
-
       <div className="exam-primary">
         {/* <h1>Exam Primary</h1> */}
 
@@ -41,6 +39,7 @@ export default function ExamPrimary() {
             setScore,
             questions,
             setQuestions,
+            info
           }}
         >
           {examState === "menu" && <StartMenu />}

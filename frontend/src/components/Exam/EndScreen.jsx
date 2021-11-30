@@ -23,9 +23,8 @@ export default function EndScreen() {
   console.log(`${score} / ${questions.length}`);
   console.log(`You scored ${scoreDecimal * 100}%`);
 
-
+  // Store the score
   const storeScore = () => {
-    
     axios
       .post(`${baseURL}/api/questions/exam/${id}`, {
         score: scoreDecimal,
@@ -46,13 +45,10 @@ export default function EndScreen() {
       <div className="exam-end-btns">
         {/* Bonus feature: If user does not get a perfect score, they can restart exam */}
         {score / questions.length === 1 ? (
-          // <Button variant="contained" component={Link} to="/dashboard" onClick = {storeScore()}     >Save Result</Button>
-          <button onClick={storeScore}> Save score</button>
+          <Button variant="contained" onClick={storeScore}> Submit score</Button>
         ) : (
           <>
-            {/* <Button variant="contained" component={Link} to="/dashboard"   onClick = {storeScore()}   >Save Result</Button> */}
-            <button onClick={storeScore}> Save score </button>
-
+            <Button variant="contained" onClick={storeScore}> Submit score </Button>
             <Button variant="" onClick={restartExam} className="restart-btn">
               Restart Exam
             </Button>

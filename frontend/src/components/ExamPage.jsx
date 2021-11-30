@@ -41,8 +41,8 @@ export default function ExamPage() {
 
   return (
     <div>
-      <h1>Exam Page</h1>
-      <div>
+      <h1>Exam In Progress</h1>
+      <div className="exam-page--instructions">
         <p>Instructions: </p>
         <ul>
           <li>Do not turn off your video or microphone during the exam.</li>

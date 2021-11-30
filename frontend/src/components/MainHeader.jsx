@@ -24,7 +24,7 @@ export default function MainHeader() {
     <header>
       <nav className="nav">
         <div className="nav--logo">
-          <NavLink to="/">👀 ExamAI</NavLink>
+          <NavLink to="/">🦉 ExamOWL</NavLink>
         </div>
         {storedUser ? (
           <div className="nav--auth">
