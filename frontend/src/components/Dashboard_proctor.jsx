@@ -43,17 +43,16 @@ export default function DashboardStudent(props) {
     <tr> 
       <td>{stringToDate(appointment.start_date)}</td>
       <td>{appointment.type}</td>
-      <td>000{appointment.student_id}</td>
-      <td><Button variant="contained" color="primary" to={`/monitor/${appointment.id}`}>Monitor</Button></td>
+      <td>021{appointment.student_id}</td>
+      <td><Button variant="contained" color="primary" component={Link} to={`/monitor/${appointment.id}`}>View</Button></td>
     </tr>
   ));
 
   return (
-    <div>
+    <div className="dashboard">
       {/* <h1>Dashboard proctor page: {user.first_name} </h1> */}
-      <h2>Proctor Today's Exams</h2>
-    <div>
-      <table>
+      <h2>Monitor Today's Exams</h2>
+      <table className="dashboard--table">
         <thead>
           <tr>
             <th>Date</th>
@@ -66,7 +65,6 @@ export default function DashboardStudent(props) {
           {appointmentsList}
         </tbody>
       </table>
-    </div>
     </div>
 
   );

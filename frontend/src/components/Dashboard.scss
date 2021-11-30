@@ -22,10 +22,6 @@
   &--student-wrapper{
     display: flex;
 
-    h2{
-      color: navy;
-    }
-
     section{
       flex-grow: 1;
     }
@@ -44,5 +40,10 @@
         transform: rotate(1deg);
       }
     }
+  }
+
+  // Styles for both student/proctor
+  h2{
+    color: navy;
   }
 }

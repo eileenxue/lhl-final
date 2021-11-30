@@ -26,7 +26,7 @@ export default function AboutUs() {
               <h2>YanBin Yuan</h2>
               <ul>
                 <li><strong>🎓 Education:</strong> Master of Human Kinetics at University of Ottawa, IBM Data Science Certificate</li>
-                <li><strong>⭐️ Background:</strong> 7 years in High-Performance Sport Industry (Program Management & Data Analysis) </li>
+                <li><strong>⭐️ Background:</strong> 7 years in High-Performance Sports Industry (Program Management & Data Analysis) </li>
                 <li><strong>♥️ Passions:</strong> Help people’s life gets easier and happier </li>
               </ul>
             </div>

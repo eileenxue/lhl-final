@@ -128,7 +128,7 @@ export default function DashboardStudent(props) {
   );
 
   return (
-    <div className="dashboard--student">
+    <div className="dashboard">
       {/* <h1>{user.first_name}'s Student Dashboard </h1> */}
       <div className="dashboard--student-wrapper">
         <section>
