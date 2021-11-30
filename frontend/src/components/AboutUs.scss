@@ -5,15 +5,23 @@
 
     article{
       display: flex;
-      padding: 1rem;
+      padding: 1rem 2rem;
+      align-items: center;
     }
   }
 
   &--profile-pic{
-    min-width: 250px;
+    width: 250px;
+
+    img{
+      border-radius: 50%;
+      width: 100%;
+    }
   }
 
   &--profile-blurb{
+    padding: 1rem 2rem;
+
     ul{
       list-style: none;
       padding-left: 1rem;
