@@ -3,6 +3,7 @@ import { useState, useEffect, Fragment } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from "../setting";
 import DatePicker from "react-datepicker";
+import './Edit.scss';
 import moment from "moment";
 import Select from "react-dropdown-select";
 import Button from "@mui/material/Button";
@@ -113,61 +114,11 @@ export default function DashboardStudent(props) {
       >
         {testType}
       </select>
+      <label className="edit-label"> exam date</label>
 
-      {/* <div>
-        <Button
-          id="fade-button"
-          aria-controls="fade-menu"
-          aria-haspopup="true"
-          aria-expanded={open ? "true" : undefined}
-          onClick={handleClick}
-        >
-          Pick one Exam
-        </Button>
-        <Menu
-          id="fade-menu"
-          MenuListProps={{
-            "aria-labelledby": "fade-button",
-          }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleClose}
-          TransitionComponent={Fade}
-        >
-          {/* <MenuItem onClick={handleClose}>Profile</MenuItem>
-          <MenuItem onClick={handleClose}>My account</MenuItem>
-          <MenuItem onClick={handleClose}>Logout</MenuItem> */}
-          {/* {testType}
-        </Menu>
-      </div>  */}
+      <DatePicker selected={date}  minDate={new Date()} onChange={(d) => setDate(d)} className="edit-datepicker" /> 
 
-      <p></p>
-      <label> exam date</label>
-
-      <DatePicker
-        selected={date}
-        minDate={new Date()}
-        onChange={(d) => {
-          setDate(d);
-        }}
-      />
-
-
-{/* <LocalizationProvider dateAdapter={AdapterDateFns}>
-      <DatePicker
-        label="Basic example"
-        value={value}
-        onChange={(newValue) => {
-          setDate(newValue);
-        }}
-        renderInput={(params) => <TextField {...params} />}
-      />
-    </LocalizationProvider> */}
-
-
-
-
-      <button onClick={edit}> Save </button>
+      <button onClick={edit} className="edit-button"> Save </button>
     </div>
   );
 }
