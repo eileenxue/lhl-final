@@ -1,5 +1,73 @@
 .homepage{
+  position: relative;
+
+  &--text{
+    text-align: left;
+    position: absolute;
+    z-index: 1;
+    top: 10%;
+    left: 15%;
+    right: 20%;
+
+    h1{
+      color: white;
+      text-shadow: 2px 2px 8px #222;
+    }
+
+    h2{
+      color: white;
+      text-shadow: 2px 2px 8px #222;
+      font-weight: 400;
+    }
+
+    a{
+      margin-top: 1rem;
+    }
+  }
+
   &--video{
     width: 100%;
+    border-radius: 10px;
+    // transform: scale(1.06); // quick hack without changing other things
+  }
+
+  &--pitch{
+    text-align: center;
+    padding: 1rem;
+  }
+
+  &--three{
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    justify-content: center;
+
+    article{
+      padding: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px){
+  .homepage{
+    &--text{
+      h2{
+        display: none;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 1200px) {
+  .homepage{
+    &--text{
+      h1{
+        font-size: 3rem;
+      }
+      h2{
+        font-size: 2rem;
+      }
+    }
   }
 }
