@@ -29,11 +29,13 @@ io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
+    // console.log(Object.keys(data.id));
     socket.join(data);
     console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
   socket.on("send_message", (data) => {
+    // console.log("cheeeccccccking send_message",data);
     socket.to(data.room).emit("receive_message", data);
   });
 
@@ -70,7 +72,7 @@ const bookingRouter = require('./routes/booking');
 
 const deleteRouter = require('./routes/delete');
 const editRouter = require('./routes/edit');
-// const examRouter = require('./routes/exam');
+const examRouter = require('./routes/exam');
 
 
 app.use('/api/users', usersRouter(db));
@@ -86,7 +88,7 @@ app.use("/api/appointments", appointmentsRouter(db));
 app.use("/api/booking", bookingRouter(db));
 app.use("/api/delete", deleteRouter(db));
 app.use("/api/edit", editRouter(db));
-// app.use("/api/exam", examRouter(db));
+app.use("/api/exam", examRouter(db));
 
 
 
