@@ -33,7 +33,7 @@ export default function DashboardStudent(props) {
     
     axios.get(`${API_URL}dashboard/student/${parsedUser.id}`).then((result) => {
       setTests(result.data.test);
-      console.log("test:", result.data.test);
+      console.log("testsssssssssss:", result.data.test);
     });
   }, []);
 
@@ -42,7 +42,7 @@ export default function DashboardStudent(props) {
     if (
       todayDate.getFullYear() === dbDate.getFullYear() &&
       todayDate.getMonth() === dbDate.getMonth() &&
-      todayDate.getDate() === dbDate.getDate() && (tests.final_score === 0 )
+      todayDate.getDate() === dbDate.getDate() 
     ){
       return "same day"
     } else if ( 
@@ -59,6 +59,13 @@ export default function DashboardStudent(props) {
       return "past events"
     }
   };
+
+
+  const isScore = function (dbScore) {
+    if (dbScore) {return true } 
+    return false;
+  }
+
 
   const stringToDate = function (dbDate) {
     return dbDate.slice(0, 10);
@@ -81,7 +88,9 @@ export default function DashboardStudent(props) {
   const todayTest = tests.map(
     (test) => (
       <>
-        {compareDates(new Date(), new Date(test.start_date)) === "same day" && (
+        {compareDates(new Date(), new Date(test.start_date)) === "same day" && 
+          isScore(test.final_score) === false && 
+        (
           <tr>
             <td>{stringToDate(test.start_date)}</td>
             <td>{test.type}</td>
@@ -116,7 +125,9 @@ export default function DashboardStudent(props) {
   const previousTest = tests.map(
     (test) => (
       <>
-        { compareDates(new Date(), new Date(test.start_date)) == "past events" && (
+        { 
+        isScore(test.final_score) === true && 
+        (
           <tr>
             <td>{stringToDate(test.start_date)}</td>
             <td>{test.type}</td>
