@@ -43,10 +43,10 @@ module.exports = (db) => {
     const {id} = req.params
     db.query(
       `SELECT appointments.id, appointments.test_id, start_date, 
-                student_id,tests.type
+                student_id,tests.type, appointments.final_score
        FROM appointments 
        JOIN tests ON appointments.test_id=tests.id 
-       WHERE student_id = ${id} and start_date >= CURRENT_DATE 
+       WHERE student_id = ${id}
        order by  start_date ;`
     ).then((result) => {
       console.log("here it is:", result.rows);
@@ -60,7 +60,7 @@ module.exports = (db) => {
     console.log("proctor appointments dashboard backend",)
     const {id} = req.params
     db.query(
-      `SELECT *
+      `SELECT appointments.*, tests.type 
       FROM appointments 
       JOIN tests ON appointments.test_id=tests.id 
       WHERE proctor_id = ${id} and start_date = CURRENT_DATE ;`

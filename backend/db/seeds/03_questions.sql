@@ -34,7 +34,6 @@ VALUES
 (7, 'What Canadian dish was first popularized in Quebec? ', 'Nanaimo Bar', 'Beavertails', 'Poutine', 'Bannock', 'Poutine'),
 (7, 'Where was the birth place of delicious cheesecakes? ', 'United States', 'Israel', 'Japan', 'Greece', 'Greece'),
 (7, 'What country is responsible for the origins of French Fries? ', 'France', 'England', 'Belgium', 'Turkey', 'Belgium'),
- 
 (8, 'How many months have 28 days?', '1', '2', 'All of them', 'Depends if there is a leap year', 'All of them'),
 (8, 'Divide 30 by half and add ten.', '40.5', '50', '70', '300', '70'),
 (8, 'Johns father has three sons - Joseph I and Joseph II. Can you guess the name of the third son? ', 'Joseph III', 'Third', 'John', 'Henry', 'John'),

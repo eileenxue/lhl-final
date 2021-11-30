@@ -28,6 +28,11 @@ export default function ExamQuestions() {
     if (questions[currentQuestion].correct_answer === answerChosen){
       setScore(score + 1);
     }
+
+    // Submit the score to the database
+    // const scoreDecimal = (score/questions.length);
+    // alert(`Final: ${scoreDecimal * 100}%`)
+
     // Change to the final screen
     setExamState("endScreen");
   }

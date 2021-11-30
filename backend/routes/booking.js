@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-
-
 module.exports = (db) => {
   router.get('/', function (req, res, next ) {
    
@@ -15,8 +13,6 @@ module.exports = (db) => {
   router.post("/", function (req, res) {
 
     const info = req.body;
-
-    console.log("==========from db", info)
 
     db.query(
         `INSERT INTO appointments (
@@ -32,7 +28,6 @@ module.exports = (db) => {
         ]
       )
       .then((appointment) => {
-        console.log("from db", appointment)
         return res.json(appointment);
       })
       .catch((e) => {console.log(e)});

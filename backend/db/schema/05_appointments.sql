@@ -4,5 +4,6 @@ CREATE TABLE "appointments" (
   "student_id" INTEGER REFERENCES users(id) ON DELETE CASCADE,
   "proctor_id" INTEGER REFERENCES users(id) ON DELETE CASCADE,
   "test_id" INTEGER REFERENCES tests(id) ON DELETE CASCADE,
-  "start_date" DATE
+  "start_date" DATE,
+  "final_score" NUMERIC(3,2) DEFAULT NULL
 );

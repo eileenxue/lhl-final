@@ -4,6 +4,8 @@ import { Link, NavLink, useLocation, Navigate, Outlet } from "react-router-dom";
 import axios from "axios";
 import { API_URL } from "../setting";
 import ExamResult from "./ExamResult";
+import './Dashboard.scss';
+import { Button } from "@mui/material";
 
 export default function DashboardStudent(props) {
   console.log("API", API_URL);
@@ -28,6 +30,7 @@ export default function DashboardStudent(props) {
     axios.defaults.headers.common[
       "Authorization"
     ] = `Bearer ${parsedUser.accessToken}`;
+    
     axios.get(`${API_URL}dashboard/student/${parsedUser.id}`).then((result) => {
       setTests(result.data.test);
       console.log("test:", result.data.test);
@@ -35,37 +38,31 @@ export default function DashboardStudent(props) {
   }, []);
 
   const compareDates = function (todayDate, dbDate) {
-    return (
-      todayDate.getFullYear() == dbDate.getFullYear() &&
-      todayDate.getMonth() == dbDate.getMonth() &&
-      todayDate.getDate() == dbDate.getDate()
-    );
+    // console.log(todayDate, dbDate );
+    if (
+      todayDate.getFullYear() === dbDate.getFullYear() &&
+      todayDate.getMonth() === dbDate.getMonth() &&
+      todayDate.getDate() === dbDate.getDate()
+    ){
+      return "same day"
+    } else if ( 
+      todayDate.getFullYear() < dbDate.getFullYear()   || 
+      (todayDate.getFullYear() === dbDate.getFullYear() && 
+      todayDate.getMonth() < dbDate.getMonth()) || 
+      ( todayDate.getFullYear() === dbDate.getFullYear() && 
+      todayDate.getMonth() ===  dbDate.getMonth() && 
+      todayDate.getDate() < dbDate.getDate()
+      )
+    ){
+      return "upcoming events"
+    } else {
+      return "past events"
+    }
   };
 
   const stringToDate = function (dbDate) {
     return dbDate.slice(0, 10);
   };
-
-  const todayTest = tests.map(
-    (test) => (
-      <div>
-        {compareDates(new Date(), new Date(test.start_date)) && (
-          <Fragment>
-            <p> exam type: {test.type} </p>
-            <p> exam date: {stringToDate(test.start_date)}</p>
-            {/* this should be dynamic  */}
-            <Link to="/exam">start exam</Link>
-          </Fragment>
-        )}
-      </div>
-    )
-
-    // (test, index) => {
-    // return (
-    //   // Made up display component
-    //   <ExamResult key={index} {...test} />
-    // )}
-  );
 
   const deleteAppointment = (id) => {
     console.log("what is the id", id);
@@ -81,27 +78,17 @@ export default function DashboardStudent(props) {
     });
   };
 
-
-
-
-  const upcomingTest = tests.map(
+  const todayTest = tests.map(
     (test) => (
-      <div>
-        {!compareDates(new Date(), new Date(test.start_date)) && (
-          <Fragment>
-            <p> exam type: {test.type} </p>
-            <p> exam date: {stringToDate(test.start_date)}</p>
-            <Link to={`/edit/${test.id}`}> Edit</Link>
-            <button
-              onClick={() => {
-                deleteAppointment(`${test.id}`);
-              }}
-            >
-              Delete
-            </button>
-          </Fragment>
+      <>
+        {compareDates(new Date(), new Date(test.start_date)) === "same day" && (
+          <tr>
+            <td>{stringToDate(test.start_date)}</td>
+            <td>{test.type}</td>
+            <td><Button variant="contained" component={Link} to={`/exam/${test.id}`}>start exam</Button></td>
+          </tr>
         )}
-      </div>
+      </>
     )
 
     // (test, index) => {
@@ -111,15 +98,96 @@ export default function DashboardStudent(props) {
     // )}
   );
 
+  const upcomingTest = tests.map(
+    (test) => (
+      <>
+        { compareDates(new Date(), new Date(test.start_date)) == "upcoming events" && (
+          <tr>
+            <td>{stringToDate(test.start_date)}</td>
+            <td>{test.type}</td>
+            <td><Button variant="" component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
+            <td><Button variant="" color="error" onClick={() => {deleteAppointment(`${test.id}`);}}>Delete</Button></td>
+          </tr>
+        )}
+      </>
+    )
+  );
+
+  const previousTest = tests.map(
+    (test) => (
+      <>
+        { compareDates(new Date(), new Date(test.start_date)) == "past events" && (
+          <tr>
+            <td>{stringToDate(test.start_date)}</td>
+            <td>{test.type}</td>
+            <td>{test.final_score * 100}%</td>
+          </tr>
+        )}
+      </>
+    )
+  );
+
   return (
-    <div>
-      <h1>Dashboard student page </h1>
-      <div>
-        {user.first_name}
-        <h3> today's exam: </h3>
-        <small> {todayTest} </small>
-        <h3> upcoming exam:</h3>
-        <small> {upcomingTest} </small>
+    <div className="dashboard--student">
+      {/* <h1>{user.first_name}'s Student Dashboard </h1> */}
+      <div className="dashboard--student-wrapper">
+        <section>
+          <article>
+            <h2>Today's Exams</h2>
+              <div className="table-wrapper">
+                <table className="dashboard--table">
+                  <thead>
+                    <tr>
+                      <th>Date</th>
+                      <th>Exam Name</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {todayTest} 
+                  </tbody>
+                </table>
+              </div>
+          </article>
+        
+          <article>
+            <h2>Upcoming Exams</h2>
+            <div className="table-wrapper">
+            <table className="dashboard--table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Exam Name</th>
+                  <th colSpan="2">Modify Booking</th>
+                </tr>
+              </thead>
+              <tbody>
+                {upcomingTest}
+              </tbody>
+            </table>
+            </div>
+          </article>
+        </section>
+
+        <section>
+          <article>
+            <h2>Results</h2>
+            <div className="table-wrapper">
+              <table className="dashboard--table">
+                <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Exam Name</th>
+                  <th>Score</th>
+                </tr>
+                </thead>
+                <tbody>
+                  {previousTest}
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
       </div>
     </div>
   );
