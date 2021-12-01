@@ -17,6 +17,12 @@
   h2{
     padding: 1rem 0;
   }
+
+  p{
+    font-size: 1.2rem;
+    padding: 2rem 0 1rem;
+    font-weight: 600;
+  }
 }
 
 // Had to override some MUI buttons
@@ -71,7 +77,7 @@
 
 .exam-next-btn, .exam-finish-btn{
   width: 100%;
-  font-weight: 600;
+  font-weight: 600 !important;
 }
 
 // End Screen
