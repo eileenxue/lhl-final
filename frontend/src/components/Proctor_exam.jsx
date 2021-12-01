@@ -12,10 +12,12 @@ const socket = io.connect("http://localhost:3005"); // point to the backend url
 
 export default function Proctor_exam(props) {
   const [user, setUser] = useState({});
-  const [messages, setMessages] = useState([]);
+  const [MLmessages, setMLMessages] = useState([]);
   const [appointment, setAppointment] = useState({});
+
   // const [appointments, setAppointments] = useState([]);
   let { id } = useParams();
+
 
   console.log("props from proctor_exam", props);
 
@@ -40,8 +42,8 @@ export default function Proctor_exam(props) {
   useEffect(() => {
     joinRoom();
     socket.on("receive_message", (data) => {
-      // console.log("received message?????????????", data);
-      setMessages((list) => [...list, data]);
+      console.log("proctor received message?????????????", data);
+      setMLMessages((list) => [...list, data]);
     });
 
     const storedUser = localStorage.getItem("storedUser");
@@ -73,7 +75,7 @@ export default function Proctor_exam(props) {
             <div className="proctor-exam--status-header">Activity Monitor</div>
             <div className="proctor-exam--status-body">
               <ScrollToBottom className="message-container">
-              {messages.map((msg) => (
+              {MLmessages.map((msg) => (
                 <div className="proctor-exam--status-msg">
                   <p> {msg.message}</p>
                   <small>{msg.timestamp}</small>

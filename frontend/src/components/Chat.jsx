@@ -3,10 +3,12 @@ import ScrollToBottom from "react-scroll-to-bottom";
 import "./Chat.scss";
 import axios from "axios";
 import io from "socket.io-client";
+import { useParams } from "react-router";
 const socket = io.connect("http://localhost:3005"); // point to the backend url
 
 function Chat(props) {
   const { room, key } = props;
+  let { id } = useParams();
 
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
@@ -16,7 +18,7 @@ function Chat(props) {
 
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      // console.log("chat box receive data?????", data);
+      console.log(" student chat box receive data?????", data);
       setMessageList((list) => [...list, data]);
     });
   }, []);
@@ -38,15 +40,16 @@ function Chat(props) {
   // }, [])
 
   const username = parsedUser.first_name;
-  socket.emit("join_room", "room");
+  socket.emit("join_room", id);
 
   const sendMessage = async () => {
     if (currentMessage !== "") {
       console.log(socket.id);
+      console.log(id);
       const messageData = {
         key: socket.id,
         // here is hard coded room. should use redux ;
-        room: "room",
+        room: id,
         author: username,
         message: currentMessage,
         time:
