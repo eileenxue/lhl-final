@@ -67,8 +67,8 @@ export default function Proctor_exam(props) {
 
   return (
     <div className="proctor-exam">
-      <h1>Monitoring Exam: {appointment.type} </h1>
-      <div><strong>Student First Name:</strong> {appointment.first_name} <strong>Student ID:</strong> {appointment.student_id} </div>
+      <h1>Monitoring {appointment.type} </h1>
+      <div><strong>Student's Name:</strong> {appointment.first_name} <strong>Student ID:</strong> 021{appointment.student_id} </div>
       <div className="proctor-exam--wrapper">
           <Chat />
           <div className="proctor-exam--status-log">
