@@ -68,8 +68,6 @@ const messageRouter = require('./routes/message');
 const questionsRouter = require('./routes/questions');
 const appointmentsRouter = require('./routes/appointments');
 const bookingRouter = require('./routes/booking');
-
-
 const deleteRouter = require('./routes/delete');
 const editRouter = require('./routes/edit');
 const examRouter = require('./routes/exam');
