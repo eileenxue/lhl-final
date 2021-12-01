@@ -12,7 +12,8 @@ export default function AudioModel() {
   const sendMessage = async function () {
     // wait for the data to come in to send to the backend
     const timestamp = new Date();
-    console.log("=========================: here comes the audio function ");
+    let currentTime=new Date(timestamp);
+    // console.log("=========================: here comes the audio function ");
     try {
       const payLoad = {
         // currently hard coded examid == 1
@@ -20,9 +21,9 @@ export default function AudioModel() {
         // student_id: user.id,
         room: "fancy",
         message,
-        timestamp: timestamp,
+        timestamp: currentTime.toString().slice(4,24)
       };
-      console.log("sending audio message or not ????????");
+      // console.log("sending audio message or not ????????");
       await socket.emit("send_message", payLoad);
     } catch (error) {
       console.log(error);
@@ -98,7 +99,7 @@ export default function AudioModel() {
         if (scores[3] > 0.6) {
           // thereIsNoise("yeeeeessss background noice ")
           console.log("background voice !!!!!!!");
-          setMessage("There are voices in the background");
+          setMessage("AUDIO: There are voices in the background");
         }
         setMessage("");
       },

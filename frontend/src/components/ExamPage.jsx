@@ -21,8 +21,8 @@ export default function ExamPage() {
   const checkFocus = () => {
     if(document.hasFocus() === false){
       // Raise concern if user is not in focus
-      console.log("User is not focus on the current page")
-      setMessage("User is not focus on the current page");
+      // console.log("User is not focus on the current page")
+      setMessage("SCREEN: User is not focus on the current page");
     }
     setMessage("");
   }
@@ -42,7 +42,8 @@ export default function ExamPage() {
   const sendMessage = async function() {
     // wait for the data to come in to send to the backend 
     const timestamp = new Date();
-    console.log("=========================: here comes the function ")
+    let currentTime=new Date(timestamp);
+    console.log("=========================: here comes the currentTime", currentTime)
     try {
       const payLoad = {
         // currently hard coded examid == 1
@@ -50,17 +51,17 @@ export default function ExamPage() {
         // student_id: user.id,
         room: "fancy",
         message,
-        timestamp: timestamp
+        timestamp: currentTime.toString().slice(4,24)
       }
-      console.log("sending message or not ????????")
+      // console.log("sending message or not ????????")
       await socket.emit("send_message", payLoad);
     } catch (error) {
-      console.log(error)
+      // console.log(error)
     }
   };
 
   const joinRoom = () => {
-    console.log("joined fancy student   ~~~~~~~~~~~~~~~~~~")
+    // console.log("joined fancy student   ~~~~~~~~~~~~~~~~~~")
       socket.emit("join_room", "fancy");
   };
 

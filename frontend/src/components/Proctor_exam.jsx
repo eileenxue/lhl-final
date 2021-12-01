@@ -42,7 +42,7 @@ export default function Proctor_exam(props) {
   useEffect(() => {
     joinRoom();
     socket.on("receive_message", (data) => {
-      console.log("proctor received message?????????????", data);
+      // console.log("proctor received message?????????????", data);
       setMLMessages((list) => [...list, data]);
     });
 
