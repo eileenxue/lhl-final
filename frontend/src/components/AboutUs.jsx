@@ -19,7 +19,7 @@ export default function AboutUs() {
     <div className="about">
       <div className="about--title">
         <h1>About Us</h1>
-        <span>The Cool Beans</span>
+        <p className="hide-me">AKA The Coolest Team Ever 🎉</p>
       </div>
       <div className="about--wrapper">
         <section className="about--profiles">
@@ -64,7 +64,7 @@ export default function AboutUs() {
           </article>
         </section>
         <section className="about--tech">
-          <h2>Technology Stack</h2>
+          <h1>Technology Stack</h1>
           {/* Show icons here: React, Node, PSQL, SASS, Material UI, and what else? */}
           <div className="logo-wrapper">
             <img src={reactLogo} alt="React logo"/>

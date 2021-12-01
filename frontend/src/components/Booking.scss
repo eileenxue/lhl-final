@@ -1,5 +1,5 @@
 .booking-container {
-    max-width: 800px;
+    max-width: 900px;
       margin: 16px auto;
       display: flex;
 }
@@ -15,9 +15,8 @@
     margin-top: 8px;    
 }
 .booking-list {
-  color: #575757;
-  line-height: 16px;
-  border-collapse: collapse;
+  // color: #575757;
+  // line-height: 16px;
   width: 100%;
 }
 .booking-list-item {
@@ -25,12 +24,12 @@
   justify-content: space-between;
   align-items: center;
   margin: 4px 0;
-  padding: 4px;
+  padding: 1rem;
   border-radius: 4px;
 }
 .booking-list-item:hover {
   background-color: #ededed;
-  transform: translateX(-3px);
+  // transform: translateX(-3px);
   color: #333;
 }
 .booking-list-item:first-child {

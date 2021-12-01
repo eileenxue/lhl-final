@@ -1,15 +1,22 @@
 .about{
   &--title{
     text-align: center;
+    padding-top: 1rem;
   }
 
   h1{
     display: inline-block;
     background-color: coral;
-    padding: 1rem;
+    padding: 1rem 2rem;
     color: white;
     border-radius: 4px;
-    transform: rotate(1deg)
+    transform: rotate(1deg);
+    margin-bottom: 0;
+    transition: all 0.2s ease-in-out;
+
+    &:hover + .hide-me{
+      display: block;
+    }
   }
 
   &--wrapper{
@@ -40,7 +47,7 @@
       
 
       &:hover{
-        transform: scale(1.02);
+        transform: scale(1.05);
         box-shadow: 5px 5px 10px #6494edad;
         border: 5px solid lightcyan;
       }
@@ -58,6 +65,7 @@
 
   &--tech{
     text-align: center;
+    padding: 2rem 0;
 
     .logo-wrapper{
       display: flex;

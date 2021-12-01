@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import './Booking.scss';
+import { Button } from '@mui/material';
 
 
 
@@ -82,26 +83,26 @@ export default function Booking(props) {
 
    return (
     <div className="booking-container">
-      <div>
+      <div className="booking-date">
         <label className="booking-label">
           Please choose a date
         </label>
         <DatePicker selected={date} minDate={new Date()} onChange={(d) => setDate(d)} className="booking-datepicker" /> 
       </div>
       <div className="booking-list">
-        <label className="booking-label">Exam Type</label>
+        <h2>Exam Name</h2>
         { bookingList.map((booking) => {
         return (             
         <div className="booking-list-item">
           <div>{booking.type}</div>
-          <button className="booking-button"
+          <Button variant="contained" className="booking-button"
                         onClick={() => {
               console.log("hellooooo")
              createBooking({
               student_id: user.id,
               test_id: booking.id,
               start_date: date
-            })}}>Book</button>
+            })}}>Book</Button>
         </div>
          )
         })} 
