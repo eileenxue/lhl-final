@@ -34,8 +34,8 @@ export default function DashboardStudent(props) {
     ] = `Bearer ${parsedUser.accessToken}`;
     
     axios.get(`${API_URL}dashboard/student/${parsedUser.id}`).then((result) => {
-      setTests(result.data.test);
       console.log("testsssssssssss:", result.data.test);
+      setTests(result.data.test);
     });
   }, []);
 
