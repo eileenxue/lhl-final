@@ -1,6 +1,6 @@
 .booking-container {
     max-width: 960px;
-    margin: 16px auto;
+    margin: 1rem auto;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -26,11 +26,14 @@
   padding: 4px;
 }
 .booking-datepicker {
-    height: 30px;
     border-radius: 4px;
-    border: 1px solid #777777;
+    border: 1px solid #aeaeae;
     margin-top: 8px;    
-    width: 90%;
+    width: 80%;
+    font-size: 1rem;
+    padding: 1rem;
+    font-family: 'Outfit', sans-serif;
+    cursor: pointer;
 }
 .booking-list {
   width: 100%;

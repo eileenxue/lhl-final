@@ -4,21 +4,47 @@
   padding: 4px;
 }
 .edit-datepicker {
-  height: 30px;
-    border-radius: 4px;
-    border: 1px solid #777777;
-    margin-top: 8px;    
+  // height: 40px;
+  // margin-top: 8px;
+  border-radius: 4px;
+  border: 1px solid #aeaeae;
+  width: 90%;
+  padding: 1rem;
+  font-size: 1rem;
+  font-family: 'Outfit', sans-serif;
+  cursor: pointer;    
 }
 .edit-button {
   padding: 8px;
-  width: 120px;
+  width: 200px;
   background-color: #6495ec;
   color: white;
   border: none;
   border-radius: 4px;
   margin-top: 8px;
-cursor: pointer;
+  cursor: pointer;
 }
 .edit-button:hover {
   background-color: #517fcf;
+}
+
+.edit-page{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+
+  h1{
+    color: navy;
+  }
+}
+
+.edit-wrapper{
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+.edit-button-box{
+  padding: 2rem 0;
 }

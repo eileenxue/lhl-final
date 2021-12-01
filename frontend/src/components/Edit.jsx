@@ -4,12 +4,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { API_URL } from "../setting";
 import DatePicker from "react-datepicker";
 import './Edit.scss';
-import moment from "moment";
-import Select from "react-dropdown-select";
+// import Select from "react-dropdown-select";
 import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
+import Select from '@mui/material/Select';
 import MenuItem from "@mui/material/MenuItem";
-import Fade from "@mui/material/Fade";
 
 // import AdapterDateFns from '@mui/lab/AdapterDateFns';
 // import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -88,8 +86,7 @@ export default function DashboardStudent(props) {
   };
 
   const testType = tests.map((test) => (
-    <option value={test.type}> {test.type}</option>
-    // <MenuItem onClick={handleClose}>{test.type}</MenuItem>
+    <MenuItem value={test.type}> {test.type}</MenuItem>
   ));
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -99,26 +96,29 @@ export default function DashboardStudent(props) {
   };
 
 
-
-
   return (
-    <div>
-      <h1> Edit Your Exam</h1>
-      <label> exam name</label>
-
-      <select
-        value={exam}
-        onChange={(event) => {
-          setExam(event.target.value);
-        }}
-      >
-        {testType}
-      </select>
-      <label className="edit-label"> exam date</label>
-
-      <DatePicker selected={date}  minDate={new Date()} onChange={(d) => setDate(d)} className="edit-datepicker" /> 
-
-      <button onClick={edit} className="edit-button"> Save </button>
+    <div className="edit-page">
+      <h1> Edit Your Booking</h1>
+      <div className="edit-wrapper">
+        <div>
+          <h2>1. Confirm Exam</h2>
+          <Select
+            value={exam}
+            onChange={(event) => {
+              setExam(event.target.value);
+            }}
+          >
+            {testType}
+          </Select>
+        </div>
+        <div>
+          <h2>2. Update Date</h2>
+          <DatePicker selected={date}  minDate={new Date()} onChange={(d) => setDate(d)} className="edit-datepicker" /> 
+        </div>
+      </div>
+      <div className="edit-button-box">
+        <Button variant="contained" size="large" onClick={edit} className="edit-button"> Save </Button>
+      </div>
     </div>
   );
 }

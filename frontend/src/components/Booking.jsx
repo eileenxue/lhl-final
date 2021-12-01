@@ -88,7 +88,7 @@ export default function Booking(props) {
       <div className="booking-wrapper">
         <div className="booking-date">
           <h2>1. Choose a date</h2>
-          <DatePicker selected={date} minDate={new Date()} onChange={(d) => setDate(d)} className="booking-datepicker" /> 
+          <DatePicker placeholderText="See available dates" selected={date} minDate={new Date()} onChange={(d) => setDate(d)} className="booking-datepicker" /> 
         </div>
         <div className="booking-list">
           <h2>2. Select an exam</h2>
