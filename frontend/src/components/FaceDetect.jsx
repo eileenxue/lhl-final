@@ -19,6 +19,7 @@ export default function FaceDetect() {
   const sendMessage = async function() {
     // wait for the data to come in to send to the backend 
     const timestamp = new Date();
+    let currentTime=new Date(timestamp);
     console.log("=========================: here comes the function ")
     try {
       const payLoad = {
@@ -27,7 +28,7 @@ export default function FaceDetect() {
         // student_id: user.id,
         room: "fancy",
         message,
-        timestamp: timestamp
+        timestamp: currentTime.toString().slice(4,24)
       }
       console.log("sending message or not ????????")
       await socket.emit("send_message", payLoad);
@@ -100,14 +101,14 @@ export default function FaceDetect() {
      
       // If face is not detected
       if (prediction.length === 0){
-        console.log("No face detected");
-        setMessage("No face detected");
+        console.log("FACE: No face detected");
+        setMessage("FACE: No face detected");
       } 
 
       // If more than one face detected
       if (prediction.length >= 2){
-        console.log(`There are ${prediction.length} faces in the video`);
-        setMessage(`There are ${prediction.length} faces in the video`);
+        console.log(`FACE: There are ${prediction.length} faces in the video`);
+        setMessage(`FACE: There are ${prediction.length} faces in the video`);
       }
 
       setMessage("");
