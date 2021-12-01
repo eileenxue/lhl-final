@@ -6,6 +6,7 @@ import { API_URL } from "../setting";
 import ExamResult from "./ExamResult";
 import './Dashboard.scss';
 import { Button } from "@mui/material";
+import './Dashboard_student.scss'
 
 export default function DashboardStudent(props) {
   console.log("API", API_URL);
@@ -13,6 +14,7 @@ export default function DashboardStudent(props) {
 
   const [user, setUser] = useState({});
   const [tests, setTests] = useState([]);
+  const [showalert, setShowalert] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("storedUser");
@@ -111,12 +113,24 @@ export default function DashboardStudent(props) {
     (test) => (
       <>
         { compareDates(new Date(), new Date(test.start_date)) === "upcoming events" && (
+          <>
           <tr>
             <td>{stringToDate(test.start_date)}</td>
             <td>{test.type}</td>
             <td><Button variant="" component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
-            <td><Button variant="" color="error" onClick={() => {deleteAppointment(`${test.id}`);}}>Delete</Button></td>
+            <td><Button variant="" color="error" onClick={() => setShowalert(true)} >Delete</Button></td>
           </tr>
+          { showalert &&         
+          <div className="alert">
+            <h1 className='alert-header'>Warning!</h1>
+            <p className="alert-body">Are you sure you want to delete this exam?</p>
+            <div className="alert-buttons">
+              <Button className="alert-button error"  onClick={() => {deleteAppointment(`${test.id}`); setShowalert(false)}}>Yes</Button>
+              <Button className="alert-button" onClick={() => setShowalert(false)}>Cancel</Button> 
+            </div>
+          </div>
+          }
+         </>
         )}
       </>
     )
@@ -145,7 +159,7 @@ export default function DashboardStudent(props) {
         <section>
           <article>
             <h2>Today's Exams</h2>
-              <div className="table-wrapper">
+             <div className="table-wrapper">
                 <table className="dashboard--table">
                   <thead>
                     <tr>
