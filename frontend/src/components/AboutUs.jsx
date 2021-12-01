@@ -23,6 +23,19 @@ export default function AboutUs() {
       </div>
       <div className="about--wrapper">
         <section className="about--profiles">
+        <article>
+            <div className="about--profile-pic">
+              <img src={eileenPic} alt="Eileen Xue"/>
+            </div>
+            <div className="about--profile-blurb">
+              <h2>Eileen Xue</h2>
+              <ul>
+                <li>🎓 <strong>Education:</strong> Master of Digital Media (MDM), Interactive Media Design Diploma, BSc (Psychology) </li>
+                <li>⭐️ <strong>Background:</strong> Multimedia Developer and Researcher</li>
+                <li>♥️ <strong>Passions:</strong> Emerging Technologies (AR/VR), Digital Accessibility, Travelling and Food</li>
+              </ul>
+            </div>
+          </article>
           <article>
             <div className="about--profile-pic">
               <img src={yanbinPic} alt="YanBin Yuan"/>
@@ -46,19 +59,6 @@ export default function AboutUs() {
                 <li><strong>🎓 Education:</strong> Bachelor's Degree in Polymer Engineering, Data Science Diploma</li>
                 <li><strong>⭐️ Background:</strong>  Data Scientist and Polymer Engineer</li>
                 <li><strong>♥️ Passions:</strong>  Coding, Problem-Solving</li>
-              </ul>
-            </div>
-          </article>
-          <article>
-            <div className="about--profile-pic">
-              <img src={eileenPic} alt="Eileen Xue"/>
-            </div>
-            <div className="about--profile-blurb">
-              <h2>Eileen Xue</h2>
-              <ul>
-                <li>🎓 <strong>Education:</strong> Master of Digital Media (MDM), Interactive Media Design Diploma, BSc (Psychology) </li>
-                <li>⭐️ <strong>Background:</strong> Multimedia Developer and Researcher</li>
-                <li>♥️ <strong>Passions:</strong> Emerging Technologies (AR/VR), Digital Accessibility, Travelling and Food</li>
               </ul>
             </div>
           </article>
