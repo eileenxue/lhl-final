@@ -1,23 +1,39 @@
 .booking-container {
     max-width: 900px;
-      margin: 16px auto;
-      display: flex;
+    margin: 16px auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
+
+.booking-wrapper{
+  display: flex;
+}
+
+.booking-date{
+  display: flex;
+  flex-direction: column;
+  min-width: 262px;
+}
+
 .booking-label {
   font-size: 14px;
   color: #777777;
   padding: 4px;
 }
 .booking-datepicker {
-  height: 30px;
+    height: 30px;
     border-radius: 4px;
     border: 1px solid #777777;
     margin-top: 8px;    
+    width: 90%;
 }
 .booking-list {
-  // color: #575757;
-  // line-height: 16px;
   width: 100%;
+
+  h2{
+    padding-left: 16px;
+  }
 }
 .booking-list-item {
   display: flex;

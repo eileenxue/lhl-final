@@ -64,7 +64,7 @@ export default function AboutUs() {
           </article>
         </section>
         <section className="about--tech">
-          <h1>Technology Stack</h1>
+          <h2>Technology Stack</h2>
           {/* Show icons here: React, Node, PSQL, SASS, Material UI, and what else? */}
           <div className="logo-wrapper">
             <img src={reactLogo} alt="React logo"/>
