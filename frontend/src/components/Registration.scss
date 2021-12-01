@@ -1,6 +1,10 @@
 .registration{
   text-align: center;
 
+  h1{
+    color: navy;
+  }
+
   &--form{
     display: flex;
     flex-direction: column;

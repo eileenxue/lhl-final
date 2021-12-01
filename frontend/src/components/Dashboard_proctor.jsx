@@ -50,8 +50,7 @@ export default function DashboardStudent(props) {
 
   return (
     <div className="dashboard">
-      {/* <h1>Dashboard proctor page: {user.first_name} </h1> */}
-      <h2>Monitor Today's Exams</h2>
+      <h1>Monitor Today's Exams</h1>
       <table className="dashboard--table">
         <thead>
           <tr>

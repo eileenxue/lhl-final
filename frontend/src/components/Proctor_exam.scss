@@ -1,16 +1,22 @@
 .proctor-exam{
 
+  h1{
+    color: navy;
+  }
+
   &--wrapper{
     display: flex;
     padding: 1rem 0;
   }
 
   &--status-log{
-    border: 1px solid black;
+    // border: 1px solid black;
     margin: 0 2rem;
     height: 500px;
-    width: 100%;
-    max-width: 500px;
+    // width: 100%;
+    // max-width: 500px;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+    flex: 1;
   }
 
   &--status-header{
@@ -19,6 +25,7 @@
     display: flex;
     align-items: center;
     padding: 0 1rem;
+    font-weight: 600;
     background-color: gainsboro;
   }
 
