@@ -15,6 +15,8 @@ export default function DashboardStudent(props) {
   const [user, setUser] = useState({});
   const [tests, setTests] = useState([]);
   const [showalert, setShowalert] = useState(false);
+  const [selectedTest, setSelectedTest] = useState(null);
+  const [needLoadTests, setNeedLoadTests] = useState(true);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("storedUser");
@@ -33,11 +35,14 @@ export default function DashboardStudent(props) {
       "Authorization"
     ] = `Bearer ${parsedUser.accessToken}`;
     
-    axios.get(`${API_URL}dashboard/student/${parsedUser.id}`).then((result) => {
+    if (needLoadTests) {
+         axios.get(`${API_URL}dashboard/student/${parsedUser.id}`).then((result) => {
       console.log("testsssssssssss:", result.data.test);
       setTests(result.data.test);
+      setNeedLoadTests(false);
     });
-  }, []);
+    }
+  }, [tests, setTests, needLoadTests, setNeedLoadTests]);
 
   const compareDates = function (todayDate, dbDate) {
     // console.log(todayDate, dbDate );
@@ -73,18 +78,16 @@ export default function DashboardStudent(props) {
     return dbDate.slice(0, 10);
   };
 
-  const deleteAppointment = (id) => {
+  const deleteAppointment = async (id) => {
     console.log("what is the id", id);
-    axios.post(`${API_URL}delete/${id}`)
+    const response = await axios.post(`${API_URL}delete/${id}`)
     .then((response) => {
       console.log("tests........ response", response); 
-
-      setTests(
-        tests.filter((val) => {
-          return val.id != id;
-        })
-      );
+      return tests.filter((test) => {
+          return test.id !== id;
+        });
     });
+    return await response;
   };
 
   const todayTest = tests.map(
@@ -109,6 +112,19 @@ export default function DashboardStudent(props) {
     // )}
   );
 
+  const deleteTestAlert = (testId) => {
+    setSelectedTest(testId);
+    setShowalert(true)
+  }
+
+  const removeAppointment = async (testId) => {
+    const updatedTests = await deleteAppointment(`${selectedTest}`);
+    console.table(updatedTests);
+    setTests(updatedTests);
+    setNeedLoadTests(true);
+    setShowalert(false);
+  }
+
   const upcomingTest = tests.map(
     (test) => (
       <>
@@ -118,16 +134,17 @@ export default function DashboardStudent(props) {
             <td>{stringToDate(test.start_date)}</td>
             <td>{test.type}</td>
             <td><Button variant="" component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
-            <td><Button variant="" color="error" onClick={() => setShowalert(true)} >Delete</Button></td>
+            <td><Button variant="" color="error" onClick={() => deleteTestAlert(test.id)} >Delete</Button></td>
           </tr>
           { showalert &&         
           <div className="alert">
             <h1 className='alert-header'>Warning!</h1>
             <p className="alert-body">Are you sure you want to delete this exam?</p>
             <div className="alert-buttons">
-              <Button className="alert-button error"  onClick={() => {deleteAppointment(`${test.id}`); setShowalert(false)}}>Yes</Button>
+              <Button className="alert-button error"  onClick={() => removeAppointment(selectedTest)}>Yes</Button>
               <Button className="alert-button" onClick={() => setShowalert(false)}>Cancel</Button> 
             </div>
+
           </div>
           }
          </>
@@ -187,9 +204,10 @@ export default function DashboardStudent(props) {
                 </tr>
               </thead>
               <tbody>
-                {upcomingTest}
+                 {tests && upcomingTest}
               </tbody>
             </table>
+            {tests.length}
             </div>
           </article>
         </section>

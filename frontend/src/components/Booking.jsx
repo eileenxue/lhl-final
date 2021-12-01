@@ -4,13 +4,19 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
 import "./Booking.scss";
+import { Button } from "@mui/material";
+
 
 export default function Booking(props) {
   const [user, setUser] = useState({});
   const [booking, setBooking] = useState([]);
   const [bookingList, setBookingList] = useState([]);
   const [date, setDate] = useState();
+  const [datePopup, setDatePopup] = useState(false);
+  const [showalert, setShowalert] = useState(false);
+
   let navigate = useNavigate();
+  
 
   const getFormattedDate = (date) => {
     const newDate = new Date(date);
@@ -52,11 +58,15 @@ export default function Booking(props) {
     });
   }, []);
 
-  const createBooking = (data) => {
+  const createBooking = (data) => {    
     console.log("see see", data);
     if(!data.student_id || !data.start_date || !data.test_id){
-      return alert('Please choose a date before booking')
+      // return alert('Please choose a date before booking');          
+      setShowalert(true);
+      return;
     }
+   
+    
     axios
       .post("http://localhost:3005/api/booking", {
         student_id: data.student_id,
@@ -83,6 +93,26 @@ export default function Booking(props) {
           className="booking-datepicker"
         />
       </div>
+      {datePopup &&
+      
+      <div className="alert">
+          <h1 className='alert-header'>Warning!</h1>
+          <p className="alert-body">Please choose a date before booking</p>
+          <div className="alert-buttons">              
+            <Button className="alert-button" onClick={() => setDatePopup(false)}>Okay</Button> 
+          </div>
+      </div>
+      }
+      { showalert &&         
+          <div className="alert">
+            <h1 className='alert-header'>Warning!</h1>
+            <p className="alert-body">Please select a date first!</p>
+            <div className="alert-buttons">
+              <Button className="alert-button" onClick={() => setShowalert(false)}>Close</Button> 
+            </div>
+
+          </div>
+          }
       <div className="booking-list">
         <label className="booking-label">Exam Type</label>
         {bookingList.map((booking) => {
