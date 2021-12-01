@@ -4,6 +4,29 @@ footer{
   left: 0;
   right: 0;
   padding: 2rem;
+  color: white;
+  font-weight: 600;
   text-align: center;
-  background-color: gainsboro;
+  // background-color: gainsboro;
+  // background: linear-gradient(
+  //   227deg,
+  //   rgba(92 161 222) 0%,
+  //   rgb(109 194 238) 20%,
+  //   #84d0f5 34%,
+  //   #b8d8ef 59%,
+  //   #99d1ed 74%,
+  //   rgb(41 161 232) 100%
+  // );
+  // background: linear-gradient(
+  //   227deg,
+  //   rgba(92, 161, 222, 1) 0%,
+  //   rgba(109, 194, 238, 1) 20%,
+  //   rgba(163, 173, 219, 1) 34%,
+  //   rgba(163, 219, 208, 1) 59%,
+  //   rgba(163, 208, 219, 1) 74%,
+  //   rgba(41, 161, 232, 1) 100%
+  // );
+
+  background: rgb(97,173,250);
+  background: linear-gradient(157deg, rgba(97,173,250,1) 24%, rgba(116,165,247,1) 55%, rgba(167,204,255,1) 100%);
 }

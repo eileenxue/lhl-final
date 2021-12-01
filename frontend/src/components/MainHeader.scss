@@ -1,6 +1,8 @@
 header{
   min-height: 5rem;
   background-color: cornflowerblue;
+  background: rgb(115,177,244);
+background: linear-gradient(150deg, rgba(115,177,244,1) 26%, rgba(117,184,247,1) 53%, rgba(106,179,250,1) 74%, rgba(83,154,254,1) 100%);
   color: white;
 }
 
@@ -39,6 +41,7 @@ header{
       color: white;
       text-decoration: none;
       text-transform: uppercase;
+      font-weight: 600;
       padding: 0.5rem;
       transition: all 0.2s ease-in-out;
     }
