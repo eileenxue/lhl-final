@@ -19,7 +19,7 @@ export default function AboutUs() {
     <div className="about">
       <div className="about--title">
         <h1>About Us</h1>
-        <p className="hide-me">AKA The Coolest Team Ever 🎉</p>
+        <p className="hide-me about--secret">AKA The Coolest Team Ever 🎉</p>
       </div>
       <div className="about--wrapper">
         <section className="about--profiles">

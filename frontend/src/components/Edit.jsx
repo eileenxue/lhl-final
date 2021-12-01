@@ -103,7 +103,7 @@ export default function DashboardStudent(props) {
 
   return (
     <div>
-      <h1> Edit your exam</h1>
+      <h1> Edit Your Exam</h1>
       <label> exam name</label>
 
       <select

@@ -84,11 +84,10 @@ export default function Booking(props) {
    return (
     <div className="booking-container">
       {/* <div>Instructions</div> */}
+      <h1>New Exam Appointment</h1>
       <div className="booking-wrapper">
         <div className="booking-date">
-          <h2>
-            1. Choose a date
-          </h2>
+          <h2>1. Choose a date</h2>
           <DatePicker selected={date} minDate={new Date()} onChange={(d) => setDate(d)} className="booking-datepicker" /> 
         </div>
         <div className="booking-list">

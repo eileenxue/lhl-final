@@ -11,27 +11,27 @@ export default function Home() {
           {/* <h1>"Name of App" </h1> */}
           <h1>Take exams from the comfort of your own home</h1>
           <h2>Proctored exams powered by machine learning</h2>
-          <Button variant="contained" color="primary" component={Link} to={"/about"}>Learn More</Button>
+          <Button variant="contained" color="primary" size="large" component={Link} to={"/about"}>Learn More</Button>
         </div>
         <video autoPlay={true} loop={true} className="homepage--video">
           <source src={video} type="video/mp4"/>
         </video>
       </div>
       <div className="homepage--pitch">
-        <h3>Why Choose Us?</h3>
+        <h2>Why Choose Us?</h2>
         <section className="homepage--three">
           <article>
-            <h4>Smart Technology</h4>
+            <h3>Smart Technology</h3>
             <img></img>
             <p>Automatic detection for fraud alerts during exams</p>
           </article>
           <article>
-            <h4>Easy & Secure</h4>
+            <h3>Easy & Secure</h3>
             <img></img>
             <p>Lorem ipsum osfkj dolor fjolo ablanka setha kewol.</p>
           </article>
           <article>
-            <h4>Convenient For All</h4>
+            <h3>Convenient For All</h3>
             <img></img>
             <p>Create and take exams from anywhere in the world</p>
           </article>
