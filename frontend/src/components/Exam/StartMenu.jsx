@@ -9,7 +9,7 @@ export default function StartMenu() {
     <div className="start-menu">
       <h2>{info.type}</h2>
       {/* <h3>When you're ready...</h3> */}
-      <Button variant="contained" onClick={() => {setExamState("mainExam")}}>
+      <Button variant="contained" size="large" className="start-menu-btn" onClick={() => {setExamState("mainExam")}}>
         Start Exam
       </Button>
     </div>

@@ -4,7 +4,7 @@ import './MainFooter.scss';
 export default function MainFooter() {
   return (
     <footer>
-      Copyright &copy; 2021 ExamOWL 🦉 Made by Yanbin, Roya and Eileen 
+      Copyright &copy; 2021 ExamOWL 🦉 Made by YanBin, Roya and Eileen 
     </footer>
   )
 }

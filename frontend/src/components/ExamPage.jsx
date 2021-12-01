@@ -91,10 +91,12 @@ export default function ExamPage() {
 
 
   return (
-    <div>
+    <div className="exam-page">
       <h1>Exam In Progress</h1>
+      <details>
+        <summary>Read Instructions</summary>
       <div className="exam-page--instructions">
-        <p>Instructions: </p>
+        {/* <p>Instructions: </p> */}
         <ul>
           <li>Do not turn off your video or microphone during the exam.</li>
           <li>
@@ -104,6 +106,7 @@ export default function ExamPage() {
           <li>Once you're ready, click "Start Exam"</li>
         </ul>
       </div>
+      </details>
       <div className="exam-page--wrapper">
         {/* Where the webcam and chat will be */}
         <div className="exam-page--left">

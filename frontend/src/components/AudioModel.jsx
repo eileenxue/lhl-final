@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import * as speechCommands from "@tensorflow-models/speech-commands";
+import './AudioModel.scss';
 import axios from "axios";
 import io from "socket.io-client";
 const socket = io.connect("http://localhost:3005"); // point to the backend url
@@ -131,7 +132,7 @@ export default function AudioModel() {
 
   return (
     <div className="audio-model">
-      <p className="audio-model--status">🔈 Audio: On</p>
+      <div className="audio-model--status"> 🔈 Audio: On</div>
       {/* <button onClick={init}>Start</button> */}
       {/* {thereIsNoise && <div>There is some background voices</div>} */}
     </div>

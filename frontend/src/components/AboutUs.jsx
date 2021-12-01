@@ -17,7 +17,10 @@ import socketioLogo from '../media/tech-stack/socketio-logo.jpg';
 export default function AboutUs() {
   return (
     <div className="about">
-      <h1>About Us</h1>
+      <div className="about--title">
+        <h1>About Us</h1>
+        <span>The Cool Beans</span>
+      </div>
       <div className="about--wrapper">
         <section className="about--profiles">
           <article>

@@ -1,6 +1,5 @@
 .exam-primary{
-  max-width: 800px;
-  height: 500px;
+  height: 700px;
   background-color: aliceblue;
   padding: 2rem;
   display: flex;
@@ -8,6 +7,17 @@
   justify-content: center;
   text-align: center;
   border-radius: 1rem;
+}
+
+// Had to override some MUI buttons
+.start-menu-btn{
+  background-color: coral !important;
+  transform: scale(1.2);
+  font-weight: 600 !important;
+
+  &:hover{
+    background-color: #f05620 !important;
+  }
 }
 
 .exam-questions{
@@ -26,15 +36,17 @@
     margin: 0.2rem;
     cursor: pointer;
     border: none;
-    background-color: white;
+    // background-color: white;
     border-radius: 4px;
   }
   button:hover{
-    background-color: gainsboro;
+    // background-color: gainsboro;
   }
 
   button:focus, button:active{
     background-color: gold;
+    color: black;
+    font-weight: 600;
   }
 }
 

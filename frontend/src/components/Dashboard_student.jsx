@@ -120,7 +120,7 @@ export default function DashboardStudent(props) {
             <td><Button variant="" component={Link} to={`/edit/${test.id}`}>Edit</Button></td>
             <td><Button variant="" color="error" onClick={() => setShowalert(true)} >Delete</Button></td>
           </tr>
-          { showalert &&         
+          { showalert &&
           <div className="alert">
             <h1 className='alert-header'>Warning!</h1>
             <p className="alert-body">Are you sure you want to delete this exam?</p>

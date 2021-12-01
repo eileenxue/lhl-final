@@ -1,4 +1,19 @@
 .exam-page{
+  padding: 0 1rem;
+
+  details{
+    // border: 1px solid black;
+    padding: 1rem; 
+    box-shadow: 2px 2px 4px #00000073;
+    border-radius: 4px;
+    margin-right: 1rem;
+
+    summary{
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+
   &--wrapper{
     display: flex;
   }

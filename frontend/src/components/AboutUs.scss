@@ -1,4 +1,16 @@
 .about{
+  &--title{
+    text-align: center;
+  }
+
+  h1{
+    display: inline-block;
+    background-color: coral;
+    padding: 1rem;
+    color: white;
+    border-radius: 4px;
+    transform: rotate(1deg)
+  }
 
   &--wrapper{
     display: flex;
@@ -57,6 +69,11 @@
     img{
       max-width: 150px;
       padding: 0 0.5rem;
+      transition: all 0.2s ease-in-out;
+
+      &:hover{
+        transform: scale(1.2)
+      }
     }
   }
 

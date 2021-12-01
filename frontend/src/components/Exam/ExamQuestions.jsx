@@ -44,10 +44,10 @@ export default function ExamQuestions() {
 
   const answers = questions.map((answers) => (
     <div className="exam-answers">
-      <button onClick={() => setAnswerChosen(answers.answer1)}>{answers.answer1}</button>
-      <button onClick={() => setAnswerChosen(answers.answer2)}>{answers.answer2}</button>
-      <button onClick={() => setAnswerChosen(answers.answer3)}>{answers.answer3}</button>
-      <button onClick={() => setAnswerChosen(answers.answer4)}>{answers.answer4}</button>
+      <Button variant="contained" color="info" onClick={() => setAnswerChosen(answers.answer1)}>{answers.answer1}</Button>
+      <Button variant="contained" color="primary" onClick={() => setAnswerChosen(answers.answer2)}>{answers.answer2}</Button>
+      <Button variant="contained" color="secondary" onClick={() => setAnswerChosen(answers.answer3)}>{answers.answer3}</Button>
+      <Button variant="contained" color="warning" onClick={() => setAnswerChosen(answers.answer4)}>{answers.answer4}</Button>
     </div>
     )
   )

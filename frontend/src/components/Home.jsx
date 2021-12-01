@@ -21,15 +21,15 @@ export default function Home() {
           <article>
             <h4>Smart AI</h4>
             <img></img>
-            <p>Lorem ipsum osfkj dolor fjolo ablanka setha kewol.</p>
+            <p>Our app automatically detects </p>
           </article>
           <article>
-            <h4>Reason 2</h4>
+            <h4>Maintain Integrity</h4>
             <img></img>
             <p>Lorem ipsum osfkj dolor fjolo ablanka setha kewol.</p>
           </article>
           <article>
-            <h4>Reason 3</h4>
+            <h4>Convenient For All</h4>
             <img></img>
             <p>Lorem ipsum osfkj dolor fjolo ablanka setha kewol.</p>
           </article>
