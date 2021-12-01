@@ -207,7 +207,6 @@ export default function DashboardStudent(props) {
                  {tests && upcomingTest}
               </tbody>
             </table>
-            {tests.length}
             </div>
           </article>
         </section>
