@@ -9,6 +9,16 @@
   border-radius: 1rem;
 }
 
+/*************************
+     EXAM START MENU
+*************************/
+
+.start-menu{
+  h2{
+    padding: 1rem 0;
+  }
+}
+
 // Had to override some MUI buttons
 .start-menu-btn{
   background-color: coral !important;
@@ -29,6 +39,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 1rem 0rem 3rem;
 
   button{
     width: 100%;
@@ -36,8 +47,9 @@
     margin: 0.2rem;
     cursor: pointer;
     border: none;
-    // background-color: white;
     border-radius: 4px;
+    font-weight: 600;
+    font-size: 1rem;
   }
   // button:hover{
   //   // background-color: gainsboro;
@@ -48,6 +60,18 @@
     color: black;
     font-weight: 600;
   }
+}
+
+.exam-question-num{
+  font-size: 1.2rem;
+  text-align: left;
+  font-weight: 600;
+  color: grey;
+}
+
+.exam-next-btn, .exam-finish-btn{
+  width: 100%;
+  font-weight: 600;
 }
 
 // End Screen

@@ -107,6 +107,7 @@ export default function DashboardStudent(props) {
             onChange={(event) => {
               setExam(event.target.value);
             }}
+            className="edit-exam-select"
           >
             {testType}
           </Select>

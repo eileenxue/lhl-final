@@ -22,6 +22,7 @@
 
     a{
       margin-top: 1rem;
+      font-weight: 600;
     }
   }
 
@@ -41,6 +42,10 @@
   &--pitch{
     text-align: center;
     padding: 1rem;
+
+    h2{
+      font-size: 1.8rem;
+    }
   }
 
   &--three{
@@ -52,7 +57,20 @@
     article{
       padding: 1rem;
       flex: 1;
+      margin: 0 2rem;
+
+      h3{
+        font-size: 1.4rem;
+      }
+
+      p{
+        font-size: 1.2rem;
+      }
     }
+  }
+
+  &--emoji{
+    font-size: 4rem;
   }
 }
 

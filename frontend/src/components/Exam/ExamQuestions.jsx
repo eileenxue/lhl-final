@@ -37,17 +37,12 @@ export default function ExamQuestions() {
     setExamState("endScreen");
   }
 
-  // const questionText = questions.map((question, key) => (
-  //     <h2 key={key}>{question.question}</h2>
-  //   )
-  // )
-
   const answers = questions.map((answers) => (
     <div className="exam-answers">
       <Button variant="contained" color="info" onClick={() => setAnswerChosen(answers.answer1)}>{answers.answer1}</Button>
-      <Button variant="contained" color="primary" onClick={() => setAnswerChosen(answers.answer2)}>{answers.answer2}</Button>
-      <Button variant="contained" color="secondary" onClick={() => setAnswerChosen(answers.answer3)}>{answers.answer3}</Button>
-      <Button variant="contained" color="warning" onClick={() => setAnswerChosen(answers.answer4)}>{answers.answer4}</Button>
+      <Button variant="contained" color="info" onClick={() => setAnswerChosen(answers.answer2)}>{answers.answer2}</Button>
+      <Button variant="contained" color="info" onClick={() => setAnswerChosen(answers.answer3)}>{answers.answer3}</Button>
+      <Button variant="contained" color="info" onClick={() => setAnswerChosen(answers.answer4)}>{answers.answer4}</Button>
     </div>
     )
   )
@@ -55,7 +50,7 @@ export default function ExamQuestions() {
   return (
     <div>
       <div className="exam-questions">
-        <span>Question {currentQuestion + 1}</span>
+        <div className="exam-question-num">Question {currentQuestion + 1}</div>
         <h2>{questions[currentQuestion].question}</h2>
         {/* {questionText[currentQuestion]} */}
         {answers[currentQuestion]}
@@ -63,10 +58,9 @@ export default function ExamQuestions() {
     
       {/* Determine what to show until the user reaches the last question */}
       {currentQuestion === questions.length - 1 ? (
-        // <button onClick={finishExam}>Finish Quiz</button>
-        <Button variant="outlined" onClick={finishExam}>Finish Quiz</Button>
+        <Button variant="contained" color="success" size="large" onClick={finishExam} className="exam-finish-btn">Submit Exam</Button>
       ) : (
-        <Button variant="outlined" onClick={nextQuestion}>Next Question</Button>
+        <Button variant="outlined" size="large" onClick={nextQuestion} className="exam-next-btn">Next Question</Button>
       )}
 
     </div>

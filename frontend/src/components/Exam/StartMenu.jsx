@@ -8,7 +8,7 @@ export default function StartMenu() {
   return (
     <div className="start-menu">
       <h2>{info.type}</h2>
-      {/* <h3>When you're ready...</h3> */}
+      <p>When you're ready...</p>
       <Button variant="contained" size="large" className="start-menu-btn" onClick={() => {setExamState("mainExam")}}>
         Start Exam
       </Button>

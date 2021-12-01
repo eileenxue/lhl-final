@@ -94,7 +94,7 @@ export default function ExamPage() {
     <div className="exam-page">
       <h1>Exam In Progress</h1>
       <details>
-        <summary>Read Instructions</summary>
+        <summary>Review Instructions</summary>
       <div className="exam-page--instructions">
         {/* <p>Instructions: </p> */}
         <ul>
