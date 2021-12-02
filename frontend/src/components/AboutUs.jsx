@@ -57,8 +57,8 @@ export default function AboutUs() {
               <h2>Roya Chobineh</h2>
               <ul>
                 <li><strong>🎓 Education:</strong> Bachelor's Degree in Polymer Engineering, Data Science Diploma</li>
-                <li><strong>⭐️ Background:</strong>  Data Scientist and Polymer Engineer</li>
-                <li><strong>♥️ Passions:</strong>  Coding, Problem-Solving</li>
+                <li><strong>⭐️ Background:</strong>  Data Scientist</li>
+                <li><strong>♥️ Passions:</strong>  Programming, Solving technical challenges, Gaming and Travelling</li>
               </ul>
             </div>
           </article>
