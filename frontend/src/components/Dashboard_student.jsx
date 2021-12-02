@@ -138,7 +138,7 @@ export default function DashboardStudent(props) {
           </tr>
           { showalert &&
           <div className="alert">
-            <h1 className='alert-header'>Warning!</h1>
+            <h2 className='alert-header'>Warning!</h2>
             <p className="alert-body">Are you sure you want to delete this exam?</p>
             <div className="alert-buttons">
               <Button className="alert-button error"  onClick={() => removeAppointment(selectedTest)}>Yes</Button>
