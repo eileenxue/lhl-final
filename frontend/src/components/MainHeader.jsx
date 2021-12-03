@@ -39,7 +39,7 @@ export default function MainHeader() {
                     <NavLink to="/booking">Book Exams</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/about">About</NavLink>
+                    <NavLink to="/about">About Us</NavLink>
                   </li>
                 </Fragment>
                 )}

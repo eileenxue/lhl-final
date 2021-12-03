@@ -33,7 +33,7 @@ export default function ExamPage() {
     // 1000 means every 1 second
     setInterval(() => {
       checkFocus();
-    }, 1000)
+    }, 2000)
   }
 
 
