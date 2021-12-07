@@ -1,9 +1,10 @@
 import axios from "axios";
 import { useState, useHistory } from "react";
-import { useNavigate } from "react-router-dom"; // hold the previous page you were in
+import { NavLink, useNavigate } from "react-router-dom"; // hold the previous page you were in
 
 import TextField from '@mui/material/TextField';
 import { Button } from "@mui/material";
+import { Link } from "@mui/material";
 import './Login.scss';
 
 function Login() {
@@ -73,7 +74,6 @@ function Login() {
   return (
       <div className="login">
         <h1>👋 Welcome back!</h1>
-        {/* <p>Don't have an account yet? Register here.</p> */}
         <form className="login--form" onSubmit={(e) => e.preventDefault()}>
           <TextField
             required
@@ -96,6 +96,7 @@ function Login() {
             onClick={() => handleLogin()}> Login
           </Button>
         </form>
+        {/* <p>Don't have an account yet? <Link underline="none" component={NavLink} to="/register">Register here</Link></p> */}
       </div>
   );
 }
