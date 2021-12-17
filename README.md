@@ -15,12 +15,12 @@ We used PostgreSQL for the database. Refer to the .env.example for more details.
 ## Main Features
 
 ### Book, Edit, Delete Exams
-Students can book a new exam appointment, edit or delete any upcoming exams...except today's!
+Students can book a new exam appointment, edit or delete any upcoming exams except the current date.
 
 ![ExamOWL Trailer](docs/examOWL-book-edit-delete.gif)
 
-### Activty Monitoring
-When the student starts an exam, we demonstrate that the proctor can also monitor that exam. In the proctor's activity monitor, they are able to detect if the student is not focus on the current screen (which is evident during our demo as we focus on the proctor's window). We used Teachable Machine to train our own basic audio models to distinguish between different audio noise. We also used Tensorflow's Simple Face Detection model for our webcam feature. To communicate in the live chat and for the activity monitor, we used socket.io.
+### Activity Monitoring
+When the student starts an exam, we demonstrate that the proctor can also monitor that exam. In the proctor's activity monitor, they are able to detect if the student is not focus on the current screen (which is evident during our demo as we focus on the proctor's window). We used Teachable Machine to train our own basic audio models to distinguish between different audio noises. We also used Tensorflow's Simple Face Detection model for our webcam feature. To communicate in the live chat and for the activity monitor, we used socket.io.
 
 ![ExamOWL Trailer](docs/examOWL-monitor-webcam.gif)
 
@@ -31,3 +31,4 @@ For the exam feature, when students do not get a perfect score, they have the op
 
 
 ## Credits
+Thank you to the teachers, mentors, and support staff at Lighthouse Labs. We also want to acknowledge the numerous YouTube tutorials and online resources that helped us develop our app. The developer community is fantastic, and we're happy to be a part of it!
